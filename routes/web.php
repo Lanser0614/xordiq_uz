@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Order\OrderStatusEnum;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    dd(OrderStatusEnum::cases());
 });
