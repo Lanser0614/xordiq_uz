@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\Models\Room;
+use App\Modules\Credits\Models\Credit;
+use App\Modules\Credits\Models\RejectCases\RejectCaseItem;
 use App\Repository\MerchantRepository\MerchantRepository;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\UserRepository;
 use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\RoomRepository\RoomRepository;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(MerchantRepositoryInterface::class, MerchantRepository::class);
+        $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
     }
 
     /**
@@ -24,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Relation::morphMap([
+            'room' => Room::class,
+            'merchant' => MerchantRepositoryInterface::class,
+        ]);
     }
 }

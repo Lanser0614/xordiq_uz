@@ -14,13 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('images_morph', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->integer('model_id');
-            $table->string('model_type');
+            $table->id();
+            $table->morphs('parentable');
             $table->string('image_path');
             $table->boolean('parent_image')->default(false);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->timestamps();
         });
     }
 

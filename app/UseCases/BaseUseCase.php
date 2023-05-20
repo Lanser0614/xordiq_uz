@@ -42,7 +42,8 @@ class BaseUseCase
             "CAN_UPDATE_MERCHANT",
             "CAN_DELETE_MERCHANT",
             "CAN_STORE_MERCHANT",
-            "CAN_ADD_USER"
+            "CAN_ADD_USER",
+            "CAN_STORE_ROOM",
         ],
         MerchantUserRolesEnum::SUPER_ADMIN => [
 

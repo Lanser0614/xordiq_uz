@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Merchant\MerchantController;
 use App\Http\Controllers\Api\MerchantUser\UserController;
+use App\Http\Controllers\Api\Room\RoomController;
 use App\Http\Middleware\User\CheckMerchantUserMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(f
 
     Route::prefix("rooms")->group(function (){
         Route::post('/{merchant_id}', [RoomController::class, 'store']);
+        Route::post('/{merchant_id}/{room_id}', [RoomController::class, 'update']);
 
     });
 });
