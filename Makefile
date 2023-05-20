@@ -89,7 +89,11 @@ services: ## Lists services
 init: down \
 	network \
 	build \
-	up
+	up \
+	composer-install \
+	cp-env \
+	artisan-key-generate
+
 
 ##
 # build
@@ -102,6 +106,18 @@ network:
 
 php-cs-fix:
 	docker exec shop-app ./vendor/bin/pint
+
+composer-install:
+	docker exec shop-app composer install
+
+cp-env:
+	docker exec shop-app cp .env.example .env
+
+artisan-key-generate:
+	docker exec shop-app cp php artisan key:generate
+
+artisan-migrate:
+	docker exec shop-app cp php artisan migrate
 
 phpstan:
 	docker exec shop-app ./vendor/bin/phpstan analyse --memory-limit=2G
