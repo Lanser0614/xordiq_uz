@@ -34,7 +34,11 @@ class RoomController extends BaseApiController
      */
     public function show(int $merchant_id, int $room_id, ShowRoomUseCase $useCase): JsonResponse
     {
-        $room = $useCase->execute($merchant_id, $room_id, auth()->user());
+        try {
+            $room = $useCase->execute($merchant_id, $room_id, auth()->user());
+        } catch (Exception $e) {
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
+        }
         return new JsonResponse($room);
     }
 
