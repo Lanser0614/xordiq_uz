@@ -21,11 +21,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->prefix('merchants')->group(function () {
-    Route::post('/', [MerchantController::class, 'store']);
-    Route::post('/{id}', [MerchantController::class, 'update']);
-    Route::delete('/{id}', [MerchantController::class, 'delete']);
+Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(function () {
+
+    Route::prefix("merchants")->group(function (){
+        Route::post('/', [MerchantController::class, 'store']);
+        Route::post('/{id}', [MerchantController::class, 'update']);
+        Route::delete('/{id}', [MerchantController::class, 'delete']);
+    });
+
+    Route::prefix("rooms")->group(function (){
+        Route::post('/{merchant_id}', [RoomController::class, 'store']);
+
+    });
 });
+
+
 
 Route::prefix("merchant_user")->group(function (){
     Route::post("/login", [UserController::class, 'login']);

@@ -12,4 +12,6 @@ interface UserRepositoryInterface
     public function getByPhone(int $phone): ?MerchantUser;
 
     public function getUserMerchantById(int $id,  MerchantUser $merchantUser);
+
+    public function deleteMerchantFromUser(MerchantUser $merchantUser, int $merchantId);
 }

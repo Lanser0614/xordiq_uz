@@ -45,7 +45,7 @@ class MerchantUserRegisterUseCase
         $merchantUser->surname = $dto->getSurname();
         $merchantUser->email = $dto->getEmail();
         $merchantUser->otp = $otp;
-        $merchantUser->role = MerchantUserRolesEnum::USER->name;
+        $merchantUser->role = MerchantUserRolesEnum::ADMIN;
         $merchantUser->phone_verified_at = now()->addMinutes(2);
         DB::transaction(function () use ($merchantUser) {
             $this->userRepository->save($merchantUser);

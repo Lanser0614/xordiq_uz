@@ -10,11 +10,14 @@ use App\Models\MerchantUser;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\UserRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
+use App\UseCases\BaseUseCase;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class UpdateMerchantUseCase
+class UpdateMerchantUseCase extends BaseUseCase
 {
+    protected const  PERMISSION_NAME = "CAN_UPDATE_MERCHANT";
+
     /**
      * @param UserRepositoryInterface $userRepository
      * @param MerchantRepositoryInterface $merchantRepository
@@ -33,6 +36,7 @@ class UpdateMerchantUseCase
      */
     public function execute(int $id, MerchantUser $merchantUser, UpdateMerchantDTO $DTO): void
     {
+        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = $this->userRepository->getUserMerchantById($id, $merchantUser);
         $this->checkEntityTask->run($merchant);
         $merchant->title_en = $DTO->getTitleEn();

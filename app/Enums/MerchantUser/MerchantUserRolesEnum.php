@@ -2,10 +2,12 @@
 
 namespace App\Enums\MerchantUser;
 
-enum MerchantUserRolesEnum
+use MyCLabs\Enum\Enum;
+
+class MerchantUserRolesEnum extends Enum
 {
-    case OPERATOR;
-    case ADMIN;
-    case SUPER_ADMIN;
-    case USER;
+    public const OPERATOR = "OPERATOR";
+    public const ADMIN = "ADMIN";
+    public const SUPER_ADMIN = "SUPER_ADMIN";
+    public const USER = "USER";
 }
