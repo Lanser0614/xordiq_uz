@@ -18,6 +18,9 @@ class StoreMerchantRequest extends FormRequest
             "latitude" => ['required', "numeric"],
             "longitude" => ['required', "numeric"],
             "book_commisison" => ['required', "integer"],
+            "home_photo" => ["required", "image"],
+            "photos" => ["required", "array"],
+            "photos.*" => ["required", "image"]
         ];
     }
 }

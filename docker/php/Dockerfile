@@ -6,6 +6,7 @@ ARG uid
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    webp \
     git \
     curl \
     libpng-dev \

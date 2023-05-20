@@ -37,6 +37,6 @@ class UserRepository implements UserRepositoryInterface
 
     public function getUserMerchants(MerchantUser $merchantUser, int $perPage = 15, int $page = 1): LengthAwarePaginator
     {
-        return $merchantUser->merchants()->paginate($perPage, ["*"], $page);
+        return $merchantUser->merchants()->with(["images"])->paginate($perPage, ["*"], $page);
     }
 }

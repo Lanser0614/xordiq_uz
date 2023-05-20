@@ -27,7 +27,7 @@ class MerchantRepository implements MerchantRepositoryInterface
 
     public function getMerchantRooms(int $merchantId, MerchantUser $merchantUser)
     {
-        return Merchant::query()->with(["rooms"])->where("id", $merchantId)
+        return Merchant::query()->with(["rooms.images"])->where("id", $merchantId)
             ->whereHas("merchantsUser", function (Builder $query) use ($merchantUser) {
                 $query->where("id", $merchantUser->id);
             })->first();

@@ -33,7 +33,7 @@ Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(f
     });
 
     Route::prefix("rooms")->group(function (){
-        Route::post('/{merchant_id}', [RoomController::class, 'store']);
+        Route::post('/{merchant_id}', [RoomController::class, 'store'])->middleware('optimizeImages');
         Route::get('/{merchant_id}', [RoomController::class, 'index']);
         Route::post('/{merchant_id}/{room_id}', [RoomController::class, 'update']);
         Route::get('/{merchant_id}/{room_id}', [RoomController::class, 'show']);

@@ -1,8 +1,7 @@
 <?php
 
-use App\Enums\MerchantUser\MerchantUserRolesEnum;
-use App\Enums\Order\OrderStatusEnum;
 use Illuminate\Support\Facades\Route;
+use Spatie\Image\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd([
-        MerchantUserRolesEnum::USER
-//        MerchantUserRolesEnum::ADMIN,
-//        MerchantUserRolesEnum::SUPER_ADMIN,
-//        MerchantUserRolesEnum::OPERATOR,
-    ]);
+    Image::load(public_path("5-merchant/rooms/44/298191684610784.png"))
+        ->save(public_path("5-merchant/rooms/44.png"));
 });

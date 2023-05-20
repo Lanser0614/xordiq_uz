@@ -11,6 +11,7 @@ use App\Repository\MerchantUserRepository\UserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -48,10 +49,11 @@ class StoreRoomUseCase extends BaseUseCase
 
         DB::transaction(function () use ($room, $merchantId, $DTO){
             $room = $this->roomRepository->save($room);
-            $path = $merchantId . "-merchant/roomPhotos";
-            Storage::put("{$path}", $DTO->getHomePhoto());
+            $path = $merchantId . "-merchant/rooms/" . $room->id;
+            $imageName = random_int(1, 100000). time().'.'.$DTO->getHomePhoto()->extension();
+            $DTO->getHomePhoto()->move($path, $imageName);
             $image = new Image();
-            $image->image_path = $path;
+            $image->image_path = $path . "/" . $imageName;
             $image->parent_image = true;
             $room->images()->save($image);
 
@@ -64,13 +66,16 @@ class StoreRoomUseCase extends BaseUseCase
      * @param string $path
      * @param $room
      * @return void
+     * @throws \Exception
      */
     function savePhotos(StoreRoomDTO $DTO, string $path, $room): void
     {
         foreach ($DTO->getPhotos() as $photo) {
-            Storage::put("{$path}", $photo);
+            /** @var UploadedFile $photo */
+            $imageName = random_int(1, 100000).time().'.'.$photo->extension();
+            $photo->move($path, $imageName);
             $image = new Image();
-            $image->image_path = $path;
+            $image->image_path = $path . "/" . $imageName;
             $room->images()->save($image);
         }
     }
