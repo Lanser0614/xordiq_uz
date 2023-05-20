@@ -10,9 +10,8 @@ use Illuminate\Validation\UnauthorizedException;
 
 class CheckMerchantUserMiddleware
 {
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
-        // Force Json accept type
         if (auth()->user() instanceof MerchantUser === false) {
             throw new UnauthorizedException(ExceptionEnum::ENTITY_NOT_FOUND->name);
         }

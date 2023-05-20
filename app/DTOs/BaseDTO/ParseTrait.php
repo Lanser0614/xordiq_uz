@@ -246,7 +246,6 @@ trait ParseTrait
      *
      * @param  class-string<T>  $className
      * @param  array<T>|null  $defaultValue
-     * @return array<T>&!null
      *
      * @throws ParseException
      */

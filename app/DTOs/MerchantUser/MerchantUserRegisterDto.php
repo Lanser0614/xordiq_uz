@@ -5,7 +5,7 @@ namespace App\DTOs\MerchantUser;
 use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;
 
-class MerchantUserRegisterDto extends BaseDTO
+final class MerchantUserRegisterDto extends BaseDTO
 {
     public function __construct(
         private readonly int $phone,
@@ -46,7 +46,7 @@ class MerchantUserRegisterDto extends BaseDTO
      */
     public static function frommArray(array $data): static
     {
-        return new static(
+        return new self(
             self::parseInt($data['phone']),
             self::parseNullableString($data['email']),
             self::parseString($data['name']),

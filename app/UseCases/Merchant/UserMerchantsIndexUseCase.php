@@ -3,16 +3,10 @@
 namespace App\UseCases\Merchant;
 
 use App\Models\MerchantUser;
-use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\UserRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 
 class UserMerchantsIndexUseCase
 {
-    /**
-     * @param  MerchantRepositoryInterface  $merchantRepository
-     * @param  CheckEntityTask  $checkEntityTask
-     */
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
     ) {

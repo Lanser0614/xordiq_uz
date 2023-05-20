@@ -6,7 +6,7 @@ use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;
 use Illuminate\Http\UploadedFile;
 
-class StoreMerchantDTO extends BaseDTO
+final class StoreMerchantDTO extends BaseDTO
 {
     public function __construct(
         private readonly string $title_uz,
@@ -83,7 +83,7 @@ class StoreMerchantDTO extends BaseDTO
      */
     public static function frommArray(array $data)
     {
-        return new static(
+        return new self(
             title_uz: self::parseString($data['title_uz']),
             title_ru: self::parseString($data['title_ru']),
             title_en: self::parseString($data['title_en']),

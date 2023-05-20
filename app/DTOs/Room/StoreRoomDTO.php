@@ -6,7 +6,7 @@ use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;
 use Illuminate\Http\UploadedFile;
 
-class StoreRoomDTO extends BaseDTO
+final class StoreRoomDTO extends BaseDTO
 {
     public function __construct(
         private readonly string $title_en,
@@ -53,7 +53,7 @@ class StoreRoomDTO extends BaseDTO
      */
     public static function frommArray(array $data)
     {
-        return new static(
+        return new self(
             title_en: self::parseString($data['title_en']),
             title_uz: self::parseString($data['title_uz']),
             title_ru: self::parseString($data['title_ru']),
@@ -63,8 +63,8 @@ class StoreRoomDTO extends BaseDTO
         );
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
-        // TODO: Implement jsonSerialize() method.
+        return [];
     }
 }

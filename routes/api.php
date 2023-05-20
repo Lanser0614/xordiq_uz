@@ -1,10 +1,14 @@
 <?php
 
+use App\Enums\ExceptionEnum\ExceptionEnum;
 use App\Http\Controllers\Api\Merchant\MerchantController;
 use App\Http\Controllers\Api\MerchantUser\UserController;
 use App\Http\Controllers\Api\Room\RoomController;
 use App\Http\Middleware\User\CheckMerchantUserMiddleware;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,4 +51,21 @@ Route::prefix('merchant_user')->group(function () {
     Route::post('/sendOtp', [UserController::class, 'sendOtp']);
     Route::post('/loginWithOtp', [UserController::class, 'loginWithOtp']);
     Route::post('/register', [UserController::class, 'register']);
+});
+
+Route::get('/test', function () {
+    $user = User::query()->where('phone', 9433507)->first();
+
+    if ($user === null) {
+        throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name);
+    }
+
+    if (Hash::check('password', $user->password)) {
+        $token = $user->createToken('xordiq.uz')->plainTextToken;
+    } else {
+        throw new Exception('Wrong password');
+    }
+
+    return $token;
+
 });

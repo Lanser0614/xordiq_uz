@@ -5,7 +5,7 @@ namespace App\DTOs\Merchant;
 use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;
 
-class UpdateMerchantDTO extends BaseDTO
+final class UpdateMerchantDTO extends BaseDTO
 {
     public function __construct(
         private readonly string $title_uz,
@@ -70,7 +70,7 @@ class UpdateMerchantDTO extends BaseDTO
      */
     public static function frommArray(array $data)
     {
-        return new static(
+        return new self(
             self::parseString($data['title_uz']),
             self::parseString($data['title_ru']),
             self::parseString($data['title_en']),

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\App;
 
 /**
  * @property string $image_path
- * @property int $parent_image
+ * @property bool $parent_image
  */
 class Image extends Model
 {

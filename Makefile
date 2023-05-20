@@ -100,6 +100,11 @@ build: ## Builds service images [file|service|services]
 network:
 	  docker network create shop || true
 
+php-cs-fix:
+	docker exec shop-app ./vendor/bin/pint
+
+phpstan:
+	docker exec shop-app ./vendor/bin/phpstan analyse --memory-limit=2G
 ##
 # up
 #
