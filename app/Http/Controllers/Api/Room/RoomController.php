@@ -23,7 +23,7 @@ class RoomController extends BaseApiController
         try {
             $useCase->execute($merchant_id, StoreRoomDTO::frommArray($request->validated()), auth()->user());
         } catch (Exception $e) {
-            return new JsonResponse($e->getMessage(), $e->getCode());
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
 
         return new JsonResponse($this->responseSuccess());
@@ -41,7 +41,7 @@ class RoomController extends BaseApiController
         try {
             $useCase->execute($merchant_id, $room_id, StoreRoomDTO::frommArray($request->validated()), auth()->user());
         } catch (Exception $e) {
-            return new JsonResponse($e->getMessage(), $e->getCode());
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
 
         return new JsonResponse($this->responseSuccess());
