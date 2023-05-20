@@ -30,16 +30,13 @@ class MerchantUser extends Authenticate
 
     protected $table = 'merchant_users';
 
-    /**
-     * @return BelongsToMany
-     */
     public function merchants(): BelongsToMany
     {
         return $this->belongsToMany(
             Merchant::class,
-            "merchantUser_merchants_pivot",
-            "merchantUser_id",
-            "merchant_id",
+            'merchantUser_merchants_pivot',
+            'merchantUser_id',
+            'merchant_id',
         );
     }
 }

@@ -26,24 +26,20 @@ class UserController extends BaseApiController
      */
     public function login(LoginRequest $request, UserLoginUseCase $useCase): JsonResponse
     {
-       $token = $useCase->execute(UserLoginDto::frommArray($request->validated()));
+        $token = $useCase->execute(UserLoginDto::frommArray($request->validated()));
 
-       return new JsonResponse($this->responseWithToken($token));
+        return new JsonResponse($this->responseWithToken($token));
     }
 
     /**
-     * @param Request $request
-     * @param UserSendOtpUseCase $useCase
-     * @return JsonResponse
      * @throws Exception
      */
     public function sendOtp(Request $request, UserSendOtpUseCase $useCase): JsonResponse
     {
-        $useCase->execute($request->input("phone"));
+        $useCase->execute($request->input('phone'));
 
         return new JsonResponse($this->responseSuccess());
     }
-
 
     /**
      * @throws Exception
@@ -51,25 +47,23 @@ class UserController extends BaseApiController
     public function loginWithOtp(LoginWithOtpRequest $request, UserLoginWithOtpUseCase $useCase): JsonResponse
     {
         $token = $useCase->execute($request->input('phone'), $request->input('otp'));
+
         return new JsonResponse($this->responseWithToken($token));
     }
 
     /**
-     * @param UserRegisterRequest $request
-     * @param MerchantUserRegisterUseCase $useCase
      * @return JsonResponse
+     *
      * @throws DataBaseException
      */
     public function register(UserRegisterRequest $request, MerchantUserRegisterUseCase $useCase)
     {
         try {
             $useCase->execute(MerchantUserRegisterDto::frommArray($request->validated()));
-        }catch (Exception $e){
-            throw new DataBaseException("User not created");
+        } catch (Exception $e) {
+            throw new DataBaseException('User not created');
         }
 
         return new JsonResponse($this->responseSuccess());
     }
-
-
 }

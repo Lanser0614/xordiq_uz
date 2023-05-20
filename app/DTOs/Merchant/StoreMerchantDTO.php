@@ -9,104 +9,70 @@ use Illuminate\Http\UploadedFile;
 class StoreMerchantDTO extends BaseDTO
 {
     public function __construct(
-        private readonly string       $title_uz,
-        private readonly string       $title_ru,
-        private readonly string       $title_en,
-        private readonly string       $description_uz,
-        private readonly string       $description_ru,
-        private readonly string       $description_en,
-        private readonly float        $latitude,
-        private readonly float        $longitude,
-        private readonly int          $book_commisison,
+        private readonly string $title_uz,
+        private readonly string $title_ru,
+        private readonly string $title_en,
+        private readonly string $description_uz,
+        private readonly string $description_ru,
+        private readonly string $description_en,
+        private readonly float $latitude,
+        private readonly float $longitude,
+        private readonly int $book_commisison,
         private readonly UploadedFile $home_photo,
-        private readonly array        $photos,
-    )
-    {
+        private readonly array $photos,
+    ) {
     }
 
-    /**
-     * @return UploadedFile
-     */
     public function getHomePhoto(): UploadedFile
     {
         return $this->home_photo;
     }
 
-    /**
-     * @return array
-     */
     public function getPhotos(): array
     {
         return $this->photos;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleUz(): string
     {
         return $this->title_uz;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleRu(): string
     {
         return $this->title_ru;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleEn(): string
     {
         return $this->title_en;
     }
 
-    /**
-     * @return string
-     */
     public function getDescriptionUz(): string
     {
         return $this->description_uz;
     }
 
-    /**
-     * @return string
-     */
     public function getDescriptionRu(): string
     {
         return $this->description_ru;
     }
 
-    /**
-     * @return string
-     */
     public function getDescriptionEn(): string
     {
         return $this->description_en;
     }
 
-    /**
-     * @return float
-     */
     public function getLatitude(): float
     {
         return $this->latitude;
     }
 
-    /**
-     * @return float
-     */
     public function getLongitude(): float
     {
         return $this->longitude;
     }
 
-    /**
-     * @return int
-     */
     public function getBookCommisison(): int
     {
         return $this->book_commisison;

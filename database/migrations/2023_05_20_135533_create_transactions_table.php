@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->enum("payment_type",["OFFLINE", "ONLINE"]);
-            $table->enum("payment_method_key", ["payme","click","cash"]);
-            $table->unsignedBigInteger("amount");
-            $table->dateTime("date");
-            $table->text("comment");
-            $table->unsignedBigInteger("order_id")->nullable();
-            $table->boolean("is_canceled")->default(false);
-            $table->dateTime("canceled_at")->nullable();
+            $table->enum('payment_type', ['OFFLINE', 'ONLINE']);
+            $table->enum('payment_method_key', ['payme', 'click', 'cash']);
+            $table->unsignedBigInteger('amount');
+            $table->dateTime('date');
+            $table->text('comment');
+            $table->unsignedBigInteger('order_id')->nullable();
+            $table->boolean('is_canceled')->default(false);
+            $table->dateTime('canceled_at')->nullable();
             $table->timestamps();
         });
     }

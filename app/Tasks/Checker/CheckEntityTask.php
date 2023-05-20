@@ -3,7 +3,6 @@
 namespace App\Tasks\Checker;
 
 use App\Enums\ExceptionEnum\ExceptionEnum;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CheckEntityTask

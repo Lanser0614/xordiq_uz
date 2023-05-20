@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use App\Models\Room;
-use App\Modules\Credits\Models\Credit;
-use App\Modules\Credits\Models\RejectCases\RejectCaseItem;
 use App\Repository\MerchantRepository\MerchantRepository;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\UserRepository;

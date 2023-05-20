@@ -35,14 +35,14 @@ class Handler extends ExceptionHandler
         if ($e instanceof DataBaseException) {
             return response()->json([
                 'error' => $e->getMessage(),
-                "code" => $e->getCode()
+                'code' => $e->getCode(),
             ]);
         }
 
         if ($e instanceof ModelNotFoundException) {
             return response()->json([
                 'error' => $e->getMessage(),
-                "code" => $e->getCode()
+                'code' => $e->getCode(),
             ]);
         }
 

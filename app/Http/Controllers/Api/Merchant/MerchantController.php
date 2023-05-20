@@ -20,9 +20,6 @@ use Illuminate\Http\Request;
 class MerchantController extends BaseApiController
 {
     /**
-     * @param StoreMerchantRequest $request
-     * @param StoreMerchantUseCase $useCase
-     * @return JsonResponse
      * @throws DataBaseException
      */
     public function store(StoreMerchantRequest $request, StoreMerchantUseCase $useCase): JsonResponse
@@ -30,41 +27,26 @@ class MerchantController extends BaseApiController
         try {
             $useCase->execute(merchantUser: auth()->user(), DTO: StoreMerchantDTO::frommArray($request->validated()));
         } catch (Exception $e) {
-            throw new DataBaseException("Merchant not created");
+            throw new DataBaseException('Merchant not created');
         }
 
         return new JsonResponse($this->responseSuccess());
     }
 
-    /**
-     * @param Request $request
-     * @param UserMerchantsIndexUseCase $useCase
-     * @return mixed
-     */
     public function index(
         Request $request,
         UserMerchantsIndexUseCase $useCase
-    ): mixed
-    {
-       return $useCase->execute(auth()->user(), $request->input("prePage") ?? 15, $request->input("page") ?? 1);
+    ): mixed {
+        return $useCase->execute(auth()->user(), $request->input('prePage') ?? 15, $request->input('page') ?? 1);
     }
 
-    /**
-     * @param int $id
-     * @param ShowMerchantUseCase $useCase
-     * @return JsonResponse
-     */
     public function show(int $id, ShowMerchantUseCase $useCase): JsonResponse
     {
-       $merchant = $useCase->execute($id, auth()->user());
-       return new JsonResponse($merchant);
+        $merchant = $useCase->execute($id, auth()->user());
+
+        return new JsonResponse($merchant);
     }
-    /**
-     * @param int $id
-     * @param UpdateMerchantRequest $request
-     * @param UpdateMerchantUseCase $useCase
-     * @return JsonResponse
-     */
+
     public function update(int $id, UpdateMerchantRequest $request, UpdateMerchantUseCase $useCase): JsonResponse
     {
         try {
@@ -76,11 +58,6 @@ class MerchantController extends BaseApiController
         return new JsonResponse($this->responseSuccess());
     }
 
-    /**
-     * @param int $id
-     * @param DeleteMerchantUseCase $useCase
-     * @return JsonResponse
-     */
     public function delete(int $id, DeleteMerchantUseCase $useCase): JsonResponse
     {
         try {
@@ -91,5 +68,4 @@ class MerchantController extends BaseApiController
 
         return new JsonResponse($this->responseOnDelete());
     }
-
 }

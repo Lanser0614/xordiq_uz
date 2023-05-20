@@ -2,10 +2,8 @@
 
 namespace App\UseCases\Merchant;
 
-use App\DTOs\Merchant\StoreMerchantDTO;
 use App\DTOs\Merchant\UpdateMerchantDTO;
 use App\Exceptions\DataBaseException;
-use App\Models\Merchant;
 use App\Models\MerchantUser;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\UserRepositoryInterface;
@@ -16,19 +14,13 @@ use Illuminate\Support\Facades\DB;
 
 class UpdateMerchantUseCase extends BaseUseCase
 {
-    protected const  PERMISSION_NAME = "CAN_UPDATE_MERCHANT";
+    protected const PERMISSION_NAME = 'CAN_UPDATE_MERCHANT';
 
-    /**
-     * @param UserRepositoryInterface $userRepository
-     * @param MerchantRepositoryInterface $merchantRepository
-     * @param CheckEntityTask $checkEntityTask
-     */
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly MerchantRepositoryInterface $merchantRepository,
-        private readonly CheckEntityTask             $checkEntityTask
-    )
-    {
+        private readonly CheckEntityTask $checkEntityTask
+    ) {
     }
 
     /**
@@ -54,7 +46,7 @@ class UpdateMerchantUseCase extends BaseUseCase
                 $merchant->merchantsUser()->attach($merchantUser->id);
             });
         } catch (Exception $e) {
-            throw new DataBaseException("Merchant not updated");
+            throw new DataBaseException('Merchant not updated');
         }
 
     }

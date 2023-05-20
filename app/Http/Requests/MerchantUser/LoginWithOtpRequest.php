@@ -9,8 +9,8 @@ class LoginWithOtpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "phone" => ["integer", "required"],
-            "otp" => ["integer", "required"]
+            'phone' => ['integer', 'required'],
+            'otp' => ['integer', 'required'],
         ];
     }
 }

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property int $id
@@ -24,9 +23,9 @@ class Room extends Model
     {
         return $this->morphMany(Image::class, 'parentable');
     }
+
     public function merchant(): BelongsTo
     {
-        return $this->belongsTo(Merchant::class, "merchant_id", "id");
+        return $this->belongsTo(Merchant::class, 'merchant_id', 'id');
     }
-
 }

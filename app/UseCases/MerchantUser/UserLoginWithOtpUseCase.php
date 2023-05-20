@@ -20,17 +20,17 @@ class UserLoginWithOtpUseCase
     {
         $user = $this->userRepository->getByPhone($phone);
 
-        if ($user === null){
+        if ($user === null) {
             throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name, 404);
         }
 
-        if ($user->otp === $otp && $user->phone_verified_at >= now()){
-            $token = $user->createToken("xordiq.uz")->plainTextToken;
-        }else{
-            throw new Exception("Wrong otp");
+        if ($user->otp === $otp && $user->phone_verified_at >= now()) {
+            $token = $user->createToken('xordiq.uz')->plainTextToken;
+        } else {
+            throw new Exception('Wrong otp');
         }
 
         return $token;
 
-}
+    }
 }

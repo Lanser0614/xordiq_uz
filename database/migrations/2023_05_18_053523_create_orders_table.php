@@ -25,7 +25,7 @@ return new class extends Migration
                 OrderStatusEnum::NEW->name,
                 OrderStatusEnum::IN_PROCESSING->name,
                 OrderStatusEnum::CONFIRMED->name,
-                OrderStatusEnum::CANCELED->name
+                OrderStatusEnum::CANCELED->name,
             ])->default(OrderStatusEnum::NEW->name);
             $table->foreignId('processed_by_id')->constrained('merchant_users');
             $table->timestamps();

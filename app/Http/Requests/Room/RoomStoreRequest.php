@@ -9,13 +9,13 @@ class RoomStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title_uz" => ["required", "string"],
-            "title_ru" => ["required", "string"],
-            "title_en" => ["required", "string"],
-            "price" => ["required", "integer"],
-            "home_photo" => ["required", "image"],
-            "photos" => ["required", "array"],
-            "photos.*" => ["required", "image"]
+            'title_uz' => ['required', 'string'],
+            'title_ru' => ['required', 'string'],
+            'title_en' => ['required', 'string'],
+            'price' => ['required', 'integer'],
+            'home_photo' => ['required', 'image'],
+            'photos' => ['required', 'array'],
+            'photos.*' => ['required', 'image'],
         ];
     }
 }

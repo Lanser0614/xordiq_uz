@@ -16,26 +16,23 @@ class UserLoginUseCase
     }
 
     /**
-     * @param UserLoginDto $dto
-     * @return string
      * @throws Exception
      */
     public function execute(UserLoginDto $dto): string
     {
         $user = $this->userRepository->getByPhone($dto->getPhone());
 
-        if ($user === null){
+        if ($user === null) {
             throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name);
         }
 
-        if (Hash::check($dto->getPassword(),$user->password)){
-            $token = $user->createToken("xordiq.uz")->plainTextToken;
-        }else{
-            throw new Exception("Wrong password");
+        if (Hash::check($dto->getPassword(), $user->password)) {
+            $token = $user->createToken('xordiq.uz')->plainTextToken;
+        } else {
+            throw new Exception('Wrong password');
         }
 
         return $token;
 
     }
-
 }

@@ -12,56 +12,37 @@ class StoreRoomDTO extends BaseDTO
         private readonly string $title_en,
         private readonly string $title_uz,
         private readonly string $title_ru,
-        private readonly int    $price,
-        private readonly UploadedFile    $home_photo,
-        private readonly array    $photos,
-    )
-    {
+        private readonly int $price,
+        private readonly UploadedFile $home_photo,
+        private readonly array $photos,
+    ) {
     }
 
-    /**
-     * @return UploadedFile
-     */
     public function getHomePhoto(): UploadedFile
     {
         return $this->home_photo;
     }
 
-    /**
-     * @return array
-     */
     public function getPhotos(): array
     {
         return $this->photos;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleEn(): string
     {
         return $this->title_en;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleUz(): string
     {
         return $this->title_uz;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleRu(): string
     {
         return $this->title_ru;
     }
 
-    /**
-     * @return int
-     */
     public function getPrice(): int
     {
         return $this->price;

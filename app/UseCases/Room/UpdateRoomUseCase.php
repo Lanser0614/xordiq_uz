@@ -6,7 +6,6 @@ use App\DTOs\Room\StoreRoomDTO;
 use App\Exceptions\DataBaseException;
 use App\Models\Image;
 use App\Models\MerchantUser;
-use App\Models\Room;
 use App\Repository\MerchantUserRepository\UserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
@@ -16,20 +15,13 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateRoomUseCase extends BaseUseCase
 {
+    public const PERMISSION_NAME = 'CAN_STORE_ROOM';
 
-    public const PERMISSION_NAME = "CAN_STORE_ROOM";
-
-    /**
-     * @param RoomRepositoryInterface $roomRepository
-     * @param UserRepositoryInterface $userRepository
-     * @param CheckEntityTask $checkEntityTask
-     */
     public function __construct(
         private readonly RoomRepositoryInterface $roomRepository,
         private readonly UserRepositoryInterface $userRepository,
-        private readonly CheckEntityTask         $checkEntityTask
-    )
-    {
+        private readonly CheckEntityTask $checkEntityTask
+    ) {
     }
 
     /**
@@ -49,9 +41,9 @@ class UpdateRoomUseCase extends BaseUseCase
         $room->price = $DTO->getPrice();
         $room->merchant_id = $merchantId;
 
-        DB::transaction(function () use ($room, $merchantId, $DTO){
+        DB::transaction(function () use ($room, $merchantId, $DTO) {
             $room = $this->roomRepository->save($room);
-            $path = $merchantId . "-merchant/roomPhotos";
+            $path = $merchantId.'-merchant/roomPhotos';
             Storage::put("{$path}", $DTO->getHomePhoto());
             $image = new Image();
             $image->image_path = $path;
@@ -62,13 +54,7 @@ class UpdateRoomUseCase extends BaseUseCase
         });
     }
 
-    /**
-     * @param StoreRoomDTO $DTO
-     * @param string $path
-     * @param $room
-     * @return void
-     */
-    function savePhotos(StoreRoomDTO $DTO, string $path, $room): void
+    public function savePhotos(StoreRoomDTO $DTO, string $path, $room): void
     {
         foreach ($DTO->getPhotos() as $photo) {
             Storage::put("{$path}", $photo);

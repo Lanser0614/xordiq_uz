@@ -4,12 +4,10 @@ namespace App\UseCases\MerchantUser;
 
 use App\DTOs\MerchantUser\MerchantUserRegisterDto;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
-use App\Exceptions\BusinessException;
 use App\Exceptions\DataBaseException;
 use App\Models\MerchantUser;
 use App\Repository\MerchantUserRepository\UserRepositoryInterface;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +19,6 @@ class MerchantUserRegisterUseCase
     }
 
     /**
-     * @param MerchantUserRegisterDto $dto
      * @throws Exception
      */
     public function execute(MerchantUserRegisterDto $dto): void
@@ -34,8 +31,8 @@ class MerchantUserRegisterUseCase
 
         $user = $this->userRepository->getByPhone($dto->getPhone());
 
-        if ($user){
-            throw new DataBaseException("phoneNumber already have");
+        if ($user) {
+            throw new DataBaseException('phoneNumber already have');
         }
 
         $merchantUser = new MerchantUser();

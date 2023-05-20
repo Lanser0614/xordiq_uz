@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('expense_payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("amount");
-            $table->dateTime("date");
-            $table->text("comment");
-            $table->enum("expense_payment_type", ["OFFLINE", "ONLINE"]);
-            $table->enum("expense_payment_method_key", ["payme","click","cash"]);
-            $table->boolean("is_canceled")->default(false);
-            $table->dateTime("canceled_at");
+            $table->unsignedBigInteger('amount');
+            $table->dateTime('date');
+            $table->text('comment');
+            $table->enum('expense_payment_type', ['OFFLINE', 'ONLINE']);
+            $table->enum('expense_payment_method_key', ['payme', 'click', 'cash']);
+            $table->boolean('is_canceled')->default(false);
+            $table->dateTime('canceled_at');
             $table->timestamps();
         });
     }

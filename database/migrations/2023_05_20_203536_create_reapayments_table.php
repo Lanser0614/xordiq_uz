@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('repayments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("amount");
-            $table->foreignId("transaction_id")->constrained("transactions");
-            $table->dateTime("date");
-            $table->text("comment");
-            $table->boolean("is_canceled")->default(false);
-            $table->dateTime("canceled_at");
+            $table->unsignedBigInteger('amount');
+            $table->foreignId('transaction_id')->constrained('transactions');
+            $table->dateTime('date');
+            $table->text('comment');
+            $table->boolean('is_canceled')->default(false);
+            $table->dateTime('canceled_at');
             $table->timestamps();
         });
     }

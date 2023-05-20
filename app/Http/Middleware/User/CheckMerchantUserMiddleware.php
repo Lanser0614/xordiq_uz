@@ -16,6 +16,7 @@ class CheckMerchantUserMiddleware
         if (auth()->user() instanceof MerchantUser === false) {
             throw new UnauthorizedException(ExceptionEnum::ENTITY_NOT_FOUND->name);
         }
+
         return $next($request);
     }
 }

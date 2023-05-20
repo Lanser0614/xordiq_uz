@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\App;
  */
 class Image extends Model
 {
-    private string $appUrl = "http://localhost:8000/";
-    private string $appProdUrl = "http://159.65.149.53/";
+    private string $appUrl = 'http://localhost:8000/';
+
+    private string $appProdUrl = 'http://159.65.149.53/';
+
     protected $table = 'images_morph';
 
     public function parentable(): MorphTo
@@ -25,13 +27,14 @@ class Image extends Model
 
     protected function imagePath(): Attribute
     {
-        if (App::isLocal()){
+        if (App::isLocal()) {
             $url = $this->appProdUrl;
         } else {
             $url = $this->appUrl;
         }
+
         return Attribute::make(
-            get: fn (string $value) =>   $url . $value,
+            get: fn (string $value) => $url.$value,
         );
     }
 

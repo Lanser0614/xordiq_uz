@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,16 +23,13 @@ class Merchant extends Model
 {
     protected $table = 'merchants';
 
-    /**
-     * @return BelongsToMany
-     */
     public function merchantsUser(): BelongsToMany
     {
         return $this->belongsToMany(
             MerchantUser::class,
-            "merchantUser_merchants_pivot",
-            "merchant_id",
-            "merchantUser_id"
+            'merchantUser_merchants_pivot',
+            'merchant_id',
+            'merchantUser_id'
         );
     }
 

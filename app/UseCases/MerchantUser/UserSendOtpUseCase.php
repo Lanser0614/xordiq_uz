@@ -16,8 +16,6 @@ class UserSendOtpUseCase
     }
 
     /**
-     * @param int $phone
-     * @return void
      * @throws Exception
      */
     public function execute(int $phone): void

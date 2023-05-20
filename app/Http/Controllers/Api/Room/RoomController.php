@@ -15,23 +15,13 @@ use Illuminate\Http\JsonResponse;
 
 class RoomController extends BaseApiController
 {
-    /**
-     * @param int $merchant_id
-     * @param IndexRoomUseCase $useCase
-     * @return JsonResponse
-     */
     public function index(int $merchant_id, IndexRoomUseCase $useCase): JsonResponse
     {
         $merchantsRoom = $useCase->execute($merchant_id, auth()->user());
+
         return new JsonResponse($merchantsRoom);
     }
 
-    /**
-     * @param int $merchant_id
-     * @param int $room_id
-     * @param ShowRoomUseCase $useCase
-     * @return JsonResponse
-     */
     public function show(int $merchant_id, int $room_id, ShowRoomUseCase $useCase): JsonResponse
     {
         try {
@@ -39,6 +29,7 @@ class RoomController extends BaseApiController
         } catch (Exception $e) {
             return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
+
         return new JsonResponse($room);
     }
 
@@ -53,12 +44,6 @@ class RoomController extends BaseApiController
         return new JsonResponse($this->responseOnDelete());
     }
 
-    /**
-     * @param int $merchant_id
-     * @param RoomStoreRequest $request
-     * @param StoreRoomUseCase $useCase
-     * @return JsonResponse
-     */
     public function store(int $merchant_id, RoomStoreRequest $request, StoreRoomUseCase $useCase): JsonResponse
     {
         try {
@@ -70,13 +55,6 @@ class RoomController extends BaseApiController
         return new JsonResponse($this->responseSuccess());
     }
 
-    /**
-     * @param int $merchant_id
-     * @param int $room_id
-     * @param RoomStoreRequest $request
-     * @param UpdateRoomUseCase $useCase
-     * @return JsonResponse
-     */
     public function update(int $merchant_id, int $room_id, RoomStoreRequest $request, UpdateRoomUseCase $useCase): JsonResponse
     {
         try {

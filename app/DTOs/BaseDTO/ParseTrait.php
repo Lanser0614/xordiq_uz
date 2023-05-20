@@ -9,8 +9,6 @@ use Exception;
 trait ParseTrait
 {
     /**
-     * @param mixed $value
-     * @return int|null
      * @throws ParseException
      */
     protected static function parseNullableInt(mixed &$value): ?int
@@ -48,7 +46,7 @@ trait ParseTrait
      */
     protected static function parseNullableArray(mixed &$value): ?array
     {
-        if (!isset($value)) {
+        if (! isset($value)) {
             return null;
         }
 
@@ -65,9 +63,7 @@ trait ParseTrait
 
     /**
      * @description Reference(&) needed for passing Undefined array keys
-     * @param mixed $value
-     * @param array|null $defaultValue
-     * @return array
+     *
      * @throws ParseException
      */
     protected static function parseArray(mixed &$value, ?array $defaultValue = null): array
@@ -169,12 +165,14 @@ trait ParseTrait
         return $castedValue;
     }
 
-
     /**
      * @description Reference(&) needed for passing Undefined array keys
+     *
      * @template T
-     * @param class-string<T> $className
+     *
+     * @param  class-string<T>  $className
      * @return T
+     *
      * @throws ParseException
      */
     protected static function parseNullableEntity(string $className, mixed &$value)
@@ -184,20 +182,22 @@ trait ParseTrait
             return null;
         }
 
-        if (!is_subclass_of($className, self::class)) {
-            throw new ParseException($className . ' is not instance of ' . BaseDTO::class);
+        if (! is_subclass_of($className, self::class)) {
+            throw new ParseException($className.' is not instance of '.BaseDTO::class);
         }
-
 
         return $className::fromArray($parsedValue);
     }
 
     /**
      * @description Reference(&) needed for passing Undefined array keys
+     *
      * @template T
-     * @param class-string<T> $className
-     * @param T|null $defaultValue
+     *
+     * @param  class-string<T>  $className
+     * @param  T|null  $defaultValue
      * @return T&!null
+     *
      * @throws ParseException
      */
     protected static function parseEntity(string $className, mixed &$value, mixed $defaultValue = null)
@@ -207,16 +207,21 @@ trait ParseTrait
             if ($defaultValue === null) {
                 throw new ParseException('Parse entity value required');
             }
+
             return $defaultValue;
         }
+
         return $castedValue;
     }
 
     /**
      * @description Reference(&) needed for passing Undefined array keys
+     *
      * @template T
-     * @param class-string<T> $className
+     *
+     * @param  class-string<T>  $className
      * @return array<T>|null
+     *
      * @throws ParseException
      */
     protected static function parseNullableEntityList(string $className, mixed &$value): ?array
@@ -236,10 +241,13 @@ trait ParseTrait
 
     /**
      * @description Reference(&) needed for passing Undefined array keys
+     *
      * @template T
-     * @param class-string<T> $className
-     * @param array<T>|null $defaultValue
+     *
+     * @param  class-string<T>  $className
+     * @param  array<T>|null  $defaultValue
      * @return array<T>&!null
+     *
      * @throws ParseException
      */
     protected static function parseEntityList(string $className, mixed &$value, array $defaultValue = null): array
@@ -249,8 +257,10 @@ trait ParseTrait
             if ($defaultValue === null) {
                 throw new ParseException('Parse entity value required');
             }
+
             return $defaultValue;
         }
+
         return $castedValue;
     }
 

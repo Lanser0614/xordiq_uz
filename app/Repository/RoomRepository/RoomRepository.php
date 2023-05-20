@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoomRepository implements RoomRepositoryInterface
 {
-
     public function save(Room $model)
     {
-       $model->save();
-       return $model;
+        $model->save();
+
+        return $model;
     }
 
     public function getByRoomId(int $id): Model|Collection|Builder|array|null
     {
-       return Room::query()->find($id);
+        return Room::query()->find($id);
     }
 
     public function delete(Room $model): void
