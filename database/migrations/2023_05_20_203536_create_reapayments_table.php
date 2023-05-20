@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('repayments', function (Blueprint $table) {
             $table->id();
-            $table->enum("payment_type",["OFFLINE", "ONLINE"]);
-            $table->enum("payment_method_key", ["payme","click","cash"]);
             $table->unsignedBigInteger("amount");
+            $table->foreignId("transaction_id")->constrained("transactions");
             $table->dateTime("date");
             $table->text("comment");
-            $table->unsignedBigInteger("order_id")->nullable();
             $table->boolean("is_canceled")->default(false);
-            $table->dateTime("canceled_at")->nullable();
+            $table->dateTime("canceled_at");
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('reapayments');
     }
 };
