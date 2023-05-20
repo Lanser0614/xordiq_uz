@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd(OrderStatusEnum::cases());
+    dd((int)"w");
 });
