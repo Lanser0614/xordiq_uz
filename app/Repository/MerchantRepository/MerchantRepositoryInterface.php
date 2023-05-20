@@ -3,6 +3,7 @@
 namespace App\Repository\MerchantRepository;
 
 use App\Models\Merchant;
+use App\Models\MerchantUser;
 
 interface MerchantRepositoryInterface
 {
@@ -12,4 +13,6 @@ interface MerchantRepositoryInterface
     public function getById(int $id);
 
     public function delete(int $id);
+
+    public function getMerchantRooms(int $merchantId, MerchantUser $merchantUser);
 }

@@ -20,4 +20,9 @@ class RoomRepository implements RoomRepositoryInterface
     {
        return Room::query()->find($id);
     }
+
+    public function delete(Room $model): void
+    {
+        $model->delete();
+    }
 }

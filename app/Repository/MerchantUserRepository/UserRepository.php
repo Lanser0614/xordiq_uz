@@ -4,12 +4,14 @@ namespace App\Repository\MerchantUserRepository;
 
 use App\Models\MerchantUser;
 use App\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class UserRepository implements UserRepositoryInterface
 {
+
 
     public function save(MerchantUser $model): MerchantUser
     {
@@ -31,5 +33,10 @@ class UserRepository implements UserRepositoryInterface
     public function deleteMerchantFromUser(MerchantUser $merchantUser, int $merchantId): int
     {
         return $merchantUser->merchants()->detach($merchantId);
+    }
+
+    public function getUserMerchants(MerchantUser $merchantUser, int $perPage = 15, int $page = 1): LengthAwarePaginator
+    {
+        return $merchantUser->merchants()->paginate($perPage, ["*"], $page);
     }
 }

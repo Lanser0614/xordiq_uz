@@ -9,4 +9,6 @@ interface RoomRepositoryInterface
     public function save(Room $model);
 
     public function getByRoomId(int $id);
+
+    public function delete(Room $model);
 }
