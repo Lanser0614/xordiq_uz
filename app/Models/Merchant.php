@@ -35,6 +35,16 @@ class Merchant extends Model
         );
     }
 
+    public function merchantsCategories(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Category::class,
+            'merchat_categories_pivot',
+            'merchant_id',
+            'category_id'
+        );
+    }
+
     public function rooms(): HasMany
     {
         return $this->hasMany(Room::class);

@@ -19,15 +19,18 @@ class StoreMerchantUseCase extends BaseUseCase
 
     public function __construct(
         private readonly MerchantRepositoryInterface $merchantRepository
-    ) {
+    )
+    {
     }
 
     /**
+     * @param MerchantUser $merchantUser
+     * @param StoreMerchantDTO $DTO
      * @throws DataBaseException
      */
     public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void
     {
-        //        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
+        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = new Merchant();
         $merchant->title_en = $DTO->getTitleEn();
         $merchant->title_ru = $DTO->getTitleRu();
@@ -42,12 +45,13 @@ class StoreMerchantUseCase extends BaseUseCase
         $merchant->book_commisison = $DTO->getBookCommisison();
         DB::transaction(function () use ($merchant, $DTO) {
             $merchant = $this->merchantRepository->save($merchant);
+            $merchant->merchantsCategories()->sync($DTO->getCategoryIds());
             $merchant->merchantsUser()->sync($merchant);
-            $path = $merchant->id.'-merchant';
-            $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
+            $path = $merchant->id . '-merchant';
+            $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
             $DTO->getHomePhoto()->move($path, $imageName);
             $image = new Image();
-            $image->image_path = $path.'/'.$imageName;
+            $image->image_path = $path . '/' . $imageName;
             $image->parent_image = true;
             $merchant->images()->save($image);
 
@@ -55,18 +59,18 @@ class StoreMerchantUseCase extends BaseUseCase
         });
     }
 
-   /**
-    * @throws Exception
-    */
-   private function savePhotos(StoreMerchantDTO $DTO, string $path, $merchant): void
-   {
-       foreach ($DTO->getPhotos() as $photo) {
-           /** @var UploadedFile $photo */
-           $imageName = random_int(1, 100000).time().'.'.$photo->extension();
-           $photo->move($path, $imageName);
-           $image = new Image();
-           $image->image_path = $path.'/'.$imageName;
-           $merchant->images()->save($image);
-       }
-   }
+    /**
+     * @throws Exception
+     */
+    private function savePhotos(StoreMerchantDTO $DTO, string $path, $merchant): void
+    {
+        foreach ($DTO->getPhotos() as $photo) {
+            /** @var UploadedFile $photo */
+            $imageName = random_int(1, 100000) . time() . '.' . $photo->extension();
+            $photo->move($path, $imageName);
+            $image = new Image();
+            $image->image_path = $path . '/' . $imageName;
+            $merchant->images()->save($image);
+        }
+    }
 }

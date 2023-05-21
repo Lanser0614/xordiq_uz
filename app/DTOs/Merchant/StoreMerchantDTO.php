@@ -12,17 +12,26 @@ final class StoreMerchantDTO extends BaseDTO
         private readonly string $title_uz,
         private readonly string $title_ru,
         private readonly string $title_en,
-        private readonly string $description_uz,
-        private readonly string $description_ru,
-        private readonly string $description_en,
-        private readonly ?int $village_id,
-        private readonly ?int $district_id,
-        private readonly float $latitude,
-        private readonly float $longitude,
-        private readonly int $book_commisison,
+        private readonly string       $description_uz,
+        private readonly string       $description_ru,
+        private readonly string       $description_en,
+        private readonly ?int         $village_id,
+        private readonly ?int         $district_id,
+        private readonly float        $latitude,
+        private readonly float        $longitude,
+        private readonly int          $book_commisison,
         private readonly UploadedFile $home_photo,
-        private readonly array $photos,
+        private readonly array        $photos,
+        private readonly array        $categoryIds,
     ) {
+    }
+
+    /**
+     * @return array
+     */
+    public function getCategoryIds(): array
+    {
+        return $this->categoryIds;
     }
 
     public function getVillageId(): ?int
@@ -109,6 +118,7 @@ final class StoreMerchantDTO extends BaseDTO
             book_commisison: self::parseInt($data['book_commisison']),
             home_photo: $data['home_photo'],
             photos: self::parseArray($data['photos']),
+            categoryIds: self::parseArray($data['category_ids']),
         );
     }
 

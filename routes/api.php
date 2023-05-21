@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\ExceptionEnum\ExceptionEnum;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\Merchant\MerchantController;
 use App\Http\Controllers\Api\MerchantUser\UserController;
 use App\Http\Controllers\Api\Region\RegionController;
@@ -31,24 +32,28 @@ Route::get('/regions', [RegionController::class, 'getRegions']);
 Route::get('/regions/districts/{region_id}', [RegionController::class, 'getDistricts']);
 Route::get('/regions/villages/{district_id}', [RegionController::class, 'getVillage']);
 
-Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(function () {
-    Route::prefix('merchants')->group(function () {
-        Route::post('/', [MerchantController::class, 'store']);
-        Route::get('/', [MerchantController::class, 'index']);
-        Route::get('/{id}', [MerchantController::class, 'show']);
-        Route::post('/{id}', [MerchantController::class, 'update']);
-        Route::delete('/{id}', [MerchantController::class, 'delete']);
-    });
-
-    Route::prefix('rooms')->group(function () {
-        Route::post('/{merchant_id}', [RoomController::class, 'store'])->middleware('optimizeImages');
-        Route::get('/{merchant_id}', [RoomController::class, 'index']);
-        Route::post('/{merchant_id}/{room_id}', [RoomController::class, 'update']);
-        Route::get('/{merchant_id}/{room_id}', [RoomController::class, 'show']);
-        Route::delete('/{merchant_id}/{room_id}', [RoomController::class, 'delete']);
-
-    });
-});
+//Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(function () {
+//    Route::prefix('categories')->group(function () {
+//        Route::get('/', [CategoryController::class, 'getCategories']);
+//    });
+//
+//    Route::prefix('merchants')->group(function () {
+//        Route::post('/', [MerchantController::class, 'store']);
+//        Route::get('/', [MerchantController::class, 'index']);
+//        Route::get('/{id}', [MerchantController::class, 'show']);
+//        Route::post('/{id}', [MerchantController::class, 'update']);
+//        Route::delete('/{id}', [MerchantController::class, 'delete']);
+//    });
+//
+//    Route::prefix('rooms')->group(function () {
+//        Route::post('/{merchant_id}', [RoomController::class, 'store'])->middleware('optimizeImages');
+//        Route::get('/{merchant_id}', [RoomController::class, 'index']);
+//        Route::post('/{merchant_id}/{room_id}', [RoomController::class, 'update']);
+//        Route::get('/{merchant_id}/{room_id}', [RoomController::class, 'show']);
+//        Route::delete('/{merchant_id}/{room_id}', [RoomController::class, 'delete']);
+//
+//    });
+//});
 
 Route::prefix('merchant_user')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
