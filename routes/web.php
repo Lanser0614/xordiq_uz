@@ -15,6 +15,5 @@ use Spatie\Image\Image;
 */
 
 Route::get('/', function () {
-    Image::load(public_path('5-merchant/rooms/44/298191684610784.png'))
-        ->save(public_path('5-merchant/rooms/44.png'));
+    return "ok";
 });

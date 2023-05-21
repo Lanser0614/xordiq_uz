@@ -29,7 +29,6 @@ services:
             - shop
 
 
-
     nginx:
         image: nginx:alpine
         container_name: shop-nginx
