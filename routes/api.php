@@ -3,6 +3,7 @@
 use App\Enums\ExceptionEnum\ExceptionEnum;
 use App\Http\Controllers\Api\Merchant\MerchantController;
 use App\Http\Controllers\Api\MerchantUser\UserController;
+use App\Http\Controllers\Api\Region\RegionController;
 use App\Http\Controllers\Api\Room\RoomController;
 use App\Http\Middleware\User\CheckMerchantUserMiddleware;
 use App\Models\User;
@@ -26,8 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(function () {
+Route::get("/regions", [RegionController::class, "getRegions"]);
+Route::get("/regions/districts/{region_id}", [RegionController::class, "getDistricts"]);
+Route::get("/regions/villages/{district_id}", [RegionController::class, "getVillage"]);
 
+Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(function () {
     Route::prefix('merchants')->group(function () {
         Route::post('/', [MerchantController::class, 'store']);
         Route::get('/', [MerchantController::class, 'index']);

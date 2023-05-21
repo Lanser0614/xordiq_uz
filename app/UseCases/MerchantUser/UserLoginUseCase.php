@@ -4,14 +4,14 @@ namespace App\UseCases\MerchantUser;
 
 use App\DTOs\MerchantUser\UserLoginDto;
 use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 
 class UserLoginUseCase
 {
-    public function __construct(private readonly UserRepositoryInterface $userRepository)
+    public function __construct(private readonly MerchantUserRepositoryInterface $merchantUserRepository)
     {
     }
 
@@ -20,7 +20,7 @@ class UserLoginUseCase
      */
     public function execute(UserLoginDto $dto): string
     {
-        $user = $this->userRepository->getByPhone($dto->getPhone());
+        $user = $this->merchantUserRepository->getByPhone($dto->getPhone());
 
         if ($user === null) {
             throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name);

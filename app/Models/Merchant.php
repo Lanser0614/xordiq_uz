@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property int $id
+ * @property int|null $village_id
+ * @property int|null $district_id
  *@property string $title_uz
  *@property string $title_ru
  *@property string $title_en

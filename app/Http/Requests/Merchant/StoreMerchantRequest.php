@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Merchant;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreMerchantRequest extends FormRequest
 {
@@ -15,6 +16,8 @@ class StoreMerchantRequest extends FormRequest
             'description_uz' => ['required', 'string'],
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
+            'village_id' => ['nullable', 'integer'],
+            'district_id' => ['integer', Rule::requiredIf(!$this->has("village_id"))],
             'latitude' => ['required', 'numeric'],
             'longitude' => ['required', 'numeric'],
             'book_commisison' => ['required', 'integer'],

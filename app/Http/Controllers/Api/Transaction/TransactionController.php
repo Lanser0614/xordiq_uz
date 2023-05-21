@@ -15,4 +15,9 @@ class TransactionController extends BaseApiController
     {
 
     }
+
+    public function show(int $id)
+    {
+
+    }
 }

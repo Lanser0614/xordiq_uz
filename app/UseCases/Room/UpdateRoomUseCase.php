@@ -6,7 +6,7 @@ use App\DTOs\Room\StoreRoomDTO;
 use App\Exceptions\DataBaseException;
 use App\Models\Image;
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
@@ -18,9 +18,9 @@ class UpdateRoomUseCase extends BaseUseCase
     public const PERMISSION_NAME = 'CAN_STORE_ROOM';
 
     public function __construct(
-        private readonly RoomRepositoryInterface $roomRepository,
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly CheckEntityTask $checkEntityTask
+        private readonly RoomRepositoryInterface         $roomRepository,
+        private readonly MerchantUserRepositoryInterface $userRepository,
+        private readonly CheckEntityTask                 $checkEntityTask
     ) {
     }
 

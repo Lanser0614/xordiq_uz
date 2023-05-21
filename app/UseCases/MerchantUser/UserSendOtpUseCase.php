@@ -3,7 +3,7 @@
 namespace App\UseCases\MerchantUser;
 
 use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\App;
 
 class UserSendOtpUseCase
 {
-    public function __construct(private readonly UserRepositoryInterface $userRepository)
+    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository)
     {
     }
 

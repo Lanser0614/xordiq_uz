@@ -27,7 +27,7 @@ class StoreMerchantUseCase extends BaseUseCase
      */
     public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void
     {
-        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
+//        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = new Merchant();
         $merchant->title_en = $DTO->getTitleEn();
         $merchant->title_ru = $DTO->getTitleRu();
@@ -37,6 +37,8 @@ class StoreMerchantUseCase extends BaseUseCase
         $merchant->description_uz = $DTO->getDescriptionUz();
         $merchant->longitude = $DTO->getLongitude();
         $merchant->latitude = $DTO->getLatitude();
+        $merchant->village_id = $DTO->getVillageId();
+        $merchant->district_id = $DTO->getDistrictId();
         $merchant->book_commisison = $DTO->getBookCommisison();
         DB::transaction(function () use ($merchant, $DTO) {
             $merchant = $this->merchantRepository->save($merchant);

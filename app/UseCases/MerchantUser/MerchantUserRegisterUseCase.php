@@ -6,7 +6,7 @@ use App\DTOs\MerchantUser\MerchantUserRegisterDto;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\Exceptions\DataBaseException;
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class MerchantUserRegisterUseCase
 {
-    public function __construct(private readonly UserRepositoryInterface $userRepository)
+    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository)
     {
     }
 

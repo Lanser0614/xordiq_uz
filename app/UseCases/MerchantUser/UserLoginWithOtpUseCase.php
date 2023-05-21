@@ -3,13 +3,13 @@
 namespace App\UseCases\MerchantUser;
 
 use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserLoginWithOtpUseCase
 {
-    public function __construct(private readonly UserRepositoryInterface $userRepository)
+    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository)
     {
     }
 

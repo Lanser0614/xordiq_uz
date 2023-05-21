@@ -5,7 +5,7 @@ namespace App\UseCases\Merchant;
 use App\Exceptions\DataBaseException;
 use App\Models\MerchantUser;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +15,9 @@ class DeleteMerchantUseCase extends BaseUseCase
     protected const PERMISSION_NAME = 'CAN_DELETE_MERCHANT';
 
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly MerchantRepositoryInterface $merchantRepository,
-        private readonly CheckEntityTask $checkEntityTask
+        private readonly MerchantUserRepositoryInterface $userRepository,
+        private readonly MerchantRepositoryInterface     $merchantRepository,
+        private readonly CheckEntityTask                 $checkEntityTask
     ) {
     }
 

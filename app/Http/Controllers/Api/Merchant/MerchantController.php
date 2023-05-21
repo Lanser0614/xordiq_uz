@@ -27,7 +27,7 @@ class MerchantController extends BaseApiController
         try {
             $useCase->execute(merchantUser: auth()->user(), DTO: StoreMerchantDTO::frommArray($request->validated()));
         } catch (Exception $e) {
-            throw new DataBaseException('Merchant not created');
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
 
         return new JsonResponse($this->responseSuccess());
@@ -52,7 +52,7 @@ class MerchantController extends BaseApiController
         try {
             $useCase->execute($id, auth()->user(), UpdateMerchantDTO::frommArray($request->validated()));
         } catch (Exception $e) {
-            return new JsonResponse($e->getMessage(), $e->getCode());
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
 
         return new JsonResponse($this->responseSuccess());

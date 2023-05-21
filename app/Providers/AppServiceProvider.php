@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\MerchantUser;
 use App\Models\Room;
 use App\Repository\MerchantRepository\MerchantRepository;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
-use App\Repository\MerchantUserRepository\UserRepository;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantMerchantUserRepository;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepository;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -19,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(MerchantUserRepositoryInterface::class, MerchantMerchantUserRepository::class);
         $this->app->bind(MerchantRepositoryInterface::class, MerchantRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
     }
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'room' => Room::class,
+            'merchant_user' => MerchantUser::class,
             'merchant' => MerchantRepositoryInterface::class,
         ]);
     }

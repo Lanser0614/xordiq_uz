@@ -3,12 +3,12 @@
 namespace App\UseCases\Merchant;
 
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UserMerchantsIndexUseCase
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository,
+        private readonly MerchantUserRepositoryInterface $userRepository,
     ) {
     }
 

@@ -3,7 +3,7 @@
 namespace App\UseCases\Room;
 
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\UserRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
@@ -11,9 +11,9 @@ use App\UseCases\BaseUseCase;
 class DeleteRoomUseCase extends BaseUseCase
 {
     public function __construct(
-        private readonly RoomRepositoryInterface $roomRepository,
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly CheckEntityTask $checkEntityTask
+        private readonly RoomRepositoryInterface         $roomRepository,
+        private readonly MerchantUserRepositoryInterface $userRepository,
+        private readonly CheckEntityTask                 $checkEntityTask
     ) {
     }
 
