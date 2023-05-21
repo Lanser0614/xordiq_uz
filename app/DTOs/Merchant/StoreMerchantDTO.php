@@ -25,17 +25,11 @@ final class StoreMerchantDTO extends BaseDTO
     ) {
     }
 
-    /**
-     * @return int|null
-     */
     public function getVillageId(): ?int
     {
         return $this->village_id;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDistrictId(): ?int
     {
         return $this->district_id;

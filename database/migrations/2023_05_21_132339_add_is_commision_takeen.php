@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('repayments', function (Blueprint $table) {
-            $table->boolean("is_commission_taken")->default(false)->after("is_canceled")->comment("pulli atmen qivotganimizda bu puldan merchant comisiyasini op qolish keremi yoki yo'q");
+            $table->boolean('is_commission_taken')->default(false)->after('is_canceled')->comment("pulli atmen qivotganimizda bu puldan merchant comisiyasini op qolish keremi yoki yo'q");
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('repayments', function (Blueprint $table) {
-            $table->dropColumn("is_commission_taken");
+            $table->dropColumn('is_commission_taken');
         });
     }
 };

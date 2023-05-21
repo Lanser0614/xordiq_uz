@@ -11,9 +11,9 @@ use App\UseCases\BaseUseCase;
 class ShowRoomUseCase extends BaseUseCase
 {
     public function __construct(
-        private readonly RoomRepositoryInterface         $roomRepository,
+        private readonly RoomRepositoryInterface $roomRepository,
         private readonly MerchantUserRepositoryInterface $userRepository,
-        private readonly CheckEntityTask                 $checkEntityTask
+        private readonly CheckEntityTask $checkEntityTask
     ) {
     }
 

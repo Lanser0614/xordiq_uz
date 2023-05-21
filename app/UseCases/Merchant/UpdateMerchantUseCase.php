@@ -2,7 +2,6 @@
 
 namespace App\UseCases\Merchant;
 
-use App\DTOs\Merchant\StoreMerchantDTO;
 use App\DTOs\Merchant\UpdateMerchantDTO;
 use App\Exceptions\DataBaseException;
 use App\Models\Image;
@@ -22,8 +21,8 @@ class UpdateMerchantUseCase extends BaseUseCase
 
     public function __construct(
         private readonly MerchantUserRepositoryInterface $userRepository,
-        private readonly MerchantRepositoryInterface     $merchantRepository,
-        private readonly CheckEntityTask                 $checkEntityTask
+        private readonly MerchantRepositoryInterface $merchantRepository,
+        private readonly CheckEntityTask $checkEntityTask
     ) {
     }
 

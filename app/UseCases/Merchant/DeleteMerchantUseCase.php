@@ -16,8 +16,8 @@ class DeleteMerchantUseCase extends BaseUseCase
 
     public function __construct(
         private readonly MerchantUserRepositoryInterface $userRepository,
-        private readonly MerchantRepositoryInterface     $merchantRepository,
-        private readonly CheckEntityTask                 $checkEntityTask
+        private readonly MerchantRepositoryInterface $merchantRepository,
+        private readonly CheckEntityTask $checkEntityTask
     ) {
     }
 

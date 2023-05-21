@@ -17,7 +17,7 @@ class StoreMerchantRequest extends FormRequest
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'village_id' => ['nullable', 'integer'],
-            'district_id' => ['integer', Rule::requiredIf(!$this->has("village_id"))],
+            'district_id' => ['integer', Rule::requiredIf(! $this->has('village_id'))],
             'latitude' => ['required', 'numeric'],
             'longitude' => ['required', 'numeric'],
             'book_commisison' => ['required', 'integer'],

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Merchant;
 
 use App\DTOs\Merchant\StoreMerchantDTO;
 use App\DTOs\Merchant\UpdateMerchantDTO;
-use App\Exceptions\DataBaseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Merchant\StoreMerchantRequest;
 use App\Http\Requests\Merchant\UpdateMerchantRequest;
@@ -19,9 +18,6 @@ use Illuminate\Http\Request;
 
 class MerchantController extends BaseApiController
 {
-    /**
-     * @throws DataBaseException
-     */
     public function store(StoreMerchantRequest $request, StoreMerchantUseCase $useCase): JsonResponse
     {
         try {

@@ -9,50 +9,37 @@ use Illuminate\Http\UploadedFile;
 final class UpdateMerchantDTO extends BaseDTO
 {
     public function __construct(
-        private readonly string       $title_uz,
-        private readonly string       $title_ru,
-        private readonly string       $title_en,
-        private readonly string       $description_uz,
-        private readonly string       $description_ru,
-        private readonly string       $description_en,
-        private readonly ?int         $village_id,
-        private readonly ?int         $district_id,
-        private readonly float        $latitude,
-        private readonly float        $longitude,
-        private readonly int          $book_commisison,
+        private readonly string $title_uz,
+        private readonly string $title_ru,
+        private readonly string $title_en,
+        private readonly string $description_uz,
+        private readonly string $description_ru,
+        private readonly string $description_en,
+        private readonly ?int $village_id,
+        private readonly ?int $district_id,
+        private readonly float $latitude,
+        private readonly float $longitude,
+        private readonly int $book_commisison,
         private readonly UploadedFile $home_photo,
-        private readonly array        $photos,
-    )
-    {
+        private readonly array $photos,
+    ) {
     }
 
-    /**
-     * @return UploadedFile
-     */
     public function getHomePhoto(): UploadedFile
     {
         return $this->home_photo;
     }
 
-    /**
-     * @return array
-     */
     public function getPhotos(): array
     {
         return $this->photos;
     }
 
-    /**
-     * @return int|null
-     */
     public function getVillageId(): ?int
     {
         return $this->village_id;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDistrictId(): ?int
     {
         return $this->district_id;

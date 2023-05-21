@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Spatie\Image\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +14,5 @@ use Spatie\Image\Image;
 */
 
 Route::get('/', function () {
-    return "ok";
+    return 'ok';
 });

@@ -10,7 +10,7 @@ class ShowMerchantUseCase
 {
     public function __construct(
         private readonly MerchantUserRepositoryInterface $userRepository,
-        private readonly CheckEntityTask                 $checkEntityTask
+        private readonly CheckEntityTask $checkEntityTask
     ) {
     }
 

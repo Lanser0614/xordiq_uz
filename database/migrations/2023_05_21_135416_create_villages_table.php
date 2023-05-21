@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('villages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("district_id")->constrained("districts");
-            $table->string("name_uz");
-            $table->string("name_oz");
-            $table->string("name_ru");
+            $table->foreignId('district_id')->constrained('districts');
+            $table->string('name_uz');
+            $table->string('name_oz');
+            $table->string('name_ru');
             $table->timestamps();
         });
     }

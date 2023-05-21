@@ -27,9 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/regions", [RegionController::class, "getRegions"]);
-Route::get("/regions/districts/{region_id}", [RegionController::class, "getDistricts"]);
-Route::get("/regions/villages/{district_id}", [RegionController::class, "getVillage"]);
+Route::get('/regions', [RegionController::class, 'getRegions']);
+Route::get('/regions/districts/{region_id}', [RegionController::class, 'getDistricts']);
+Route::get('/regions/villages/{district_id}', [RegionController::class, 'getVillage']);
 
 Route::middleware(['auth:sanctum', CheckMerchantUserMiddleware::class])->group(function () {
     Route::prefix('merchants')->group(function () {

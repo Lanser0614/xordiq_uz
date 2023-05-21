@@ -18,9 +18,9 @@ class UpdateRoomUseCase extends BaseUseCase
     public const PERMISSION_NAME = 'CAN_STORE_ROOM';
 
     public function __construct(
-        private readonly RoomRepositoryInterface         $roomRepository,
+        private readonly RoomRepositoryInterface $roomRepository,
         private readonly MerchantUserRepositoryInterface $userRepository,
-        private readonly CheckEntityTask                 $checkEntityTask
+        private readonly CheckEntityTask $checkEntityTask
     ) {
     }
 

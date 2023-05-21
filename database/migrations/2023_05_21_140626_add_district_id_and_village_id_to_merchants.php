@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('merchants', function (Blueprint $table) {
-            $table->foreignId("village_id")->nullable()->after("description_en")->constrained("villages");
-            $table->foreignId("district_id")->nullable()->after("village_id")->constrained("districts");
+            $table->foreignId('village_id')->nullable()->after('description_en')->constrained('villages');
+            $table->foreignId('district_id')->nullable()->after('village_id')->constrained('districts');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('merchants', function (Blueprint $table) {
-            $table->dropColumn("village_id");
-            $table->dropColumn("district_id");
+            $table->dropColumn('village_id');
+            $table->dropColumn('district_id');
         });
     }
 };

@@ -27,7 +27,7 @@ class StoreMerchantUseCase extends BaseUseCase
      */
     public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void
     {
-//        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
+        //        $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = new Merchant();
         $merchant->title_en = $DTO->getTitleEn();
         $merchant->title_ru = $DTO->getTitleRu();
