@@ -34,7 +34,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware(['api', 'auth:sanctum', CheckMerchantUserMiddleware::class])
+            Route::middleware([
+                'api',
+                'auth:sanctum',
+                CheckMerchantUserMiddleware::class
+            ])
                 ->prefix('api')
                 ->group(base_path('routes/merchant_api.php'));
 

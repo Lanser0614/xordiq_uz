@@ -32,15 +32,17 @@ class MerchantController extends BaseApiController
     public function index(
         Request $request,
         UserMerchantsIndexUseCase $useCase
-    ): mixed {
-        return $useCase->execute(auth()->user(), $request->input('prePage') ?? 15, $request->input('page') ?? 1);
+    ): JsonResponse
+    {
+        $merchants = $useCase->execute(auth()->user(), $request->input('prePage') ?? 15, $request->input('page') ?? 1);
+        return new JsonResponse($this->responseWithPagination($merchants));
     }
 
     public function show(int $id, ShowMerchantUseCase $useCase): JsonResponse
     {
         $merchant = $useCase->execute($id, auth()->user());
 
-        return new JsonResponse($merchant);
+        return new JsonResponse($this->responseOneItem($merchant));
     }
 
     public function update(int $id, UpdateMerchantRequest $request, UpdateMerchantUseCase $useCase): JsonResponse

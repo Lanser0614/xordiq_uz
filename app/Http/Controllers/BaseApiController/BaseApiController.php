@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\BaseApiController;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class BaseApiController extends Controller
 {
     protected function responseWithToken(string $token, string $message = 'success', int $code = 200): array
@@ -26,6 +29,26 @@ class BaseApiController extends Controller
         return [
             'message' => $message,
             'code' => $code,
+        ];
+    }
+
+   protected function responseWithPagination(LengthAwarePaginator $paginator): array
+    {
+        return [
+            "result" => $paginator->items(),
+            "paginator" => [
+                "perPage" => $paginator->perPage(),
+                "total" => $paginator->total(),
+                "currentPage" => $paginator->currentPage(),
+                "lastaPage" => $paginator->lastPage()
+            ]
+        ];
+    }
+
+    public function responseOneItem(Model $model): array
+    {
+        return [
+            "result" => $model
         ];
     }
 

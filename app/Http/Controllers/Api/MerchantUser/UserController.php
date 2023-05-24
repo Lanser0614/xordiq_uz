@@ -52,16 +52,17 @@ class UserController extends BaseApiController
     }
 
     /**
+     * @param UserRegisterRequest $request
+     * @param MerchantUserRegisterUseCase $useCase
      * @return JsonResponse
      *
-     * @throws DataBaseException
      */
-    public function register(UserRegisterRequest $request, MerchantUserRegisterUseCase $useCase)
+    public function register(UserRegisterRequest $request, MerchantUserRegisterUseCase $useCase): JsonResponse
     {
         try {
             $useCase->execute(MerchantUserRegisterDto::frommArray($request->validated()));
         } catch (Exception $e) {
-            throw new DataBaseException('User not created');
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
 
         return new JsonResponse($this->responseSuccess());

@@ -10,6 +10,7 @@ use App\Http\Middleware\User\CheckMerchantUserMiddleware;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -63,18 +64,8 @@ Route::prefix('merchant_user')->group(function () {
 });
 
 Route::get('/test', function () {
-    $user = User::query()->where('phone', 9433507)->first();
-
-    if ($user === null) {
-        throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name);
-    }
-
-    if (Hash::check('password', $user->password)) {
-        $token = $user->createToken('xordiq.uz')->plainTextToken;
-    } else {
-        throw new Exception('Wrong password');
-    }
-
-    return $token;
-
+    $user = User::query()->paginate();
+    return responseWithPagination($user);
 });
+
+

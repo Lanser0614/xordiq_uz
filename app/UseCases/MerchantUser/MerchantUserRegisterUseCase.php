@@ -29,11 +29,11 @@ class MerchantUserRegisterUseCase
             $otp = 1111;
         }
 
-        $user = $this->userRepository->getByPhone($dto->getPhone());
-
-        if ($user) {
-            throw new DataBaseException('phoneNumber already have');
-        }
+//        $user = $this->userRepository->getByPhone($dto->getPhone());
+//
+//        if ($user) {
+//            throw new DataBaseException('phoneNumber already have');
+//        }
 
         $merchantUser = new MerchantUser();
         $merchantUser->phone = $dto->getPhone();
