@@ -15,8 +15,8 @@ class StoreCategoryUseCase
         $category->title_ru = $DTO->getTitleRu();
         $category->title_uz = $DTO->getTitleUz();
         $category->parent_id = $DTO->getParentId();
-        DB::transaction(function () use ($category){
+        DB::transaction(function () use ($category) {
             $category->save();
         });
-}
+    }
 }

@@ -19,10 +19,10 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title_uz" => ["string", "required"],
-            "title_ru" => ["string", "required"],
-            "title_en" => ["string", "required"],
-            "parent_id" => ["integer", "nullable"],
+            'title_uz' => ['string', 'required'],
+            'title_ru' => ['string', 'required'],
+            'title_en' => ['string', 'required'],
+            'parent_id' => ['integer', 'nullable'],
         ];
-}
+    }
 }

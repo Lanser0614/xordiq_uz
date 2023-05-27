@@ -15,6 +15,7 @@ class UpdateMerchantRequest extends FormRequest
     {
         throw new ValidationException('Validation error', 422, [implode(',', $validator->errors()->all())]);
     }
+
     public function rules(): array
     {
         return [

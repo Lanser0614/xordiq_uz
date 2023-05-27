@@ -72,9 +72,10 @@ class MerchantController extends BaseApiController
     {
         try {
             $useCase->execute($id, $category_id);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
+
         return new JsonResponse($this->responseSuccess());
     }
 }

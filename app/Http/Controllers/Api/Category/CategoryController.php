@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Category;
 
 use App\DTOs\Category\StoreCategoryDTO;
-use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
@@ -19,36 +18,26 @@ class CategoryController extends BaseApiController
     public function getCategories(Request $request): JsonResponse
     {
         $categories = Category::query()->paginate($request->perPage ?? 15);
+
         return new JsonResponse($this->responseWithPagination($categories));
     }
 
-    /**
-     * @param StoreCategoryRequest $request
-     * @param StoreCategoryUseCase $useCase
-     * @return JsonResponse
-     */
     public function store(StoreCategoryRequest $request, StoreCategoryUseCase $useCase): JsonResponse
     {
         try {
             $useCase->execute(StoreCategoryDTO::frommArray($request->validated()));
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return new JsonResponse($this->responseOnError($exception->getMessage(), $exception->getCode()), 500);
         }
 
         return new JsonResponse($this->responseSuccess());
     }
 
-    /**
-     * @param int $id
-     * @param UpdateCategoryRequest $request
-     * @param UpdateCategoryUseCase $useCase
-     * @return JsonResponse
-     */
     public function update(int $id, UpdateCategoryRequest $request, UpdateCategoryUseCase $useCase): JsonResponse
     {
         try {
             $useCase->execute($id, StoreCategoryDTO::frommArray(data: $request->validated()));
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return new JsonResponse($this->responseOnError($exception->getMessage(), $exception->getCode()), $exception->getCode());
         }
 
@@ -59,7 +48,7 @@ class CategoryController extends BaseApiController
     {
         try {
             $useCase->execute($id);
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return new JsonResponse($this->responseOnError($exception->getMessage(), $exception->getCode()), $exception->getCode());
         }
 
