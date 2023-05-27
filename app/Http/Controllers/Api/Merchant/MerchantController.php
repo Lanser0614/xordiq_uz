@@ -8,6 +8,7 @@ use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Merchant\StoreMerchantRequest;
 use App\Http\Requests\Merchant\UpdateMerchantRequest;
 use App\UseCases\Merchant\DeleteMerchantUseCase;
+use App\UseCases\Merchant\SetCategoryForMerchantUseCase;
 use App\UseCases\Merchant\ShowMerchantUseCase;
 use App\UseCases\Merchant\StoreMerchantUseCase;
 use App\UseCases\Merchant\UpdateMerchantUseCase;
@@ -65,5 +66,15 @@ class MerchantController extends BaseApiController
         }
 
         return new JsonResponse($this->responseOnDelete());
+    }
+
+    public function setCategory(int $id, int $category_id, SetCategoryForMerchantUseCase $useCase): JsonResponse
+    {
+        try {
+            $useCase->execute($id, $category_id);
+        }catch (Exception $e){
+            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
+        }
+        return new JsonResponse($this->responseSuccess());
     }
 }

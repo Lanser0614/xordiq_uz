@@ -15,7 +15,7 @@ class MerchantRepository implements MerchantRepositoryInterface
         return $model;
     }
 
-    public function getById(int $id)
+    public function getById(int $id): ?Merchant
     {
         return Merchant::query()->find($id);
     }

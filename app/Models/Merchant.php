@@ -54,4 +54,6 @@ class Merchant extends Model
     {
         return $this->morphMany(Image::class, 'parentable');
     }
+
+
 }

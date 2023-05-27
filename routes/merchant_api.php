@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Merchant\MerchantController;
 use App\Http\Controllers\Api\Room\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +15,7 @@ Route::prefix('merchants')->group(function () {
     Route::get('/{id}', [MerchantController::class, 'show']);
     Route::post('/{id}', [MerchantController::class, 'update']);
     Route::delete('/{id}', [MerchantController::class, 'delete']);
+    Route::delete('/{id}/{category_id}', [MerchantController::class, 'setCategory']);
 });
 
 Route::prefix('rooms')->group(function () {

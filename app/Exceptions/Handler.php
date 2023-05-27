@@ -36,14 +36,14 @@ class Handler extends ExceptionHandler
             return response()->json([
                 'error' => $e->getMessage(),
                 'code' => $e->getCode(),
-            ]);
+            ], $e->getCode());
         }
 
         if ($e instanceof ModelNotFoundException) {
             return response()->json([
                 'error' => $e->getMessage(),
                 'code' => $e->getCode(),
-            ]);
+            ], $e->getCode());
         }
 
         return parent::render($request, $e);
