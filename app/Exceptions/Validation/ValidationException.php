@@ -7,11 +7,10 @@ use Illuminate\Http\JsonResponse;
 class ValidationException extends \Exception
 {
     public function __construct(
-        string                 $message,
-        int                    $code,
+        string $message,
+        int $code,
         private readonly array $messages
-    )
-    {
+    ) {
         parent::__construct($message, $code);
     }
 

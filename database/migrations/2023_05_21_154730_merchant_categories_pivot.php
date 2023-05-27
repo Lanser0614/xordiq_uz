@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("merchat_categories_pivot", function (Blueprint $table){
-            $table->unsignedBigInteger("merchant_id");
-            $table->unsignedBigInteger("category_id");
+        Schema::create('merchat_categories_pivot', function (Blueprint $table) {
+            $table->unsignedBigInteger('merchant_id');
+            $table->unsignedBigInteger('category_id');
         });
     }
 

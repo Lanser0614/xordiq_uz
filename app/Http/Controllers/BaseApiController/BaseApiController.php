@@ -33,22 +33,22 @@ class BaseApiController extends Controller
     }
 
    protected function responseWithPagination(LengthAwarePaginator $paginator): array
-    {
-        return [
-            "result" => $paginator->items(),
-            "paginator" => [
-                "perPage" => $paginator->perPage(),
-                "total" => $paginator->total(),
-                "currentPage" => $paginator->currentPage(),
-                "lastaPage" => $paginator->lastPage()
-            ]
-        ];
-    }
+   {
+       return [
+           'result' => $paginator->items(),
+           'paginator' => [
+               'perPage' => $paginator->perPage(),
+               'total' => $paginator->total(),
+               'currentPage' => $paginator->currentPage(),
+               'lastaPage' => $paginator->lastPage(),
+           ],
+       ];
+   }
 
     public function responseOneItem(Model $model): array
     {
         return [
-            "result" => $model
+            'result' => $model,
         ];
     }
 

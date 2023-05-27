@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\MerchantUser;
 
 use App\DTOs\MerchantUser\MerchantUserRegisterDto;
 use App\DTOs\MerchantUser\UserLoginDto;
-use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\MerchantUser\LoginRequest;
@@ -18,7 +17,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class UserController extends BaseApiController
+class MerchantUserController extends BaseApiController
 {
     /**
      * @throws ParseException
@@ -51,12 +50,6 @@ class UserController extends BaseApiController
         return new JsonResponse($this->responseWithToken($token));
     }
 
-    /**
-     * @param UserRegisterRequest $request
-     * @param MerchantUserRegisterUseCase $useCase
-     * @return JsonResponse
-     *
-     */
     public function register(UserRegisterRequest $request, MerchantUserRegisterUseCase $useCase): JsonResponse
     {
         try {

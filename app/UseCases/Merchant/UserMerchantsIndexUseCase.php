@@ -15,8 +15,7 @@ class UserMerchantsIndexUseCase
     public function execute(
         MerchantUser $merchantUser,
         int $perPage = 15, int $page = 1
-    )
-    {
+    ) {
         return $this->userRepository->getUserMerchants($merchantUser, $perPage, $page);
     }
 }

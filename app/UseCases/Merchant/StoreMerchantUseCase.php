@@ -19,13 +19,10 @@ class StoreMerchantUseCase extends BaseUseCase
 
     public function __construct(
         private readonly MerchantRepositoryInterface $merchantRepository
-    )
-    {
+    ) {
     }
 
     /**
-     * @param MerchantUser $merchantUser
-     * @param StoreMerchantDTO $DTO
      * @throws DataBaseException
      */
     public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void
@@ -47,11 +44,11 @@ class StoreMerchantUseCase extends BaseUseCase
             $merchant = $this->merchantRepository->save($merchant);
             $merchant->merchantsCategories()->sync($DTO->getCategoryIds());
             $merchant->merchantsUser()->sync($merchant);
-            $path = $merchant->id . '-merchant';
-            $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
+            $path = $merchant->id.'-merchant';
+            $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
             $DTO->getHomePhoto()->move($path, $imageName);
             $image = new Image();
-            $image->image_path = $path . '/' . $imageName;
+            $image->image_path = $path.'/'.$imageName;
             $image->parent_image = true;
             $merchant->images()->save($image);
 
@@ -66,10 +63,10 @@ class StoreMerchantUseCase extends BaseUseCase
     {
         foreach ($DTO->getPhotos() as $photo) {
             /** @var UploadedFile $photo */
-            $imageName = random_int(1, 100000) . time() . '.' . $photo->extension();
+            $imageName = random_int(1, 100000).time().'.'.$photo->extension();
             $photo->move($path, $imageName);
             $image = new Image();
-            $image->image_path = $path . '/' . $imageName;
+            $image->image_path = $path.'/'.$imageName;
             $merchant->images()->save($image);
         }
     }
