@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('merchant_user_merchants_pivot', function (Blueprint $table) {
-            $table->foreignId('merchant_user_id')->constrained("merchant_users");
-            $table->foreignId('merchant_id')->constrained("merchants");
+            $table->foreignId('merchant_user_id')->constrained('merchant_users');
+            $table->foreignId('merchant_id')->constrained('merchants');
         });
     }
 
