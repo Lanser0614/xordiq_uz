@@ -26,6 +26,8 @@ class RoomStoreRequest extends FormRequest
             'home_photo' => ['required', 'image'],
             'photos' => ['required', 'array'],
             'photos.*' => ['required', 'image'],
+            'room_feature_ids' => ['required', 'array'],
+            'room_feature_ids.*' => ['required', 'integer'],
         ];
     }
 }

@@ -6,7 +6,7 @@ use App\Models\Room;
 
 interface RoomRepositoryInterface
 {
-    public function save(Room $model);
+    public function save(Room $model): Room;
 
     public function getByRoomId(int $id);
 

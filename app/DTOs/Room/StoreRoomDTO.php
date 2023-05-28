@@ -15,7 +15,16 @@ final class StoreRoomDTO extends BaseDTO
         private readonly int $price,
         private readonly UploadedFile $home_photo,
         private readonly array $photos,
+        private readonly array $roomFeatureIds
     ) {
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoomFeatureIds(): array
+    {
+        return $this->roomFeatureIds;
     }
 
     public function getHomePhoto(): UploadedFile
@@ -59,7 +68,8 @@ final class StoreRoomDTO extends BaseDTO
             title_ru: self::parseString($data['title_ru']),
             price: self::parseInt($data['price']),
             home_photo: $data['home_photo'],
-            photos: $data['photos']
+            photos: $data['photos'],
+            roomFeatureIds: self::parseArray($data['room_feature_ids'])
         );
     }
 

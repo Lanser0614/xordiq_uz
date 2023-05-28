@@ -23,7 +23,16 @@ final class StoreMerchantDTO extends BaseDTO
         private readonly UploadedFile $home_photo,
         private readonly array $photos,
         private readonly array $categoryIds,
+        private readonly ?array $merchantFeaturesIds
     ) {
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getMerchantFeaturesIds(): ?array
+    {
+        return $this->merchantFeaturesIds;
     }
 
     public function getCategoryIds(): array
@@ -116,6 +125,7 @@ final class StoreMerchantDTO extends BaseDTO
             home_photo: $data['home_photo'],
             photos: self::parseArray($data['photos']),
             categoryIds: self::parseArray($data['category_ids']),
+            merchantFeaturesIds: self::parseNullableArray($data['merchant_features_ids']),
         );
     }
 

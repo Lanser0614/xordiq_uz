@@ -11,6 +11,7 @@ use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 
@@ -42,6 +43,7 @@ class StoreRoomUseCase extends BaseUseCase
 
         DB::transaction(function () use ($room, $merchantId, $DTO) {
             $room = $this->roomRepository->save($room);
+            $room->roomFeatures()->sync($DTO->getRoomFeatureIds());
             $path = $merchantId.'-merchant/rooms/'.$room->id;
             $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
             $DTO->getHomePhoto()->move($path, $imageName);
@@ -55,9 +57,12 @@ class StoreRoomUseCase extends BaseUseCase
     }
 
     /**
-     * @throws \Exception
+     * @param StoreRoomDTO $DTO
+     * @param string $path
+     * @param Room $room
+     * @throws Exception
      */
-    public function savePhotos(StoreRoomDTO $DTO, string $path, $room): void
+    public function savePhotos(StoreRoomDTO $DTO, string $path, Room $room): void
     {
         foreach ($DTO->getPhotos() as $photo) {
             /** @var UploadedFile $photo */

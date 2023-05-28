@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RoomRepository implements RoomRepositoryInterface
 {
-    public function save(Room $model)
+    public function save(Room $model): Room
     {
         $model->save();
 

@@ -45,6 +45,16 @@ class Merchant extends Model
         );
     }
 
+    public function merchantsFeatures(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            MerchantFeature::class,
+            'merchant_features_pivot',
+            'merchant_id',
+            'merchant_feature_id'
+        );
+    }
+
     public function rooms(): HasMany
     {
         return $this->hasMany(Room::class);

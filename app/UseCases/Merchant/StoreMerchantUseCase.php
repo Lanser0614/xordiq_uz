@@ -40,20 +40,28 @@ class StoreMerchantUseCase extends BaseUseCase
         $merchant->village_id = $DTO->getVillageId();
         $merchant->district_id = $DTO->getDistrictId();
         $merchant->book_commisison = $DTO->getBookCommisison();
-        DB::transaction(function () use ($merchant, $DTO) {
-            $merchant = $this->merchantRepository->save($merchant);
-            $merchant->merchantsCategories()->sync($DTO->getCategoryIds());
-            $merchant->merchantsUser()->sync($merchant);
-            $path = $merchant->id.'-merchant';
-            $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
-            $DTO->getHomePhoto()->move($path, $imageName);
-            $image = new Image();
-            $image->image_path = $path.'/'.$imageName;
-            $image->parent_image = true;
-            $merchant->images()->save($image);
+        try {
+            DB::transaction(function () use ($merchant, $DTO) {
+                $merchant = $this->merchantRepository->save($merchant);
+                $merchant->merchantsCategories()->sync($DTO->getCategoryIds());
+                if ($DTO->getMerchantFeaturesIds() != null){
+                    $merchant->merchantsFeatures()->sync($DTO->getMerchantFeaturesIds());
+                }
+                $merchant->merchantsUser()->sync($merchant);
+                $path = $merchant->id.'-merchant';
+                $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
+                $DTO->getHomePhoto()->move($path, $imageName);
+                $image = new Image();
+                $image->image_path = $path.'/'.$imageName;
+                $image->parent_image = true;
+                $merchant->images()->save($image);
 
-            $this->savePhotos($DTO, $path, $merchant);
-        });
+                $this->savePhotos($DTO, $path, $merchant);
+            });
+
+        }catch (Exception $exception){
+            throw new DataBaseException();
+        }
     }
 
     /**

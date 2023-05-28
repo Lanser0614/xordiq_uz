@@ -36,6 +36,8 @@ class StoreMerchantRequest extends FormRequest
             'photos.*' => ['required', 'image'],
             'category_ids' => ['required', 'array'],
             'category_ids.*' => ['required', 'integer'],
+            'merchant_features_ids' => ['nullable', 'array'],
+            'merchant_features_ids.*' => ['nullable', 'integer'],
         ];
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Merchant;
 
 use App\DTOs\Merchant\StoreMerchantDTO;
 use App\DTOs\Merchant\UpdateMerchantDTO;
+use App\Exceptions\DataBaseException;
+use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Merchant\StoreMerchantRequest;
 use App\Http\Requests\Merchant\UpdateMerchantRequest;
@@ -21,11 +23,8 @@ class MerchantController extends BaseApiController
 {
     public function store(StoreMerchantRequest $request, StoreMerchantUseCase $useCase): JsonResponse
     {
-        try {
             $useCase->execute(merchantUser: auth()->user(), DTO: StoreMerchantDTO::frommArray($request->validated()));
-        } catch (Exception $e) {
-            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
-        }
+
 
         return new JsonResponse($this->responseSuccess());
     }
@@ -46,14 +45,13 @@ class MerchantController extends BaseApiController
         return new JsonResponse($this->responseOneItem($merchant));
     }
 
+    /**
+     * @throws DataBaseException
+     * @throws ParseException
+     */
     public function update(int $id, UpdateMerchantRequest $request, UpdateMerchantUseCase $useCase): JsonResponse
     {
-        try {
             $useCase->execute($id, auth()->user(), UpdateMerchantDTO::frommArray($request->validated()));
-        } catch (Exception $e) {
-            return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
-        }
-
         return new JsonResponse($this->responseSuccess());
     }
 

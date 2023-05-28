@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -27,5 +28,15 @@ class Room extends Model
     public function merchant(): BelongsTo
     {
         return $this->belongsTo(Merchant::class, 'merchant_id', 'id');
+    }
+
+    public function roomFeatures(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            RoomFeature::class,
+            'room_features_pivot',
+            'room_id',
+            'room_feature_id'
+        );
     }
 }
