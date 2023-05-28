@@ -14,26 +14,24 @@ class MerchantFeatureStoreUseCase
 {
     public function __construct(
         private readonly MerchantFeatureRepositoryInterface $merchantFeatureRepository
-    )
-    {
+    ) {
     }
 
     /**
-     * @param StoreMerchantFeatureDTO $DTO
      * @throws DataBaseException
      */
     public function execute(StoreMerchantFeatureDTO $DTO): void
     {
-        $merchantFeature = new MerchantFeature();
+        $merchantFeature = new MerchantFeature;
         $merchantFeature->title_uz = $DTO->getTitleUz();
         $merchantFeature->title_en = $DTO->getTitleEn();
         $merchantFeature->title_ru = $DTO->getTitleRu();
 
         $path = 'merchantFeatureIcon';
-        $imageName = random_int(1, 100000) . time() . '.' . $DTO->getIcon()->extension();
+        $imageName = random_int(1, 100000).time().'.'.$DTO->getIcon()->extension();
         $DTO->getIcon()->move($path, $imageName);
-        $image = new Image();
-        $image->image_path = $path . '/' . $imageName;
+        $image = new Image;
+        $image->image_path = $path.'/'.$imageName;
         $image->parent_image = true;
 
         try {
@@ -42,7 +40,7 @@ class MerchantFeatureStoreUseCase
                 $merchantFeature->image()->save($image);
             });
         } catch (Exception $exception) {
-            throw new DataBaseException();
+            throw new DataBaseException;
         }
     }
 }

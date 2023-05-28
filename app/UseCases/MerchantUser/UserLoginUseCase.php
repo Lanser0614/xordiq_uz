@@ -33,6 +33,5 @@ class UserLoginUseCase
         }
 
         return $token;
-
     }
 }

@@ -28,7 +28,7 @@ class StoreMerchantUseCase extends BaseUseCase
     public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void
     {
         $this->checkPermission($this->getPermissionName(), $merchantUser->role);
-        $merchant = new Merchant();
+        $merchant = new Merchant;
         $merchant->title_en = $DTO->getTitleEn();
         $merchant->title_ru = $DTO->getTitleRu();
         $merchant->title_uz = $DTO->getTitleUz();
@@ -44,23 +44,22 @@ class StoreMerchantUseCase extends BaseUseCase
             DB::transaction(function () use ($merchant, $DTO) {
                 $merchant = $this->merchantRepository->save($merchant);
                 $merchant->merchantsCategories()->sync($DTO->getCategoryIds());
-                if ($DTO->getMerchantFeaturesIds() != null){
+                if ($DTO->getMerchantFeaturesIds() != null) {
                     $merchant->merchantsFeatures()->sync($DTO->getMerchantFeaturesIds());
                 }
                 $merchant->merchantsUser()->sync($merchant);
                 $path = $merchant->id.'-merchant';
                 $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
                 $DTO->getHomePhoto()->move($path, $imageName);
-                $image = new Image();
+                $image = new Image;
                 $image->image_path = $path.'/'.$imageName;
                 $image->parent_image = true;
                 $merchant->images()->save($image);
 
                 $this->savePhotos($DTO, $path, $merchant);
             });
-
-        }catch (Exception $exception){
-            throw new DataBaseException();
+        } catch (Exception $exception) {
+            throw new DataBaseException;
         }
     }
 
@@ -73,7 +72,7 @@ class StoreMerchantUseCase extends BaseUseCase
             /** @var UploadedFile $photo */
             $imageName = random_int(1, 100000).time().'.'.$photo->extension();
             $photo->move($path, $imageName);
-            $image = new Image();
+            $image = new Image;
             $image->image_path = $path.'/'.$imageName;
             $merchant->images()->save($image);
         }

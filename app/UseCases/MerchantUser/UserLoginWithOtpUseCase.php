@@ -6,6 +6,7 @@ use App\Enums\ExceptionEnum\ExceptionEnum;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Laravel\Sanctum\string;
 
 class UserLoginWithOtpUseCase
 {
@@ -14,9 +15,13 @@ class UserLoginWithOtpUseCase
     }
 
     /**
+     * @param  int  $phone
+     * @param  int  $otp
+     * @return string
+     *
      * @throws Exception
      */
-    public function execute(int $phone, int $otp)
+    public function execute(int $phone, int $otp): string
     {
         $user = $this->userRepository->getByPhone($phone);
 
@@ -31,6 +36,5 @@ class UserLoginWithOtpUseCase
         }
 
         return $token;
-
     }
 }

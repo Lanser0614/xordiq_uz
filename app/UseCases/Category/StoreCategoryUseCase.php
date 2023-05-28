@@ -10,7 +10,7 @@ class StoreCategoryUseCase
 {
     public function execute(StoreCategoryDTO $DTO): void
     {
-        $category = new Category();
+        $category = new Category;
         $category->title_en = $DTO->getTitleEn();
         $category->title_ru = $DTO->getTitleRu();
         $category->title_uz = $DTO->getTitleUz();

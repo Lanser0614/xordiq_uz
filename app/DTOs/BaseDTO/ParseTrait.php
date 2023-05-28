@@ -179,7 +179,7 @@ trait ParseTrait
     {
         $parsedValue = self::parseNullableArray($value);
         if ($parsedValue === null) {
-            return null;
+            return;
         }
 
         if (! is_subclass_of($className, self::class)) {
@@ -276,7 +276,6 @@ trait ParseTrait
         } catch (Exception $exception) {
             throw new ParseException('Parse invalid date time format');
         }
-
     }
 
     /** @description Reference(&) needed for passing Undefined array keys *

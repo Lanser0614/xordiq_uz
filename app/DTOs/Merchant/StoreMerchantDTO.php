@@ -27,9 +27,6 @@ final class StoreMerchantDTO extends BaseDTO
     ) {
     }
 
-    /**
-     * @return array|null
-     */
     public function getMerchantFeaturesIds(): ?array
     {
         return $this->merchantFeaturesIds;

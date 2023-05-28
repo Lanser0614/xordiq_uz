@@ -8,5 +8,4 @@ enum OrderStatusEnum
     case IN_PROCESSING;
     case CONFIRMED;
     case CANCELED;
-
 }

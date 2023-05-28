@@ -21,10 +21,13 @@ use Illuminate\Http\Request;
 
 class MerchantController extends BaseApiController
 {
+    /**
+     * @throws DataBaseException
+     * @throws ParseException
+     */
     public function store(StoreMerchantRequest $request, StoreMerchantUseCase $useCase): JsonResponse
     {
-            $useCase->execute(merchantUser: auth()->user(), DTO: StoreMerchantDTO::frommArray($request->validated()));
-
+        $useCase->execute(merchantUser: auth()->user(), DTO: StoreMerchantDTO::frommArray($request->validated()));
 
         return new JsonResponse($this->responseSuccess());
     }
@@ -51,7 +54,8 @@ class MerchantController extends BaseApiController
      */
     public function update(int $id, UpdateMerchantRequest $request, UpdateMerchantUseCase $useCase): JsonResponse
     {
-            $useCase->execute($id, auth()->user(), UpdateMerchantDTO::frommArray($request->validated()));
+        $useCase->execute($id, auth()->user(), UpdateMerchantDTO::frommArray($request->validated()));
+
         return new JsonResponse($this->responseSuccess());
     }
 

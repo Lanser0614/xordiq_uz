@@ -34,7 +34,7 @@ class StoreRoomUseCase extends BaseUseCase
         $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = $this->userRepository->getUserMerchantById($merchantId, $merchantUser);
         $this->checkEntityTask->run($merchant);
-        $room = new Room();
+        $room = new Room;
         $room->title_en = $DTO->getTitleEn();
         $room->title_uz = $DTO->getTitleUz();
         $room->title_ru = $DTO->getTitleRu();
@@ -47,7 +47,7 @@ class StoreRoomUseCase extends BaseUseCase
             $path = $merchantId.'-merchant/rooms/'.$room->id;
             $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
             $DTO->getHomePhoto()->move($path, $imageName);
-            $image = new Image();
+            $image = new Image;
             $image->image_path = $path.'/'.$imageName;
             $image->parent_image = true;
             $room->images()->save($image);
@@ -57,9 +57,6 @@ class StoreRoomUseCase extends BaseUseCase
     }
 
     /**
-     * @param StoreRoomDTO $DTO
-     * @param string $path
-     * @param Room $room
      * @throws Exception
      */
     public function savePhotos(StoreRoomDTO $DTO, string $path, Room $room): void
@@ -68,7 +65,7 @@ class StoreRoomUseCase extends BaseUseCase
             /** @var UploadedFile $photo */
             $imageName = random_int(1, 100000).time().'.'.$photo->extension();
             $photo->move($path, $imageName);
-            $image = new Image();
+            $image = new Image;
             $image->image_path = $path.'/'.$imageName;
             $room->images()->save($image);
         }

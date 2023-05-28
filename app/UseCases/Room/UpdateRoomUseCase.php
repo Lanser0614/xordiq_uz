@@ -45,7 +45,7 @@ class UpdateRoomUseCase extends BaseUseCase
             $room = $this->roomRepository->save($room);
             $path = $merchantId.'-merchant/roomPhotos';
             Storage::put("{$path}", $DTO->getHomePhoto());
-            $image = new Image();
+            $image = new Image;
             $image->image_path = $path;
             $image->parent_image = true;
             $room->images()->save($image);
@@ -58,7 +58,7 @@ class UpdateRoomUseCase extends BaseUseCase
     {
         foreach ($DTO->getPhotos() as $photo) {
             Storage::put("{$path}", $photo);
-            $image = new Image();
+            $image = new Image;
             $image->image_path = $path;
             $room->images()->save($image);
         }

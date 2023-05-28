@@ -5,8 +5,6 @@ namespace App\UseCases\RoomFeature;
 use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Exceptions\DataBaseException;
 use App\Models\Image;
-use App\Models\MerchantFeature;
-use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use Exception;
@@ -16,14 +14,11 @@ class RoomFeatureUpdateUseCase
 {
     public function __construct(
         private readonly RoomFeatureRepositoryInterface $roomFeatureRepository,
-        private readonly CheckEntityTask                $checkEntityTask
-    )
-    {
+        private readonly CheckEntityTask $checkEntityTask
+    ) {
     }
 
     /**
-     * @param int $id
-     * @param StoreMerchantFeatureDTO $DTO
      * @throws DataBaseException
      * @throws Exception
      */
@@ -36,10 +31,10 @@ class RoomFeatureUpdateUseCase
         $merchantFeature->title_ru = $DTO->getTitleRu();
 
         $path = 'merchantFeatureIcon';
-        $imageName = random_int(1, 100000) . time() . '.' . $DTO->getIcon()->extension();
+        $imageName = random_int(1, 100000).time().'.'.$DTO->getIcon()->extension();
         $DTO->getIcon()->move($path, $imageName);
-        $image = new Image();
-        $image->image_path = $path . '/' . $imageName;
+        $image = new Image;
+        $image->image_path = $path.'/'.$imageName;
         $image->parent_image = true;
 
         try {
@@ -48,7 +43,7 @@ class RoomFeatureUpdateUseCase
                 $merchantFeature->image()->save($image);
             });
         } catch (Exception $exception) {
-            throw new DataBaseException();
+            throw new DataBaseException;
         }
     }
 }

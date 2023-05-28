@@ -19,9 +19,6 @@ final class StoreRoomDTO extends BaseDTO
     ) {
     }
 
-    /**
-     * @return array
-     */
     public function getRoomFeatureIds(): array
     {
         return $this->roomFeatureIds;

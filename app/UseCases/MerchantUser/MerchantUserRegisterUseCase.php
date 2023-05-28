@@ -35,7 +35,7 @@ class MerchantUserRegisterUseCase
         //            throw new DataBaseException('phoneNumber already have');
         //        }
 
-        $merchantUser = new MerchantUser();
+        $merchantUser = new MerchantUser;
         $merchantUser->phone = $dto->getPhone();
         $merchantUser->password = Hash::make($dto->getPassword());
         $merchantUser->name = $dto->getName();

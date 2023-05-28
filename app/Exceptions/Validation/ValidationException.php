@@ -23,6 +23,5 @@ class ValidationException extends \Exception
                 'message' => $this->getMessage(),
             ],
         ], $this->getCode());
-
     }
 }
