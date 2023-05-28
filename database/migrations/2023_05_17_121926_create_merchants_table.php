@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('merchants', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('title_uz');
             $table->string('title_ru');
             $table->string('title_en');

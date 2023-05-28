@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('title_uz');
             $table->string('title_ru');
             $table->string('title_en');
             $table->integer('price');
-            $table->integer('merchant_id')->index('rooms_fk0');
+            $table->foreignId('merchant_id')->constrained('merchants');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
         });

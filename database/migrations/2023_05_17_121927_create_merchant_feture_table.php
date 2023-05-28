@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('merchant_feture', function (Blueprint $table) {
-            $table->integer('id', true);
+        Schema::create('merchant_features', function (Blueprint $table) {
+            $table->id();
             $table->string('title_uz');
             $table->string('title_ru');
             $table->string('title_en');
