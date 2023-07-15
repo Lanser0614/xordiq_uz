@@ -1,5 +1,7 @@
 <?php
 
+use Rakutentech\LaravelRequestDocs\NotFoundWhenProduction;
+
 return [
     'enabled' => true,
     // change it to true will make lrd to throw exception if rules in request class need to be changed
@@ -12,7 +14,7 @@ return [
     */
     'url' => 'request-docs',
     'middlewares' => [
-        // \Rakutentech\LaravelRequestDocs\NotFoundWhenProduction::class,
+        NotFoundWhenProduction::class,
     ],
 
     //Use only routes where ->uri start with next string Using Str::startWith( . e.g. - /api/mobile

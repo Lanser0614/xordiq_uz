@@ -27,7 +27,7 @@ trait ParseTrait
     /**
      * @throws ParseException
      */
-    protected static function parseInt(mixed &$value, ?int $defaultValue = null): int
+    protected static function parseInt(mixed &$value, int $defaultValue = null): int
     {
         $castedValue = self::parseNullableInt($value);
         if ($castedValue === null) {
@@ -66,7 +66,7 @@ trait ParseTrait
      *
      * @throws ParseException
      */
-    protected static function parseArray(mixed &$value, ?array $defaultValue = null): array
+    protected static function parseArray(mixed &$value, array $defaultValue = null): array
     {
         $castedValue = self::parseNullableArray($value);
         if ($castedValue === null) {
@@ -94,7 +94,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseBool(mixed &$value, ?bool $defaultValue = null): bool
+    protected static function parseBool(mixed &$value, bool $defaultValue = null): bool
     {
         $castedValue = self::parseNullableBool($value);
         if ($castedValue === null) {
@@ -123,7 +123,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseFloat(mixed &$value, ?float $defaultValue = null): float
+    protected static function parseFloat(mixed &$value, float $defaultValue = null): float
     {
         $castedValue = self::parseNullableFloat($value);
         if ($castedValue === null) {
@@ -151,7 +151,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseString(mixed &$value, ?string $defaultValue = null): string
+    protected static function parseString(mixed &$value, string $defaultValue = null): string
     {
         $castedValue = self::parseNullableString($value);
         if ($castedValue === null) {
@@ -281,7 +281,7 @@ trait ParseTrait
     /** @description Reference(&) needed for passing Undefined array keys *
      * @throws ParseException
      */
-    protected static function parseCarbon(mixed &$value, ?Carbon $defaultValue = null): Carbon
+    protected static function parseCarbon(mixed &$value, Carbon $defaultValue = null): Carbon
     {
         $castedValue = self::parseNullableCarbon($value);
         if ($castedValue === null) {

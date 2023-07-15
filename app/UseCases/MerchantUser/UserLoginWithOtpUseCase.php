@@ -6,7 +6,6 @@ use App\Enums\ExceptionEnum\ExceptionEnum;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Laravel\Sanctum\string;
 
 class UserLoginWithOtpUseCase
 {

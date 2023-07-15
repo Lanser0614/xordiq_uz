@@ -27,12 +27,12 @@ Route::prefix('merchants-feature')->group(function () {
     Route::delete('/{id}', [MerchantFeatureController::class, 'delete']);
 });
 
-Route::prefix('rooms')->group(function () {
-    Route::post('/{merchant_id}', [RoomController::class, 'store']);
-    Route::get('/{merchant_id}', [RoomController::class, 'index']);
-    Route::post('/{merchant_id}/{room_id}', [RoomController::class, 'update']);
-    Route::get('/{merchant_id}/{room_id}', [RoomController::class, 'show']);
-    Route::delete('/{merchant_id}/{room_id}', [RoomController::class, 'delete']);
+Route::prefix('merchant')->group(function () {
+    Route::post('/{merchant_id}/room', [RoomController::class, 'store']);
+    Route::get('/{merchant_id}/room', [RoomController::class, 'index']);
+    Route::post('/{merchant_id}/room/{room_id}', [RoomController::class, 'update']);
+    Route::get('/{merchant_id}/room/{room_id}', [RoomController::class, 'show']);
+    Route::delete('/{merchant_id}/room/{room_id}', [RoomController::class, 'delete']);
 });
 
 Route::prefix('room-feature')->group(function () {

@@ -8,7 +8,7 @@ services:
             context: ./
             dockerfile: ./docker/php/Dockerfile
         image: shop
-        container_name: shop-app
+        container_name: shop-app-xordiq
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
@@ -18,7 +18,7 @@ services:
 
     mariadb:
         image: mariadb:10.6.5
-        container_name: mariadb-shop
+        container_name: mariadb-xordiq
         ports:
             - "3306:3306"
         environment:
@@ -31,10 +31,10 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: shop-nginx
+        container_name: shop-nginx-xordiq
         restart: unless-stopped
         ports:
-            - 8000:80
+            - 8080:80
         volumes:
             - ./:/var/www
             - ./docker/nginx:/etc/nginx/conf.d/
@@ -42,7 +42,7 @@ services:
             - shop
 
     elasticsearch:
-        container_name: es-container
+        container_name: es-container-xordiq
         image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
         volumes:
             - ./docker/esdata:/usr/share/elasticsearch/data
@@ -55,7 +55,7 @@ services:
             - 9200:9200
 
     kibana:
-        container_name: kb-container
+        container_name: kb-container-xordiq
         image: docker.elastic.co/kibana/kibana:7.11.0
         environment:
             - ELASTICSEARCH_HOSTS=http://es-container:9200
