@@ -46,7 +46,7 @@ class StoreMerchantUseCase extends BaseUseCase
 
             $this->saveMerchantRelationObject($merchant, $DTO);
 
-            $path = public_path($merchant->id . '-merchant');
+            $path = $merchant->id . '-merchant';
             $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
             $DTO->getHomePhoto()->move($path, $imageName);
             $image = new Image;
