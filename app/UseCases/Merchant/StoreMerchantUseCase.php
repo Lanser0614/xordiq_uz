@@ -48,19 +48,19 @@ class StoreMerchantUseCase extends BaseUseCase
 
             $path = $merchant->id . '-merchant';
             $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
-            $DTO->getHomePhoto()->move($path, $imageName);
+            $DTO->getHomePhoto()->move(storage_path('app/public/' . $path ), $imageName);
             $image = new Image;
-            $image->image_path = $path . '/' . $imageName;
+            $image->image_path =  $path . '/' . $imageName;
             $image->parent_image = true;
             $merchant->images()->save($image);
 
             $this->saveMerchantPhotosTask->run($DTO->getPhotos(), $path, $merchant);
         });
 
-//        try {
-//        } catch (Exception $exception) {
-//            throw new DataBaseException;
-//        }
+        //        try {
+        //        } catch (Exception $exception) {
+        //            throw new DataBaseException;
+        //        }
     }
 
     public function saveMerchantRelationObject(Merchant $merchant, StoreMerchantDTO $DTO): void

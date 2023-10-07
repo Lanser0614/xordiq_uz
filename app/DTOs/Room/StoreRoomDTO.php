@@ -12,7 +12,7 @@ final class StoreRoomDTO extends BaseDTO
         private readonly string $title_en,
         private readonly string $title_uz,
         private readonly string $title_ru,
-        private readonly int $price,
+        private readonly float $price,
         private readonly UploadedFile $home_photo,
         private readonly array $photos,
         private readonly array $roomFeatureIds
@@ -55,15 +55,25 @@ final class StoreRoomDTO extends BaseDTO
     }
 
     /**
+     * @return int
+     */
+    public function getPriceOnTinn(): int {
+
+        return $this->toTinn(round($this->price, 2));
+    }
+
+    /**
+     * @param array $data
+     * @return StoreRoomDTO
      * @throws ParseException
      */
-    public static function frommArray(array $data)
+    public static function frommArray(array $data): StoreRoomDTO
     {
         return new self(
             title_en: self::parseString($data['title_en']),
             title_uz: self::parseString($data['title_uz']),
             title_ru: self::parseString($data['title_ru']),
-            price: self::parseInt($data['price']),
+            price: self::parseFloat($data['price']),
             home_photo: $data['home_photo'],
             photos: $data['photos'],
             roomFeatureIds: self::parseArray($data['room_feature_ids'])

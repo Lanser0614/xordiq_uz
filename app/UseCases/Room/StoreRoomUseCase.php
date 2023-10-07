@@ -38,7 +38,7 @@ class StoreRoomUseCase extends BaseUseCase
         $room->title_en = $DTO->getTitleEn();
         $room->title_uz = $DTO->getTitleUz();
         $room->title_ru = $DTO->getTitleRu();
-        $room->price = $DTO->getPrice();
+        $room->price = $DTO->getPriceOnTinn();
         $room->merchant_id = $merchantId;
 
         DB::transaction(function () use ($room, $merchantId, $DTO) {
@@ -46,7 +46,7 @@ class StoreRoomUseCase extends BaseUseCase
             $room->roomFeatures()->sync($DTO->getRoomFeatureIds());
             $path = $merchantId . '-merchant/rooms/' . $room->id;
             $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
-            $DTO->getHomePhoto()->move($path, $imageName);
+            $DTO->getHomePhoto()->move(storage_path('app/public/' . $path ), $imageName);
             $image = new Image;
             $image->image_path = $path . '/' . $imageName;
             $image->parent_image = true;
@@ -64,7 +64,7 @@ class StoreRoomUseCase extends BaseUseCase
         foreach ($DTO->getPhotos() as $photo) {
             /** @var UploadedFile $photo */
             $imageName = random_int(1, 100000) . time() . '.' . $photo->extension();
-            $photo->move($path, $imageName);
+            $photo->move(storage_path('app/public/' . $path ), $imageName);
             $image = new Image;
             $image->image_path = $path . '/' . $imageName;
             $room->images()->save($image);

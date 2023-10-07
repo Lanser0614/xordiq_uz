@@ -11,15 +11,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int $id
  * @property int|null $village_id
  * @property int|null $district_id
- *@property string $title_uz
- *@property string $title_ru
- *@property string $title_en
- *@property string $description_uz
- *@property string $description_ru
- *@property string $description_en
- *@property float $latitude
- *@property float $longitude
- *@property int $book_commisison
+ * @property string $title_uz
+ * @property string $title_ru
+ * @property string $title_en
+ * @property string $description_uz
+ * @property string $description_ru
+ * @property string $description_en
+ * @property float $latitude
+ * @property float $longitude
+ * @property int $book_commisison
  */
 class Merchant extends Model
 {

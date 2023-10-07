@@ -22,7 +22,7 @@ class RoomStoreRequest extends FormRequest
             'title_uz' => ['required', 'string'],
             'title_ru' => ['required', 'string'],
             'title_en' => ['required', 'string'],
-            'price' => ['required', 'integer'],
+            'price' => ['required', 'numeric'],
             'home_photo' => ['required', 'image'],
             'photos' => ['required', 'array'],
             'photos.*' => ['required', 'image'],

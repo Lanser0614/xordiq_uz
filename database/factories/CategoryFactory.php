@@ -18,9 +18,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'title_uz' => fake()->name(),
-            'title_ru' => fake()->name(),
-            'title_en' => fake()->name(),
+            'title_uz' => fake()->jobTitle(),
+            'title_ru' => fake()->jobTitle(),
+            'title_en' => fake()->jobTitle(),
         ];
     }
 

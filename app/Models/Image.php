@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -26,7 +25,7 @@ class Image extends Model
         $url = config('app.url');
 
         return Attribute::make(
-            get: fn (string $value) => $url . $value,
+            get: fn (string $value) => $url . 'storage/' . $value,
         );
     }
 
