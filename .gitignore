@@ -20,3 +20,4 @@ yarn-error.log
 /docker/my-db/
 /docker/esdata/
 /storage/logs/
+/storage/app/
