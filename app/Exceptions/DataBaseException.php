@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 class DataBaseException extends \Exception
 {
-    protected $message = 'Application Logic error';
+    protected $message = 'Database error';
 
     protected $code = 500;
 }

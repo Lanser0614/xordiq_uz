@@ -33,8 +33,8 @@ class MerchantUser extends Authenticate
     {
         return $this->belongsToMany(
             Merchant::class,
-            'merchantUser_merchants_pivot',
-            'merchantUser_id',
+            'merchant_user_merchants_pivot',
+            'merchant_user_id',
             'merchant_id',
         );
     }

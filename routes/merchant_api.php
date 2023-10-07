@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\MerchantFeature\MerchantFeatureController;
 
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'getCategories']);
+    Route::post('/', [CategoryController::class, 'store']);
+    Route::put('/{id}', [CategoryController::class, 'update']);
+    Route::delete('/{id}', [CategoryController::class, 'delete']);
 });
 
 Route::prefix('merchants')->group(function () {

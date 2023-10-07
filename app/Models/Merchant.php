@@ -29,9 +29,9 @@ class Merchant extends Model
     {
         return $this->belongsToMany(
             MerchantUser::class,
-            'merchantUser_merchants_pivot',
+            'merchant_user_merchants_pivot',
             'merchant_id',
-            'merchantUser_id'
+            'merchant_user_id'
         );
     }
 
