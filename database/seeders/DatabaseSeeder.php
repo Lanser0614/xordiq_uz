@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(SqlFileSeeder::class);
+//        $this->call(SqlFileSeeder::class);
         User::factory(10)->create();
         Category::factory(5)->create();
         MerchantUserFactory::factoryForModel(MerchantUser::class)->count(10)->create();
-        $this->call(MerchantSeeder::class);
-        $this->call(RoomSeeder::class);
+//        $this->call(MerchantSeeder::class);
+//        $this->call(RoomSeeder::class);
     }
 }
