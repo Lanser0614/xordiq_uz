@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 /docker/my-db/
 /docker/esdata/
+/storage/logs/

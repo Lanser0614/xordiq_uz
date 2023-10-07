@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api\RoomFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Models\RoomFeature;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\UseCases\RoomFeature\RoomFeatureStoreUseCase;
+use App\UseCases\RoomFeature\RoomFeatureDeleteUseCase;
+use App\UseCases\RoomFeature\RoomFeatureUpdateUseCase;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\MerchantFeature\StoreMerchantFeatureRequest;
 use App\Http\Requests\MerchantFeature\UpdateMerchantFeatureRequest;
-use App\Models\RoomFeature;
-use App\UseCases\RoomFeature\RoomFeatureDeleteUseCase;
-use App\UseCases\RoomFeature\RoomFeatureStoreUseCase;
-use App\UseCases\RoomFeature\RoomFeatureUpdateUseCase;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class RoomFeatureController extends BaseApiController
 {
@@ -25,10 +25,6 @@ class RoomFeatureController extends BaseApiController
     }
 
     /**
-     * @param  StoreMerchantFeatureRequest  $request
-     * @param  RoomFeatureStoreUseCase  $useCase
-     * @return JsonResponse
-     *
      * @throws DataBaseException
      * @throws ParseException
      */
@@ -50,11 +46,6 @@ class RoomFeatureController extends BaseApiController
         return new JsonResponse($this->responseSuccess());
     }
 
-    /**
-     * @param  int  $id
-     * @param  RoomFeatureDeleteUseCase  $useCase
-     * @return JsonResponse
-     */
     public function delete(int $id, RoomFeatureDeleteUseCase $useCase): JsonResponse
     {
         $useCase->execute($id);

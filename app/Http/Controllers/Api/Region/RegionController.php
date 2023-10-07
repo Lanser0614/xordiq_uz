@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\Region;
 
-use App\Http\Controllers\BaseApiController\BaseApiController;
-use App\Models\District;
 use App\Models\Region;
 use App\Models\Village;
+use App\Models\District;
 use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\BaseApiController\BaseApiController;
 
 class RegionController extends BaseApiController
 {

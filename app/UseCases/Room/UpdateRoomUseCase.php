@@ -2,16 +2,16 @@
 
 namespace App\UseCases\Room;
 
-use App\DTOs\Room\StoreRoomDTO;
-use App\Exceptions\DataBaseException;
 use App\Models\Image;
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
+use App\DTOs\Room\StoreRoomDTO;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\DataBaseException;
+use App\Tasks\Checker\CheckEntityTask;
 use Illuminate\Support\Facades\Storage;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UpdateRoomUseCase extends BaseUseCase
 {
@@ -43,7 +43,7 @@ class UpdateRoomUseCase extends BaseUseCase
 
         DB::transaction(function () use ($room, $merchantId, $DTO) {
             $room = $this->roomRepository->save($room);
-            $path = $merchantId.'-merchant/roomPhotos';
+            $path = $merchantId . '-merchant/roomPhotos';
             Storage::put("{$path}", $DTO->getHomePhoto());
             $image = new Image;
             $image->image_path = $path;

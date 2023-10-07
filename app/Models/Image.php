@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property string $image_path
@@ -34,7 +34,7 @@ class Image extends Model
         }
 
         return Attribute::make(
-            get: fn (string $value) => $url.$value,
+            get: fn (string $value) => $url . $value,
         );
     }
 

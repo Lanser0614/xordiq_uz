@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->unique();
             $table->integer('otp');
-            $table->dateTime('phone_verified_at');
             $table->string('surname');
             $table->string('role')->default('operator');
             $table->rememberToken();

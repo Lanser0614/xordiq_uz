@@ -2,17 +2,19 @@
 
 namespace App\UseCases\MerchantUser;
 
-use App\DTOs\MerchantUser\UserLoginDto;
-use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
+use App\Exceptions\BusinessException;
+use App\Tasks\Checker\CheckEntityTask;
+use App\DTOs\MerchantUser\UserLoginDto;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UserLoginUseCase
 {
-    public function __construct(private readonly MerchantUserRepositoryInterface $merchantUserRepository)
-    {
+    public function __construct(
+        private readonly MerchantUserRepositoryInterface $merchantUserRepository,
+        private readonly CheckEntityTask $checkEntityTask
+    ) {
     }
 
     /**
@@ -22,14 +24,12 @@ class UserLoginUseCase
     {
         $user = $this->merchantUserRepository->getByPhone($dto->getPhone());
 
-        if ($user === null) {
-            throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name);
-        }
+        $this->checkEntityTask->run($user);
 
         if (Hash::check($dto->getPassword(), $user->password)) {
             $token = $user->createToken('xordiq.uz')->plainTextToken;
         } else {
-            throw new Exception('Wrong password');
+            throw new BusinessException('Wrong password');
         }
 
         return $token;

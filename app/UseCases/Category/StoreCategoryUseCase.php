@@ -2,9 +2,9 @@
 
 namespace App\UseCases\Category;
 
-use App\DTOs\Category\StoreCategoryDTO;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use App\DTOs\Category\StoreCategoryDTO;
 
 class StoreCategoryUseCase
 {

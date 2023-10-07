@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\MerchantUser\MerchantUserController;
-use App\Http\Controllers\Api\Region\RegionController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Region\RegionController;
+use App\Http\Controllers\Api\MerchantUser\MerchantUserController;
 
 /*
 |--------------------------------------------------------------------------

@@ -2,18 +2,18 @@
 
 namespace App\UseCases\Room;
 
-use App\DTOs\Room\StoreRoomDTO;
-use App\Exceptions\DataBaseException;
+use Exception;
+use App\Models\Room;
 use App\Models\Image;
 use App\Models\MerchantUser;
-use App\Models\Room;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
-use Exception;
+use App\DTOs\Room\StoreRoomDTO;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\DataBaseException;
+use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class StoreRoomUseCase extends BaseUseCase
 {
@@ -44,11 +44,11 @@ class StoreRoomUseCase extends BaseUseCase
         DB::transaction(function () use ($room, $merchantId, $DTO) {
             $room = $this->roomRepository->save($room);
             $room->roomFeatures()->sync($DTO->getRoomFeatureIds());
-            $path = $merchantId.'-merchant/rooms/'.$room->id;
-            $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
+            $path = $merchantId . '-merchant/rooms/' . $room->id;
+            $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
             $DTO->getHomePhoto()->move($path, $imageName);
             $image = new Image;
-            $image->image_path = $path.'/'.$imageName;
+            $image->image_path = $path . '/' . $imageName;
             $image->parent_image = true;
             $room->images()->save($image);
 
@@ -63,10 +63,10 @@ class StoreRoomUseCase extends BaseUseCase
     {
         foreach ($DTO->getPhotos() as $photo) {
             /** @var UploadedFile $photo */
-            $imageName = random_int(1, 100000).time().'.'.$photo->extension();
+            $imageName = random_int(1, 100000) . time() . '.' . $photo->extension();
             $photo->move($path, $imageName);
             $image = new Image;
-            $image->image_path = $path.'/'.$imageName;
+            $image->image_path = $path . '/' . $imageName;
             $room->images()->save($image);
         }
     }

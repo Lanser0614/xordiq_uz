@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Room;
 
-use App\Exceptions\Validation\ValidationException;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use App\Exceptions\Validation\ValidationException;
 
 class RoomStoreRequest extends FormRequest
 {

@@ -3,15 +3,14 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Auth\User as Authenticate;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property int $id
- *@property Carbon|null $phone_verified_at
  *@property int $otp
  *@property int $phone
  *@property string $email

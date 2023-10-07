@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api\Category;
 
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\DTOs\Category\StoreCategoryDTO;
-use App\Http\Controllers\BaseApiController\BaseApiController;
+use App\UseCases\Category\StoreCategoryUseCase;
+use App\UseCases\Category\DeleteCategoryUseCase;
+use App\UseCases\Category\UpdateCategoryUseCase;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Models\Category;
-use App\UseCases\Category\DeleteCategoryUseCase;
-use App\UseCases\Category\StoreCategoryUseCase;
-use App\UseCases\Category\UpdateCategoryUseCase;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Controllers\BaseApiController\BaseApiController;
 
 class CategoryController extends BaseApiController
 {

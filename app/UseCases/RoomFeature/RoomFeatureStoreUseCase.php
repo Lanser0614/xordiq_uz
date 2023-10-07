@@ -2,13 +2,13 @@
 
 namespace App\UseCases\RoomFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
-use App\Exceptions\DataBaseException;
+use Exception;
 use App\Models\Image;
 use App\Models\RoomFeature;
-use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
-use Exception;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\DataBaseException;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 
 class RoomFeatureStoreUseCase
 {
@@ -28,10 +28,10 @@ class RoomFeatureStoreUseCase
         $roomFeature->title_ru = $DTO->getTitleRu();
 
         $path = 'merchantFeatureIcon';
-        $imageName = random_int(1, 100000).time().'.'.$DTO->getIcon()->extension();
+        $imageName = random_int(1, 100000) . time() . '.' . $DTO->getIcon()->extension();
         $DTO->getIcon()->move($path, $imageName);
         $image = new Image;
-        $image->image_path = $path.'/'.$imageName;
+        $image->image_path = $path . '/' . $imageName;
         $image->parent_image = true;
 
         try {

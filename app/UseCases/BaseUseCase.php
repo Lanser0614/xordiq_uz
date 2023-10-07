@@ -2,9 +2,9 @@
 
 namespace App\UseCases;
 
+use App\Exceptions\DataBaseException;
 use App\Enums\ExceptionEnum\ExceptionEnum;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
-use App\Exceptions\DataBaseException;
 
 class BaseUseCase
 {

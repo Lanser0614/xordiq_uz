@@ -3,8 +3,8 @@
 namespace App\UseCases\Category;
 
 use App\Models\Category;
-use App\Tasks\Checker\CheckEntityTask;
 use Illuminate\Support\Facades\DB;
+use App\Tasks\Checker\CheckEntityTask;
 
 class DeleteCategoryUseCase
 {

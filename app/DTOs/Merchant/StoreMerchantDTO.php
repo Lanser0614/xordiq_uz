@@ -3,8 +3,8 @@
 namespace App\DTOs\Merchant;
 
 use App\DTOs\BaseDTO\BaseDTO;
-use App\Exceptions\DtoException\ParseException;
 use Illuminate\Http\UploadedFile;
+use App\Exceptions\DtoException\ParseException;
 
 final class StoreMerchantDTO extends BaseDTO
 {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Merchant;
 
-use App\Exceptions\Validation\ValidationException;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use App\Exceptions\Validation\ValidationException;
 
 class StoreMerchantRequest extends FormRequest
 {
@@ -27,7 +27,7 @@ class StoreMerchantRequest extends FormRequest
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'village_id' => ['nullable', 'integer'],
-            'district_id' => ['integer', Rule::requiredIf(! $this->has('village_id'))],
+            'district_id' => ['integer', Rule::requiredIf(!$this->has('village_id'))],
             'latitude' => ['required', 'numeric'],
             'longitude' => ['required', 'numeric'],
             'book_commisison' => ['required', 'integer'],

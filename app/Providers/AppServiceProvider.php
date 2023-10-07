@@ -2,20 +2,20 @@
 
 namespace App\Providers;
 
-use App\Models\MerchantUser;
 use App\Models\Room;
-use App\Repository\MerchantFeatureRepository\MerchantFeatureRepository;
-use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
+use App\Models\MerchantUser;
+use Illuminate\Support\ServiceProvider;
+use App\Repository\RoomRepository\RoomRepository;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Repository\MerchantRepository\MerchantRepository;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Repository\RoomFeatureRepository\RoomFeatureRepository;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
+use App\Repository\MerchantFeatureRepository\MerchantFeatureRepository;
+use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 use App\Repository\MerchantUserRepository\MerchantMerchantUserRepository;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use App\Repository\RoomFeatureRepository\RoomFeatureRepository;
-use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
-use App\Repository\RoomRepository\RoomRepository;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Support\ServiceProvider;
+use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {

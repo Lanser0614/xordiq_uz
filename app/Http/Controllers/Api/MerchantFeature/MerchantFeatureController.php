@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api\MerchantFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use Illuminate\Http\Request;
+use App\Models\MerchantFeature;
+use Illuminate\Http\JsonResponse;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Http\Controllers\BaseApiController\BaseApiController;
+use App\UseCases\MerchantFeature\MerchantFeatureStoreUseCase;
+use App\UseCases\MerchantFeature\MerchantFeatureDeleteUseCase;
+use App\UseCases\MerchantFeature\MerchantFeatureUpdateUseCase;
 use App\Http\Requests\MerchantFeature\StoreMerchantFeatureRequest;
 use App\Http\Requests\MerchantFeature\UpdateMerchantFeatureRequest;
-use App\Models\MerchantFeature;
-use App\UseCases\MerchantFeature\MerchantFeatureDeleteUseCase;
-use App\UseCases\MerchantFeature\MerchantFeatureStoreUseCase;
-use App\UseCases\MerchantFeature\MerchantFeatureUpdateUseCase;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class MerchantFeatureController extends BaseApiController
 {

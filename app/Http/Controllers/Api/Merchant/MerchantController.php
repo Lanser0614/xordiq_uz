@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api\Merchant;
 
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Exceptions\DataBaseException;
 use App\DTOs\Merchant\StoreMerchantDTO;
 use App\DTOs\Merchant\UpdateMerchantDTO;
-use App\Exceptions\DataBaseException;
-use App\Exceptions\DtoException\ParseException;
-use App\Http\Controllers\BaseApiController\BaseApiController;
-use App\Http\Requests\Merchant\StoreMerchantRequest;
-use App\Http\Requests\Merchant\UpdateMerchantRequest;
-use App\UseCases\Merchant\DeleteMerchantUseCase;
-use App\UseCases\Merchant\SetCategoryForMerchantUseCase;
 use App\UseCases\Merchant\ShowMerchantUseCase;
+use App\Exceptions\DtoException\ParseException;
 use App\UseCases\Merchant\StoreMerchantUseCase;
+use App\UseCases\Merchant\DeleteMerchantUseCase;
 use App\UseCases\Merchant\UpdateMerchantUseCase;
+use App\Http\Requests\Merchant\StoreMerchantRequest;
 use App\UseCases\Merchant\UserMerchantsIndexUseCase;
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Requests\Merchant\UpdateMerchantRequest;
+use App\UseCases\Merchant\SetCategoryForMerchantUseCase;
+use App\Http\Controllers\BaseApiController\BaseApiController;
 
 class MerchantController extends BaseApiController
 {

@@ -3,9 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -40,6 +40,13 @@ class Handler extends ExceptionHandler
         }
 
         if ($e instanceof ModelNotFoundException) {
+            return response()->json([
+                'error' => $e->getMessage(),
+                'code' => $e->getCode(),
+            ], $e->getCode());
+        }
+
+        if ($e instanceof BusinessException) {
             return response()->json([
                 'error' => $e->getMessage(),
                 'code' => $e->getCode(),

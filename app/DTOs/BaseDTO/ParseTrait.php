@@ -2,9 +2,9 @@
 
 namespace App\DTOs\BaseDTO;
 
-use App\Exceptions\DtoException\ParseException;
-use Carbon\Carbon;
 use Exception;
+use Carbon\Carbon;
+use App\Exceptions\DtoException\ParseException;
 
 trait ParseTrait
 {
@@ -46,7 +46,7 @@ trait ParseTrait
      */
     protected static function parseNullableArray(mixed &$value): ?array
     {
-        if (! isset($value)) {
+        if (!isset($value)) {
             return null;
         }
 
@@ -182,8 +182,8 @@ trait ParseTrait
             return;
         }
 
-        if (! is_subclass_of($className, self::class)) {
-            throw new ParseException($className.' is not instance of '.BaseDTO::class);
+        if (!is_subclass_of($className, self::class)) {
+            throw new ParseException($className . ' is not instance of ' . BaseDTO::class);
         }
 
         return $className::fromArray($parsedValue);

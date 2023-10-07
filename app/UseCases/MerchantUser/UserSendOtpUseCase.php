@@ -2,12 +2,12 @@
 
 namespace App\UseCases\MerchantUser;
 
-use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
+use App\Enums\ExceptionEnum\ExceptionEnum;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UserSendOtpUseCase
 {
@@ -32,7 +32,10 @@ class UserSendOtpUseCase
             $otp = 1111;
         }
 
-        $user->phone_verified_at = Carbon::now()->addMinutes();
+        Cache::remember("otp_time_{$phone}", 180, function () use ($otp) {
+            return $otp;
+        });
+
         $user->otp = $otp;
         $this->userRepository->save($user);
     }

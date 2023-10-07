@@ -2,10 +2,12 @@
 
 namespace App\UseCases\MerchantUser;
 
-use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
+use App\Exceptions\BusinessException;
+use Illuminate\Support\Facades\Cache;
+use App\Enums\ExceptionEnum\ExceptionEnum;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UserLoginWithOtpUseCase
 {
@@ -14,10 +16,6 @@ class UserLoginWithOtpUseCase
     }
 
     /**
-     * @param  int  $phone
-     * @param  int  $otp
-     * @return string
-     *
      * @throws Exception
      */
     public function execute(int $phone, int $otp): string
@@ -28,10 +26,10 @@ class UserLoginWithOtpUseCase
             throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name, 404);
         }
 
-        if ($user->otp === $otp && $user->phone_verified_at >= now()) {
+        if (Cache::get('otp_time_' . $phone) === $otp) {
             $token = $user->createToken('xordiq.uz')->plainTextToken;
         } else {
-            throw new Exception('Wrong otp');
+            throw new BusinessException('Wrong otp');
         }
 
         return $token;

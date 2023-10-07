@@ -3,8 +3,8 @@
 namespace App\UseCases\Merchant;
 
 use App\Models\Category;
-use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 
 class SetCategoryForMerchantUseCase
 {

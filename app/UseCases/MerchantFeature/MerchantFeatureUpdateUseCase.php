@@ -2,13 +2,13 @@
 
 namespace App\UseCases\MerchantFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
-use App\Exceptions\DataBaseException;
-use App\Models\Image;
-use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use Exception;
+use App\Models\Image;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\DataBaseException;
+use App\Tasks\Checker\CheckEntityTask;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 
 class MerchantFeatureUpdateUseCase
 {
@@ -30,10 +30,10 @@ class MerchantFeatureUpdateUseCase
         $merchantFeature->title_ru = $DTO->getTitleRu();
 
         $path = 'merchantFeatureIcon';
-        $imageName = random_int(1, 100000).time().'.'.$DTO->getIcon()->extension();
+        $imageName = random_int(1, 100000) . time() . '.' . $DTO->getIcon()->extension();
         $DTO->getIcon()->move($path, $imageName);
         $image = new Image;
-        $image->image_path = $path.'/'.$imageName;
+        $image->image_path = $path . '/' . $imageName;
         $image->parent_image = true;
 
         try {

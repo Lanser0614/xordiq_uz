@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api\Room;
 
-use App\DTOs\Room\StoreRoomDTO;
-use App\Http\Controllers\BaseApiController\BaseApiController;
-use App\Http\Requests\Room\RoomStoreRequest;
-use App\UseCases\Room\DeleteRoomUseCase;
-use App\UseCases\Room\IndexRoomUseCase;
-use App\UseCases\Room\ShowRoomUseCase;
-use App\UseCases\Room\StoreRoomUseCase;
-use App\UseCases\Room\UpdateRoomUseCase;
 use Exception;
+use App\DTOs\Room\StoreRoomDTO;
 use Illuminate\Http\JsonResponse;
+use App\UseCases\Room\ShowRoomUseCase;
+use App\UseCases\Room\IndexRoomUseCase;
+use App\UseCases\Room\StoreRoomUseCase;
+use App\UseCases\Room\DeleteRoomUseCase;
+use App\UseCases\Room\UpdateRoomUseCase;
+use App\Http\Requests\Room\RoomStoreRequest;
+use App\Http\Controllers\BaseApiController\BaseApiController;
 
 class RoomController extends BaseApiController
 {

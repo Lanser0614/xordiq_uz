@@ -2,10 +2,10 @@
 
 namespace App\UseCases\Category;
 
-use App\DTOs\Category\StoreCategoryDTO;
 use App\Models\Category;
-use App\Tasks\Checker\CheckEntityTask;
 use Illuminate\Support\Facades\DB;
+use App\Tasks\Checker\CheckEntityTask;
+use App\DTOs\Category\StoreCategoryDTO;
 
 class UpdateCategoryUseCase
 {

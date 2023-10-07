@@ -2,15 +2,16 @@
 
 namespace App\UseCases\MerchantUser;
 
-use App\DTOs\MerchantUser\MerchantUserRegisterDto;
-use App\Enums\MerchantUser\MerchantUserRolesEnum;
-use App\Exceptions\DataBaseException;
-use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
-use Illuminate\Support\Facades\App;
+use App\Models\MerchantUser;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
+use App\Exceptions\DataBaseException;
+use Illuminate\Support\Facades\Cache;
+use App\Enums\MerchantUser\MerchantUserRolesEnum;
+use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class MerchantUserRegisterUseCase
 {
@@ -43,7 +44,11 @@ class MerchantUserRegisterUseCase
         $merchantUser->email = $dto->getEmail();
         $merchantUser->otp = $otp;
         $merchantUser->role = MerchantUserRolesEnum::ADMIN;
-        $merchantUser->phone_verified_at = now()->addMinutes(2);
+
+        Cache::remember("otp_time_{$merchantUser->phone}", 180, function () use ($otp) {
+            return $otp;
+        });
+
         DB::transaction(function () use ($merchantUser) {
             $this->userRepository->save($merchantUser);
         });

@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware\User;
 
-use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Models\MerchantUser;
 use Closure;
+use App\Models\MerchantUser;
 use Illuminate\Http\Request;
+use App\Enums\ExceptionEnum\ExceptionEnum;
 use Illuminate\Validation\UnauthorizedException;
 
 class CheckMerchantUserMiddleware

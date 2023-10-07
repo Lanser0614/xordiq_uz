@@ -2,8 +2,8 @@
 
 namespace App\UseCases\RoomFeature;
 
-use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 
 class RoomFeatureDeleteUseCase
 {

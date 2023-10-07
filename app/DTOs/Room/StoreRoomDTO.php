@@ -3,8 +3,8 @@
 namespace App\DTOs\Room;
 
 use App\DTOs\BaseDTO\BaseDTO;
-use App\Exceptions\DtoException\ParseException;
 use Illuminate\Http\UploadedFile;
+use App\Exceptions\DtoException\ParseException;
 
 final class StoreRoomDTO extends BaseDTO
 {
