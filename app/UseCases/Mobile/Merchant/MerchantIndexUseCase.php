@@ -13,7 +13,8 @@ class MerchantIndexUseCase
      * @param Request $request
      * @return mixed
      */
-    public function perform(Request $request) {
+    public function perform(Request $request)
+    {
         return Merchant::query()
             ->filter(
                 $request,
@@ -21,9 +22,12 @@ class MerchantIndexUseCase
                     MerchantByCategory::class
                 ]
             )
-            ->with(['rooms' => function ($query) {
-                $query->orderBy('price');
-            }])
+            ->with([
+                'rooms' => function ($query) {
+                    $query->orderBy('price');
+                },
+                'images'
+            ])
             ->paginate($request->perPage ?? 15);
     }
 }
