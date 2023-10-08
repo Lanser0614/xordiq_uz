@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Room\RoomController;
-use App\Http\Controllers\Api\Category\CategoryController;
-use App\Http\Controllers\Api\Merchant\MerchantController;
-use App\Http\Controllers\Api\RoomFeature\RoomFeatureController;
-use App\Http\Controllers\Api\MerchantFeature\MerchantFeatureController;
+use App\Http\Controllers\Api\Admin\Room\RoomController;
+use App\Http\Controllers\Api\Admin\Category\CategoryController;
+use App\Http\Controllers\Api\Admin\Merchant\MerchantController;
+use App\Http\Controllers\Api\Admin\RoomFeature\RoomFeatureController;
+use App\Http\Controllers\Api\Admin\MerchantFeature\MerchantFeatureController;
 
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'getCategories']);

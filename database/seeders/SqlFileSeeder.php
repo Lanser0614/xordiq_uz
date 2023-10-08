@@ -14,11 +14,14 @@ class SqlFileSeeder extends Seeder
     {
         $path = public_path('sql/regions.sql');
         $featuresPath = public_path('sql/features.sql');
+        $categoriesPath = public_path('sql/categories.sql');
 
         $sql = file_get_contents($path);
         $featuresSql = file_get_contents($featuresPath);
+        $categoriesSql = file_get_contents($categoriesPath);
 
         DB::unprepared($sql);
         DB::unprepared($featuresSql);
+        DB::unprepared($categoriesSql);
     }
 }

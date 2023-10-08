@@ -8,7 +8,8 @@ abstract class BaseDTO implements \JsonSerializable
 
     abstract public static function frommArray(array $data);
 
-    protected function toTinn(float $money): int {
-        return (int)($money * 100);;
+    protected function toTinn(float $money): int
+    {
+        return (int) ($money * 100);
     }
 }

@@ -19,7 +19,7 @@ class SaveMerchantPhotosTask
         /** @var UploadedFile $photo */
         foreach ($photos as $photo) {
             $imageName = random_int(1, 100000) . time() . '.' . $photo->extension();
-            $photo->move(storage_path('app/public/' . $path ), $imageName);
+            $photo->move(storage_path('app/public/' . $path), $imageName);
             $image = new Image;
             $image->image_path = $path . '/' . $imageName;
             $merchant->images()->save($image);

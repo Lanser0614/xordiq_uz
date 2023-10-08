@@ -18,9 +18,9 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'title_uz' => fake()->jobTitle(),
-            'title_ru' => fake()->jobTitle(),
-            'title_en' => fake()->jobTitle(),
+            'title_uz' => fake()->randomElements(['Sanatoriya', 'Mehmonxona', 'Bolalar oromgohi', 'Dalahovli'], 1),
+            'title_ru' => fake()->randomElements(['Санаторий', 'Гостиница', 'Детский санаторий', 'Дача'], 1),
+            'title_en' => fake()->randomElements(['Sanatorium', 'Hotel', 'Childrens sanatorium', 'Dacha'], 1),
         ];
     }
 

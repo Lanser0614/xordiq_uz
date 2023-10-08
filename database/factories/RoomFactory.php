@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Merchant;
 use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\Merchant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -33,7 +32,7 @@ class RoomFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

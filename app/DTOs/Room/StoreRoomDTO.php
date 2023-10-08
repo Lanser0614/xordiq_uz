@@ -54,17 +54,12 @@ final class StoreRoomDTO extends BaseDTO
         return $this->price;
     }
 
-    /**
-     * @return int
-     */
-    public function getPriceOnTinn(): int {
-
+    public function getPriceOnTinn(): int
+    {
         return $this->toTinn(round($this->price, 2));
     }
 
     /**
-     * @param array $data
-     * @return StoreRoomDTO
      * @throws ParseException
      */
     public static function frommArray(array $data): StoreRoomDTO

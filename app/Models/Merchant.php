@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Filter\BaseFilter\BaseFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\Request;
 
 /**
  * @property int $id
@@ -20,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property float $latitude
  * @property float $longitude
  * @property int $book_commisison
+ * @method static Builder|self filter($request, $filters)
  */
 class Merchant extends Model
 {
@@ -60,8 +64,18 @@ class Merchant extends Model
         return $this->hasMany(Room::class);
     }
 
+    public function roomsLimit(): HasMany
+    {
+        return $this->hasMany(Room::class)->take(1);
+    }
+
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'parentable');
+    }
+
+    public function scopeFilter($builder, Request $request, array $filters): Builder
+    {
+        return (new BaseFilter($builder, $request, $filters))->apply();
     }
 }

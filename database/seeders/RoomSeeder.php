@@ -2,18 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Image;
-use App\Models\Merchant;
-use App\Models\MerchantFeature;
-use App\Models\MerchantUser;
-use App\Models\Room;
-use App\Models\RoomFeature;
-use Database\Factories\MerchantFactory;
-use Database\Factories\RoomFactory;
 use Faker\Factory;
+use App\Models\Room;
+use App\Models\Image;
+use App\Models\RoomFeature;
 use Illuminate\Database\Seeder;
-use Illuminate\Http\UploadedFile;
+use Database\Factories\RoomFactory;
 
 class RoomSeeder extends Seeder
 {
@@ -30,7 +24,7 @@ class RoomSeeder extends Seeder
             $roomFeaturesIds = RoomFeature::query()->inRandomOrder()->take(3)->pluck('id')->toArray();
             $room->save();
 
-            $path =  $faker->image(storage_path('app/public'),640,480, null, false);
+            $path = $faker->image(storage_path('app/public'), 640, 480, null, false);
             $image = new Image;
             $image->image_path = $path;
 
