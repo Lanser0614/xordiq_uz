@@ -24,8 +24,8 @@ class GetDistanceToMerchantUseCase
 
         $distance = [];
         foreach ($merchantCoordinate as $value) {
-            $latitudeTo = $value['latitude'];
-            $longitudeTo = $value['longitude'];
+            $latitudeTo = (float)$value['latitude'];
+            $longitudeTo = (float)$value['longitude'];
             $merchantId = $value['id'];
             $distance[] = [
                 'merchant_id' => $merchantId,
