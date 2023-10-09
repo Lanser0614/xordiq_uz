@@ -1,22 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\UseCases\Mobile\Merchant;
 
 use App\Enums\Cache\CacheKeyEnum;
-use App\Traits\CalculateDistanceTrait;
 use Illuminate\Support\Facades\Cache;
+use App\Traits\CalculateDistanceTrait;
 
 class GetDistanceToMerchantUseCase
 {
     use CalculateDistanceTrait;
 
-    /**
-     * @param $latitudeFrom
-     * @param $longitudeFrom
-     * @param int|null $radius
-     * @return array
-     */
     public function perform($latitudeFrom, $longitudeFrom, ?int $radius = 0): array
     {
         $merchantCoordinate = Cache::get(CacheKeyEnum::MERCHANT_POINTS->name);
@@ -34,17 +29,15 @@ class GetDistanceToMerchantUseCase
             ];
         }
 
-
         $radius = ($radius == 0) ? collect($distance)->min('distance') : $radius;
 
         $data = array_values(collect($distance)->where('distance', '<=', $radius)->sortBy('distance')->toArray());
 
         $result = [
-            "result" => $data,
-            "radius" => $radius,
+            'result' => $data,
+            'radius' => $radius,
         ];
 
         return $result;
     }
-
 }

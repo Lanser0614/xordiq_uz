@@ -28,9 +28,10 @@ class BaseApiController extends Controller
     {
         return [
             'result' => $result,
-            $this->responseSuccess()
+            $this->responseSuccess(),
         ];
     }
+
     protected function responseOnDelete(string $message = 'deleted', int $code = 204): array
     {
         return [
