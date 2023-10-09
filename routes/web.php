@@ -14,7 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd(array_rand(['Sanatoriya', 'Mehmonxona', 'Bolalar oromgohi', 'Dalahovli']));
-
-    return 'ok';
 });

@@ -3,8 +3,8 @@
 namespace App\UseCases\Admin\Merchant;
 
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class ShowMerchantUseCase
 {

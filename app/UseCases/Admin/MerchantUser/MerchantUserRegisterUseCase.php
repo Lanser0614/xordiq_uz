@@ -2,15 +2,15 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
-use App\DTOs\MerchantUser\MerchantUserRegisterDto;
-use App\Enums\MerchantUser\MerchantUserRolesEnum;
-use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cache;
+use App\Models\MerchantUser;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
+use App\Enums\MerchantUser\MerchantUserRolesEnum;
+use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class MerchantUserRegisterUseCase
 {

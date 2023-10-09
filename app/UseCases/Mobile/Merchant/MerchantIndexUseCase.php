@@ -1,16 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\UseCases\Mobile\Merchant;
 
-use App\Filter\EloquentFilter\Merchant\MerchantByCategory;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
+use App\Filter\EloquentFilter\Merchant\MerchantByCategory;
 
 class MerchantIndexUseCase
 {
     /**
-     * @param Request $request
      * @return mixed
      */
     public function perform(Request $request)
@@ -19,14 +19,14 @@ class MerchantIndexUseCase
             ->filter(
                 $request,
                 [
-                    MerchantByCategory::class
+                    MerchantByCategory::class,
                 ]
             )
             ->with([
                 'rooms' => function ($query) {
                     $query->orderBy('price');
                 },
-                'images'
+                'images',
             ])
             ->paginate($request->perPage ?? 15);
     }

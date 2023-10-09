@@ -3,10 +3,10 @@
 namespace App\UseCases\Admin\Room;
 
 use App\Models\MerchantUser;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
+use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class DeleteRoomUseCase extends BaseUseCase
 {

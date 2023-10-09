@@ -3,9 +3,9 @@
 namespace App\UseCases\Admin\Room;
 
 use App\Models\MerchantUser;
-use App\Repository\MerchantRepository\MerchantRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use App\UseCases\BaseUseCase;
+use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 
 class IndexRoomUseCase extends BaseUseCase
 {

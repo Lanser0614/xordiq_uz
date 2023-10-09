@@ -2,13 +2,13 @@
 
 namespace App\UseCases\Admin\MerchantFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
-use App\Exceptions\DataBaseException;
-use App\Models\Image;
-use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use Exception;
+use App\Models\Image;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\DataBaseException;
+use App\Tasks\Checker\CheckEntityTask;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 
 class MerchantFeatureUpdateUseCase
 {

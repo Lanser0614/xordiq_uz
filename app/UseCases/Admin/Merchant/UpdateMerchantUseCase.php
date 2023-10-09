@@ -2,18 +2,18 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use App\DTOs\Merchant\UpdateMerchantDTO;
-use App\Exceptions\DataBaseException;
+use Exception;
 use App\Models\Image;
 use App\Models\Merchant;
 use App\Models\MerchantUser;
+use App\UseCases\BaseUseCase;
+use Illuminate\Support\Facades\DB;
+use App\Exceptions\DataBaseException;
+use App\Tasks\Checker\CheckEntityTask;
+use App\DTOs\Merchant\UpdateMerchantDTO;
+use App\Tasks\Merchant\SaveMerchantPhotosTask;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
-use App\Tasks\Merchant\SaveMerchantPhotosTask;
-use App\UseCases\BaseUseCase;
-use Exception;
-use Illuminate\Support\Facades\DB;
 
 class UpdateMerchantUseCase extends BaseUseCase
 {

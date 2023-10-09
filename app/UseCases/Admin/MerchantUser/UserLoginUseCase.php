@@ -2,12 +2,12 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
-use App\DTOs\MerchantUser\UserLoginDto;
-use App\Exceptions\BusinessException;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
-use App\Tasks\Checker\CheckEntityTask;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use App\Exceptions\BusinessException;
+use App\Tasks\Checker\CheckEntityTask;
+use App\DTOs\MerchantUser\UserLoginDto;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UserLoginUseCase
 {

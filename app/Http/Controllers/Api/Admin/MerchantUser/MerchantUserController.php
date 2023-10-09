@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Api\Admin\MerchantUser;
 
-use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\DTOs\MerchantUser\UserLoginDto;
 use App\Exceptions\DtoException\ParseException;
-use App\Http\Controllers\BaseApiController\BaseApiController;
+use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use App\UseCases\Admin\MerchantUser\UserLoginUseCase;
 use App\Http\Requests\Admin\MerchantUser\LoginRequest;
+use App\UseCases\Admin\MerchantUser\UserSendOtpUseCase;
+use App\UseCases\Admin\MerchantUser\UserLoginWithOtpUseCase;
+use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantUser\LoginWithOtpRequest;
 use App\Http\Requests\Admin\MerchantUser\UserRegisterRequest;
 use App\UseCases\Admin\MerchantUser\MerchantUserRegisterUseCase;
-use App\UseCases\Admin\MerchantUser\UserLoginUseCase;
-use App\UseCases\Admin\MerchantUser\UserLoginWithOtpUseCase;
-use App\UseCases\Admin\MerchantUser\UserSendOtpUseCase;
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class MerchantUserController extends BaseApiController
 {

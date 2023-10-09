@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use App\Filter\BaseFilter\BaseFilter;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Http\Request;
 
 /**
  * @property int $id
@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
  * @property float $latitude
  * @property float $longitude
  * @property int $book_commisison
+ *
  * @method static Builder|self filter($request, $filters)
  */
 class Merchant extends Model

@@ -2,8 +2,8 @@
 
 namespace App\UseCases\Admin\MerchantFeature;
 
-use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
+use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 
 class MerchantFeatureDeleteUseCase
 {

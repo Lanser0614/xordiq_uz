@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api\Admin\RoomFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Models\RoomFeature;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\UseCases\Admin\RoomFeature\RoomFeatureStoreUseCase;
+use App\UseCases\Admin\RoomFeature\RoomFeatureDeleteUseCase;
+use App\UseCases\Admin\RoomFeature\RoomFeatureUpdateUseCase;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantFeature\StoreMerchantFeatureRequest;
 use App\Http\Requests\Admin\MerchantFeature\UpdateMerchantFeatureRequest;
-use App\Models\RoomFeature;
-use App\UseCases\Admin\RoomFeature\RoomFeatureDeleteUseCase;
-use App\UseCases\Admin\RoomFeature\RoomFeatureStoreUseCase;
-use App\UseCases\Admin\RoomFeature\RoomFeatureUpdateUseCase;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class RoomFeatureController extends BaseApiController
 {

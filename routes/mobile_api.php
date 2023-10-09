@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Mobile\MobileApiController;
 
 Route::prefix('merchants')->group(function () {
     Route::get('/', [MobileApiController::class, 'merchantIndex']);
+    Route::post('/get-merchant-distance', [MobileApiController::class, 'getMerchantDistance']);
     //    Route::get('/{id}', [MobileApiController::class, 'show']);
 });
 

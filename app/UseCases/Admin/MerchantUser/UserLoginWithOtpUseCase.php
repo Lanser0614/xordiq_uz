@@ -2,12 +2,12 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
-use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Exceptions\BusinessException;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Exceptions\BusinessException;
 use Illuminate\Support\Facades\Cache;
+use App\Enums\ExceptionEnum\ExceptionEnum;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
 class UserLoginWithOtpUseCase
 {
