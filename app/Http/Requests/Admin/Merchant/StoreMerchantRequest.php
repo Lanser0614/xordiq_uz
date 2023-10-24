@@ -2,23 +2,20 @@
 
 namespace App\Http\Requests\Admin\Merchant;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 use App\Exceptions\Validation\ValidationException;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreMerchantRequest extends FormRequest
-{
+class StoreMerchantRequest extends FormRequest {
     /**
      * @throws ValidationException
      */
-    protected function failedValidation(Validator $validator): void
-    {
+    protected function failedValidation(Validator $validator): void {
         throw new ValidationException('Validation error', 422, [implode(',', $validator->errors()->all())]);
     }
 
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
             'title_uz' => ['required', 'string'],
             'title_ru' => ['required', 'string'],
@@ -27,7 +24,7 @@ class StoreMerchantRequest extends FormRequest
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'village_id' => ['nullable', 'integer'],
-            'district_id' => ['integer', Rule::requiredIf(!$this->has('village_id'))],
+            'district_id' => ['integer', Rule::requiredIf(! $this->has('village_id'))],
             'latitude' => ['required', 'numeric'],
             'longitude' => ['required', 'numeric'],
             'book_commisison' => ['required', 'integer'],

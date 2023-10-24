@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<User>
  */
-class CategoryFactory extends Factory
-{
+class CategoryFactory extends Factory {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         return [
             'title_uz' => fake()->randomElements(['Sanatoriya', 'Mehmonxona', 'Bolalar oromgohi', 'Dalahovli'], 1),
             'title_ru' => fake()->randomElements(['Санаторий', 'Гостиница', 'Детский санаторий', 'Дача'], 1),
@@ -27,8 +25,7 @@ class CategoryFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
-    public function unverified(): static
-    {
+    public function unverified(): static {
         return $this->state(fn (array $attributes) => [
             'parent_id' => null,
         ]);

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\UseCases\Mobile\Merchant;
 
+use App\Filter\EloquentFilter\Merchant\MerchantByCategory;
+use App\Http\Resources\Mobile\MerchantMobileResource;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
-use App\Filter\EloquentFilter\Merchant\MerchantByCategory;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class MerchantIndexUseCase
-{
+class MerchantIndexUseCase {
     /**
      * @return mixed
      */
-    public function perform(Request $request)
-    {
-        return Merchant::query()
+    public function perform(Request $request): AnonymousResourceCollection {
+        $merchants = Merchant::query()
             ->filter(
                 $request,
                 [
@@ -29,5 +29,7 @@ class MerchantIndexUseCase
                 'images',
             ])
             ->paginate($request->perPage ?? 15);
+
+        return MerchantMobileResource::collection($merchants);
     }
 }

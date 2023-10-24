@@ -2,8 +2,7 @@
 
 namespace App\Enums\Order;
 
-enum OrderStatusEnum
-{
+enum OrderStatusEnum {
     case NEW;
     case IN_PROCESSING;
     case CONFIRMED;

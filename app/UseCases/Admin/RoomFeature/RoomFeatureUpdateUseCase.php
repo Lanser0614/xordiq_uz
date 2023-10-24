@@ -2,16 +2,15 @@
 
 namespace App\UseCases\Admin\RoomFeature;
 
-use Exception;
-use App\Models\Image;
-use Illuminate\Support\Facades\DB;
-use App\Exceptions\DataBaseException;
-use App\Tasks\Checker\CheckEntityTask;
 use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Exceptions\DataBaseException;
+use App\Models\Image;
 use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
+use App\Tasks\Checker\CheckEntityTask;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
-class RoomFeatureUpdateUseCase
-{
+class RoomFeatureUpdateUseCase {
     public function __construct(
         private readonly RoomFeatureRepositoryInterface $roomFeatureRepository,
         private readonly CheckEntityTask $checkEntityTask
@@ -22,8 +21,7 @@ class RoomFeatureUpdateUseCase
      * @throws DataBaseException
      * @throws Exception
      */
-    public function execute(int $id, StoreMerchantFeatureDTO $DTO): void
-    {
+    public function execute(int $id, StoreMerchantFeatureDTO $DTO): void {
         $merchantFeature = $this->roomFeatureRepository->findById($id);
         $this->checkEntityTask->run($merchantFeature);
         $merchantFeature->title_uz = $DTO->getTitleUz();
@@ -31,10 +29,10 @@ class RoomFeatureUpdateUseCase
         $merchantFeature->title_ru = $DTO->getTitleRu();
 
         $path = 'merchantFeatureIcon';
-        $imageName = random_int(1, 100000) . time() . '.' . $DTO->getIcon()->extension();
+        $imageName = random_int(1, 100000).time().'.'.$DTO->getIcon()->extension();
         $DTO->getIcon()->move($path, $imageName);
         $image = new Image;
-        $image->image_path = $path . '/' . $imageName;
+        $image->image_path = $path.'/'.$imageName;
         $image->parent_image = true;
 
         try {

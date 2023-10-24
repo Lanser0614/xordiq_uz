@@ -5,8 +5,7 @@ namespace App\UseCases\Admin\Merchant;
 use App\Models\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
-class UserMerchantsIndexUseCase
-{
+class UserMerchantsIndexUseCase {
     public function __construct(
         private readonly MerchantUserRepositoryInterface $userRepository,
     ) {

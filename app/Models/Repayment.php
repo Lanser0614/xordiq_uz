@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property bool $is_commission_taken
  * @property Carbon $canceled_at
  */
-class Repayment extends Model
-{
+class Repayment extends Model {
     use HasFactory;
 }

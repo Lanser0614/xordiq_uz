@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers\Api\Admin\RoomFeature;
 
-use App\Models\RoomFeature;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
-use App\UseCases\Admin\RoomFeature\RoomFeatureStoreUseCase;
-use App\UseCases\Admin\RoomFeature\RoomFeatureDeleteUseCase;
-use App\UseCases\Admin\RoomFeature\RoomFeatureUpdateUseCase;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantFeature\StoreMerchantFeatureRequest;
 use App\Http\Requests\Admin\MerchantFeature\UpdateMerchantFeatureRequest;
+use App\Models\RoomFeature;
+use App\UseCases\Admin\RoomFeature\RoomFeatureDeleteUseCase;
+use App\UseCases\Admin\RoomFeature\RoomFeatureStoreUseCase;
+use App\UseCases\Admin\RoomFeature\RoomFeatureUpdateUseCase;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class RoomFeatureController extends BaseApiController
-{
-    public function index(Request $request): JsonResponse
-    {
+class RoomFeatureController extends BaseApiController {
+    public function index(Request $request): JsonResponse {
         $merchantFeature = RoomFeature::query()->paginate($request->perPage ?? 15);
 
         return new JsonResponse($this->responseWithPagination($merchantFeature));
@@ -28,8 +26,7 @@ class RoomFeatureController extends BaseApiController
      * @throws DataBaseException
      * @throws ParseException
      */
-    public function store(StoreMerchantFeatureRequest $request, RoomFeatureStoreUseCase $useCase): JsonResponse
-    {
+    public function store(StoreMerchantFeatureRequest $request, RoomFeatureStoreUseCase $useCase): JsonResponse {
         $useCase->execute(StoreMerchantFeatureDTO::frommArray($request->validated()));
 
         return new JsonResponse($this->responseSuccess());
@@ -39,15 +36,13 @@ class RoomFeatureController extends BaseApiController
      * @throws DataBaseException
      * @throws ParseException
      */
-    public function update(int $id, UpdateMerchantFeatureRequest $request, RoomFeatureUpdateUseCase $useCase): JsonResponse
-    {
+    public function update(int $id, UpdateMerchantFeatureRequest $request, RoomFeatureUpdateUseCase $useCase): JsonResponse {
         $useCase->execute($id, StoreMerchantFeatureDTO::frommArray($request->validated()));
 
         return new JsonResponse($this->responseSuccess());
     }
 
-    public function delete(int $id, RoomFeatureDeleteUseCase $useCase): JsonResponse
-    {
+    public function delete(int $id, RoomFeatureDeleteUseCase $useCase): JsonResponse {
         $useCase->execute($id);
 
         return new JsonResponse($this->responseOnDelete());

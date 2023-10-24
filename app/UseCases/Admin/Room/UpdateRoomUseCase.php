@@ -2,19 +2,18 @@
 
 namespace App\UseCases\Admin\Room;
 
+use App\DTOs\Room\StoreRoomDTO;
+use App\Exceptions\DataBaseException;
 use App\Models\Image;
 use App\Models\MerchantUser;
-use App\UseCases\BaseUseCase;
-use App\DTOs\Room\StoreRoomDTO;
-use Illuminate\Support\Facades\DB;
-use App\Exceptions\DataBaseException;
-use App\Tasks\Checker\CheckEntityTask;
-use Illuminate\Support\Facades\Storage;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Tasks\Checker\CheckEntityTask;
+use App\UseCases\BaseUseCase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
-class UpdateRoomUseCase extends BaseUseCase
-{
+class UpdateRoomUseCase extends BaseUseCase {
     public const PERMISSION_NAME = 'CAN_STORE_ROOM';
 
     public function __construct(
@@ -27,8 +26,7 @@ class UpdateRoomUseCase extends BaseUseCase
     /**
      * @throws DataBaseException
      */
-    public function execute(int $merchantId, int $romId, StoreRoomDTO $DTO, MerchantUser $merchantUser): void
-    {
+    public function execute(int $merchantId, int $romId, StoreRoomDTO $DTO, MerchantUser $merchantUser): void {
         $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = $this->userRepository->getUserMerchantById($merchantId, $merchantUser);
         $this->checkEntityTask->run($merchant);
@@ -43,7 +41,7 @@ class UpdateRoomUseCase extends BaseUseCase
 
         DB::transaction(function () use ($room, $merchantId, $DTO) {
             $room = $this->roomRepository->save($room);
-            $path = $merchantId . '-merchant/roomPhotos';
+            $path = $merchantId.'-merchant/roomPhotos';
             Storage::put("{$path}", $DTO->getHomePhoto());
             $image = new Image;
             $image->image_path = $path;
@@ -54,8 +52,7 @@ class UpdateRoomUseCase extends BaseUseCase
         });
     }
 
-    public function savePhotos(StoreRoomDTO $DTO, string $path, $room): void
-    {
+    public function savePhotos(StoreRoomDTO $DTO, string $path, $room): void {
         foreach ($DTO->getPhotos() as $photo) {
             Storage::put("{$path}", $photo);
             $image = new Image;

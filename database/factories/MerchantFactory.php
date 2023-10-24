@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<User>
  */
-class MerchantFactory extends Factory
-{
+class MerchantFactory extends Factory {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         return [
             'title_uz' => $this->faker->sentence(10),
             'title_ru' => $this->faker->sentence(10),
@@ -33,8 +31,7 @@ class MerchantFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
-    public function unverified(): static
-    {
+    public function unverified(): static {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);

@@ -2,20 +2,18 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
-use App\Models\Room;
 use App\Models\Image;
+use App\Models\Room;
 use App\Models\RoomFeature;
-use Illuminate\Database\Seeder;
 use Database\Factories\RoomFactory;
+use Faker\Factory;
+use Illuminate\Database\Seeder;
 
-class RoomSeeder extends Seeder
-{
+class RoomSeeder extends Seeder {
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         $rooms = RoomFactory::new()->count(50)->create();
 
         $rooms->map(function (Room $room) {

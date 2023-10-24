@@ -2,21 +2,20 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use Exception;
+use App\DTOs\Merchant\UpdateMerchantDTO;
+use App\Exceptions\DataBaseException;
 use App\Models\Image;
 use App\Models\Merchant;
 use App\Models\MerchantUser;
-use App\UseCases\BaseUseCase;
-use Illuminate\Support\Facades\DB;
-use App\Exceptions\DataBaseException;
-use App\Tasks\Checker\CheckEntityTask;
-use App\DTOs\Merchant\UpdateMerchantDTO;
-use App\Tasks\Merchant\SaveMerchantPhotosTask;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
+use App\Tasks\Checker\CheckEntityTask;
+use App\Tasks\Merchant\SaveMerchantPhotosTask;
+use App\UseCases\BaseUseCase;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
-class UpdateMerchantUseCase extends BaseUseCase
-{
+class UpdateMerchantUseCase extends BaseUseCase {
     protected const PERMISSION_NAME = 'CAN_UPDATE_MERCHANT';
 
     public function __construct(
@@ -30,8 +29,7 @@ class UpdateMerchantUseCase extends BaseUseCase
     /**
      * @throws DataBaseException
      */
-    public function execute(int $id, MerchantUser $merchantUser, UpdateMerchantDTO $DTO): void
-    {
+    public function execute(int $id, MerchantUser $merchantUser, UpdateMerchantDTO $DTO): void {
         $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         /** @var Merchant $merchant */
         $merchant = $this->userRepository->getUserMerchantById($id, $merchantUser);
@@ -53,11 +51,11 @@ class UpdateMerchantUseCase extends BaseUseCase
             DB::transaction(function () use ($merchant, $DTO) {
                 $merchant = $this->merchantRepository->save($merchant);
                 $merchant->merchantsUser()->sync($merchant);
-                $path = public_path($merchant->id . '-merchant');
-                $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
+                $path = public_path($merchant->id.'-merchant');
+                $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
                 $DTO->getHomePhoto()->move($path, $imageName);
                 $image = new Image;
-                $image->image_path = $path . '/' . $imageName;
+                $image->image_path = $path.'/'.$imageName;
                 $image->parent_image = true;
                 $merchant->images()->save($image);
 

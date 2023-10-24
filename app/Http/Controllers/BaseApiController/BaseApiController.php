@@ -5,10 +5,8 @@ namespace App\Http\Controllers\BaseApiController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class BaseApiController extends Controller
-{
-    protected function responseWithToken(string $token, string $message = 'success', int $code = 200): array
-    {
+class BaseApiController extends Controller {
+    protected function responseWithToken(string $token, string $message = 'success', int $code = 200): array {
         return [
             'token' => $token,
             'message' => $message,
@@ -16,32 +14,28 @@ class BaseApiController extends Controller
         ];
     }
 
-    protected function responseSuccess(string $message = 'success', int $code = 200): array
-    {
+    protected function responseSuccess(string $message = 'success', int $code = 200): array {
         return [
             'message' => $message,
             'code' => $code,
         ];
     }
 
-    protected function responseWithResult(array $result)
-    {
+    protected function responseWithResult(array $result) {
         return [
             'result' => $result,
-            $this->responseSuccess(),
+            'status' => $this->responseSuccess(),
         ];
     }
 
-    protected function responseOnDelete(string $message = 'deleted', int $code = 204): array
-    {
+    protected function responseOnDelete(string $message = 'deleted', int $code = 204): array {
         return [
             'message' => $message,
             'code' => $code,
         ];
     }
 
-    protected function responseWithPagination(LengthAwarePaginator $paginator): array
-    {
+    protected function responseWithPagination(LengthAwarePaginator $paginator): array {
         return [
             'result' => $paginator->items(),
             'paginator' => [
@@ -53,15 +47,13 @@ class BaseApiController extends Controller
         ];
     }
 
-    public function responseOneItem(Model $model): array
-    {
+    public function responseOneItem(Model $model): array {
         return [
             'result' => $model,
         ];
     }
 
-    protected function responseOnError(string $message = 'deleted', int $code = 204): array
-    {
+    protected function responseOnError(string $message = 'deleted', int $code = 204): array {
         return [
             'message' => $message,
             'code' => $code,

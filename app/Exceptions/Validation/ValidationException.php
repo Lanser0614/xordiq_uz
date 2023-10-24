@@ -4,8 +4,7 @@ namespace App\Exceptions\Validation;
 
 use Illuminate\Http\JsonResponse;
 
-class ValidationException extends \Exception
-{
+class ValidationException extends \Exception {
     public function __construct(
         string $message,
         int $code,
@@ -14,8 +13,7 @@ class ValidationException extends \Exception
         parent::__construct($message, $code);
     }
 
-    public function render(): JsonResponse
-    {
+    public function render(): JsonResponse {
         return new JsonResponse([
             'error' => [
                 'status' => $this->getCode(),

@@ -3,11 +3,10 @@
 namespace App\DTOs\Merchant;
 
 use App\DTOs\BaseDTO\BaseDTO;
-use Illuminate\Http\UploadedFile;
 use App\Exceptions\DtoException\ParseException;
+use Illuminate\Http\UploadedFile;
 
-final class UpdateMerchantDTO extends BaseDTO
-{
+final class UpdateMerchantDTO extends BaseDTO {
     public function __construct(
         private readonly string $title_uz,
         private readonly string $title_ru,
@@ -25,76 +24,62 @@ final class UpdateMerchantDTO extends BaseDTO
     ) {
     }
 
-    public function getHomePhoto(): UploadedFile
-    {
+    public function getHomePhoto(): UploadedFile {
         return $this->home_photo;
     }
 
-    public function getPhotos(): array
-    {
+    public function getPhotos(): array {
         return $this->photos;
     }
 
-    public function getVillageId(): ?int
-    {
+    public function getVillageId(): ?int {
         return $this->village_id;
     }
 
-    public function getDistrictId(): ?int
-    {
+    public function getDistrictId(): ?int {
         return $this->district_id;
     }
 
-    public function getTitleUz(): string
-    {
+    public function getTitleUz(): string {
         return $this->title_uz;
     }
 
-    public function getTitleRu(): string
-    {
+    public function getTitleRu(): string {
         return $this->title_ru;
     }
 
-    public function getTitleEn(): string
-    {
+    public function getTitleEn(): string {
         return $this->title_en;
     }
 
-    public function getDescriptionUz(): string
-    {
+    public function getDescriptionUz(): string {
         return $this->description_uz;
     }
 
-    public function getDescriptionRu(): string
-    {
+    public function getDescriptionRu(): string {
         return $this->description_ru;
     }
 
-    public function getDescriptionEn(): string
-    {
+    public function getDescriptionEn(): string {
         return $this->description_en;
     }
 
-    public function getLatitude(): float
-    {
+    public function getLatitude(): float {
         return $this->latitude;
     }
 
-    public function getLongitude(): float
-    {
+    public function getLongitude(): float {
         return $this->longitude;
     }
 
-    public function getBookCommisison(): int
-    {
+    public function getBookCommisison(): int {
         return $this->book_commisison;
     }
 
     /**
      * @throws ParseException
      */
-    public static function frommArray(array $data)
-    {
+    public static function frommArray(array $data) {
         return new self(
             title_uz: self::parseString($data['title_uz']),
             title_ru: self::parseString($data['title_ru']),
@@ -112,8 +97,7 @@ final class UpdateMerchantDTO extends BaseDTO
         );
     }
 
-    public function jsonSerialize(): array
-    {
+    public function jsonSerialize(): array {
         return [];
     }
 }

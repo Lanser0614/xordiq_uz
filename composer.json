@@ -43,6 +43,9 @@
         "cs-fix" : [
             "./vendor/bin/pint\n\n"
         ],
+        "pint": [
+            "./vendor/bin/pint --config pint.json"
+        ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],

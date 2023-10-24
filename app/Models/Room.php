@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * @property int $id
@@ -16,22 +16,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  *@property int $merchant_id
  *@property Image $images
  */
-class Room extends Model
-{
+class Room extends Model {
     protected $table = 'rooms';
 
-    public function images(): MorphMany
-    {
+    public function images(): MorphMany {
         return $this->morphMany(Image::class, 'parentable');
     }
 
-    public function merchant(): BelongsTo
-    {
+    public function merchant(): BelongsTo {
         return $this->belongsTo(Merchant::class, 'merchant_id', 'id');
     }
 
-    public function roomFeatures(): BelongsToMany
-    {
+    public function roomFeatures(): BelongsToMany {
         return $this->belongsToMany(
             RoomFeature::class,
             'room_features_pivot',

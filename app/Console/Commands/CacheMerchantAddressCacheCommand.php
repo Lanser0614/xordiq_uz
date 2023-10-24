@@ -2,13 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\Cache\CacheKeyEnum;
 use App\Models\Merchant;
 use Illuminate\Console\Command;
-use App\Enums\Cache\CacheKeyEnum;
 use Illuminate\Support\Facades\Cache;
 
-class CacheMerchantAddressCacheCommand extends Command
-{
+class CacheMerchantAddressCacheCommand extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -26,8 +25,7 @@ class CacheMerchantAddressCacheCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
-    {
+    public function handle() {
         $merchants = Merchant::query();
 
         $data = $merchants->select(['id', 'latitude', 'longitude'])->get()->toArray();

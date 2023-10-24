@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\Mobile\MerchantMobileResource;
+use App\Models\Merchant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $paginate = MerchantMobileResource::collection(Merchant::query()->paginate());
+
+    dd($paginate);
+
+    return [
+        'result' => $paginate->resource->items(),
+        'paginator' => [
+            'perPage' => $paginate->resource->perPage(),
+            'total' => $paginate->resource->total(),
+            'currentPage' => $paginate->resource->currentPage(),
+            'lastaPage' => $paginate->resource->lastPage(),
+        ],
+    ];
+    //
 });

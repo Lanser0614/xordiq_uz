@@ -2,22 +2,19 @@
 
 namespace App\Http\Requests\Admin\Room;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 use App\Exceptions\Validation\ValidationException;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
-class RoomStoreRequest extends FormRequest
-{
+class RoomStoreRequest extends FormRequest {
     /**
      * @throws ValidationException
      */
-    protected function failedValidation(Validator $validator): void
-    {
+    protected function failedValidation(Validator $validator): void {
         throw new ValidationException('Validation error', 422, [implode(',', $validator->errors()->all())]);
     }
 
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
             'title_uz' => ['required', 'string'],
             'title_ru' => ['required', 'string'],

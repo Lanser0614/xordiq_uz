@@ -2,6 +2,5 @@
 
 namespace App\Exceptions\DtoException;
 
-class ParseException extends \Exception
-{
+class ParseException extends \Exception {
 }

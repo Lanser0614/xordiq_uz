@@ -4,10 +4,8 @@ namespace App\Http\Requests\Admin\MerchantFeature;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMerchantFeatureRequest extends FormRequest
-{
-    public function rules(): array
-    {
+class StoreMerchantFeatureRequest extends FormRequest {
+    public function rules(): array {
         return [
             'title_uz' => ['required', 'string'],
             'title_ru' => ['required', 'string'],

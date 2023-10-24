@@ -3,13 +3,12 @@
 namespace App\UseCases\Admin\Room;
 
 use App\Models\MerchantUser;
-use App\UseCases\BaseUseCase;
-use App\Tasks\Checker\CheckEntityTask;
-use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
+use App\Repository\RoomRepository\RoomRepositoryInterface;
+use App\Tasks\Checker\CheckEntityTask;
+use App\UseCases\BaseUseCase;
 
-class ShowRoomUseCase extends BaseUseCase
-{
+class ShowRoomUseCase extends BaseUseCase {
     public function __construct(
         private readonly RoomRepositoryInterface $roomRepository,
         private readonly MerchantUserRepositoryInterface $userRepository,
@@ -17,8 +16,7 @@ class ShowRoomUseCase extends BaseUseCase
     ) {
     }
 
-    public function execute(int $merchantId, int $romId, MerchantUser $merchantUser)
-    {
+    public function execute(int $merchantId, int $romId, MerchantUser $merchantUser) {
         $merchant = $this->userRepository->getUserMerchantById($merchantId, $merchantUser);
         $this->checkEntityTask->run($merchant);
         $room = $this->roomRepository->getByRoomId($romId);

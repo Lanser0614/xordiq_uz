@@ -2,14 +2,12 @@
 
 namespace App\UseCases\Admin\Category;
 
+use App\DTOs\Category\StoreCategoryDTO;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-use App\DTOs\Category\StoreCategoryDTO;
 
-class StoreCategoryUseCase
-{
-    public function execute(StoreCategoryDTO $DTO): void
-    {
+class StoreCategoryUseCase {
+    public function execute(StoreCategoryDTO $DTO): void {
         $category = new Category;
         $category->title_en = $DTO->getTitleEn();
         $category->title_ru = $DTO->getTitleRu();

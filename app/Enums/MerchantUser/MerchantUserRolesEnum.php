@@ -4,8 +4,7 @@ namespace App\Enums\MerchantUser;
 
 use MyCLabs\Enum\Enum;
 
-class MerchantUserRolesEnum extends Enum
-{
+class MerchantUserRolesEnum extends Enum {
     public const OPERATOR = 'OPERATOR';
 
     public const ADMIN = 'ADMIN';

@@ -2,8 +2,7 @@
 
 namespace App\Traits;
 
-trait CalculateDistanceTrait
-{
+trait CalculateDistanceTrait {
     /**
      * Get distance between two points on km.
      */

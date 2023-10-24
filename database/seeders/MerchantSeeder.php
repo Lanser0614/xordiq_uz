@@ -2,22 +2,20 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
-use App\Models\Image;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Merchant;
-use App\Models\MerchantUser;
 use App\Models\MerchantFeature;
-use Illuminate\Database\Seeder;
+use App\Models\MerchantUser;
 use Database\Factories\MerchantFactory;
+use Faker\Factory;
+use Illuminate\Database\Seeder;
 
-class MerchantSeeder extends Seeder
-{
+class MerchantSeeder extends Seeder {
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
+    public function run(): void {
         $merchants = MerchantFactory::new()->count(10)->create();
 
         $merchants->map(function (Merchant $merchant) {

@@ -2,27 +2,24 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
-use Exception;
-use App\Models\MerchantUser;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Cache;
-use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use App\Enums\MerchantUser\MerchantUserRolesEnum;
+use App\Models\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
+use Exception;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class MerchantUserRegisterUseCase
-{
-    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository)
-    {
+class MerchantUserRegisterUseCase {
+    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository) {
     }
 
     /**
      * @throws Exception
      */
-    public function execute(MerchantUserRegisterDto $dto): void
-    {
+    public function execute(MerchantUserRegisterDto $dto): void {
         if (App::isProduction()) {
             $otp = random_int(1000, 9999);
         } else {

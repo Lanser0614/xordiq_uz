@@ -2,24 +2,21 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
+use App\Enums\ExceptionEnum\ExceptionEnum;
+use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
-use App\Enums\ExceptionEnum\ExceptionEnum;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 
-class UserSendOtpUseCase
-{
-    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository)
-    {
+class UserSendOtpUseCase {
+    public function __construct(private readonly MerchantUserRepositoryInterface $userRepository) {
     }
 
     /**
      * @throws Exception
      */
-    public function execute(int $phone): void
-    {
+    public function execute(int $phone): void {
         $user = $this->userRepository->getByPhone($phone);
 
         if ($user === null) {

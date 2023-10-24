@@ -5,8 +5,7 @@ namespace App\Repository\MerchantRepository;
 use App\Models\Merchant;
 use App\Models\MerchantUser;
 
-interface MerchantRepositoryInterface
-{
+interface MerchantRepositoryInterface {
     public function save(Merchant $model): Merchant;
 
     public function saveMerchantUser(Merchant $model): void;

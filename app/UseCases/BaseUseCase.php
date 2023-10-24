@@ -2,24 +2,21 @@
 
 namespace App\UseCases;
 
-use App\Exceptions\DataBaseException;
 use App\Enums\ExceptionEnum\ExceptionEnum;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
+use App\Exceptions\DataBaseException;
 
-class BaseUseCase
-{
+class BaseUseCase {
     protected const PERMISSION_NAME = '';
 
-    final public function getPermissionName(): string
-    {
+    final public function getPermissionName(): string {
         return static::PERMISSION_NAME;
     }
 
     /**
      * @throws DataBaseException
      */
-    final protected function checkPermission(string $permission_name, string $role): void
-    {
+    final protected function checkPermission(string $permission_name, string $role): void {
         if ($permission_name !== '' && $role !== MerchantUserRolesEnum::SUPER_ADMIN) {
             if (array_key_exists($role, self::$permission_array)) {
                 $roles = self::$permission_array[$role];

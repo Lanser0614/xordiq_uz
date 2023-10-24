@@ -4,8 +4,7 @@ namespace App\Repository\RoomRepository;
 
 use App\Models\Room;
 
-interface RoomRepositoryInterface
-{
+interface RoomRepositoryInterface {
     public function save(Room $model): Room;
 
     public function getByRoomId(int $id);

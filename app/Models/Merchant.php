@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
 use App\Filter\BaseFilter\BaseFilter;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\Request;
 
 /**
  * @property int $id
@@ -17,21 +17,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $title_uz
  * @property string $title_ru
  * @property string $title_en
+ * @property array|null $title
  * @property string $description_uz
  * @property string $description_ru
  * @property string $description_en
+ * @property array|null $description
  * @property float $latitude
  * @property float $longitude
  * @property int $book_commisison
  *
  * @method static Builder|self filter($request, $filters)
  */
-class Merchant extends Model
-{
+class Merchant extends Model {
     protected $table = 'merchants';
 
-    public function merchantsUser(): BelongsToMany
-    {
+    public function merchantsUser(): BelongsToMany {
         return $this->belongsToMany(
             MerchantUser::class,
             'merchant_user_merchants_pivot',
@@ -40,8 +40,7 @@ class Merchant extends Model
         );
     }
 
-    public function merchantsCategories(): BelongsToMany
-    {
+    public function merchantsCategories(): BelongsToMany {
         return $this->belongsToMany(
             Category::class,
             'merchat_categories_pivot',
@@ -50,8 +49,7 @@ class Merchant extends Model
         );
     }
 
-    public function merchantsFeatures(): BelongsToMany
-    {
+    public function merchantsFeatures(): BelongsToMany {
         return $this->belongsToMany(
             MerchantFeature::class,
             'merchant_features_pivot',
@@ -60,23 +58,35 @@ class Merchant extends Model
         );
     }
 
-    public function rooms(): HasMany
-    {
+    public function rooms(): HasMany {
         return $this->hasMany(Room::class);
     }
 
-    public function roomsLimit(): HasMany
-    {
+    public function roomsLimit(): HasMany {
         return $this->hasMany(Room::class)->take(1);
     }
 
-    public function images(): MorphMany
-    {
+    public function images(): MorphMany {
         return $this->morphMany(Image::class, 'parentable');
     }
 
-    public function scopeFilter($builder, Request $request, array $filters): Builder
-    {
+    public function scopeFilter($builder, Request $request, array $filters): Builder {
         return (new BaseFilter($builder, $request, $filters))->apply();
+    }
+
+    public function getTitleAttribute() {
+        return $this->title = [
+            'en' => $this->title_en,
+            'ru' => $this->title_ru,
+            'uz' => $this->title_uz,
+        ];
+    }
+
+    public function getDescriptionAttribute(): array {
+        return $this->description = [
+            'en' => $this->description_en,
+            'ru' => $this->description_ru,
+            'uz' => $this->description_uz,
+        ];
     }
 }

@@ -2,17 +2,15 @@
 
 namespace App\DTOs\BaseDTO;
 
-use Exception;
-use Carbon\Carbon;
 use App\Exceptions\DtoException\ParseException;
+use Carbon\Carbon;
+use Exception;
 
-trait ParseTrait
-{
+trait ParseTrait {
     /**
      * @throws ParseException
      */
-    protected static function parseNullableInt(mixed &$value): ?int
-    {
+    protected static function parseNullableInt(mixed &$value): ?int {
         try {
             if ((string) $value === '0') {
                 return 0;
@@ -27,8 +25,7 @@ trait ParseTrait
     /**
      * @throws ParseException
      */
-    protected static function parseInt(mixed &$value, int $defaultValue = null): int
-    {
+    protected static function parseInt(mixed &$value, int $defaultValue = null): int {
         $castedValue = self::parseNullableInt($value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -44,9 +41,8 @@ trait ParseTrait
     /**
      * @throws ParseException
      */
-    protected static function parseNullableArray(mixed &$value): ?array
-    {
-        if (!isset($value)) {
+    protected static function parseNullableArray(mixed &$value): ?array {
+        if (! isset($value)) {
             return null;
         }
 
@@ -66,8 +62,7 @@ trait ParseTrait
      *
      * @throws ParseException
      */
-    protected static function parseArray(mixed &$value, array $defaultValue = null): array
-    {
+    protected static function parseArray(mixed &$value, array $defaultValue = null): array {
         $castedValue = self::parseNullableArray($value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -80,8 +75,7 @@ trait ParseTrait
         return $castedValue;
     }
 
-    protected static function parseNullableBool(mixed &$value): ?bool
-    {
+    protected static function parseNullableBool(mixed &$value): ?bool {
         try {
             if ($value === null) {
                 return null;
@@ -94,8 +88,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseBool(mixed &$value, bool $defaultValue = null): bool
-    {
+    protected static function parseBool(mixed &$value, bool $defaultValue = null): bool {
         $castedValue = self::parseNullableBool($value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -109,8 +102,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseNullableFloat(mixed &$value): ?float
-    {
+    protected static function parseNullableFloat(mixed &$value): ?float {
         try {
             if ((string) $value === '0') {
                 return 0;
@@ -123,8 +115,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseFloat(mixed &$value, float $defaultValue = null): float
-    {
+    protected static function parseFloat(mixed &$value, float $defaultValue = null): float {
         $castedValue = self::parseNullableFloat($value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -137,8 +128,7 @@ trait ParseTrait
         return $castedValue;
     }
 
-    protected static function parseNullableString(mixed &$value): ?string
-    {
+    protected static function parseNullableString(mixed &$value): ?string {
         try {
             if ($value === null) {
                 return null;
@@ -151,8 +141,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseString(mixed &$value, string $defaultValue = null): string
-    {
+    protected static function parseString(mixed &$value, string $defaultValue = null): string {
         $castedValue = self::parseNullableString($value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -175,15 +164,14 @@ trait ParseTrait
      *
      * @throws ParseException
      */
-    protected static function parseNullableEntity(string $className, mixed &$value)
-    {
+    protected static function parseNullableEntity(string $className, mixed &$value) {
         $parsedValue = self::parseNullableArray($value);
         if ($parsedValue === null) {
             return;
         }
 
-        if (!is_subclass_of($className, self::class)) {
-            throw new ParseException($className . ' is not instance of ' . BaseDTO::class);
+        if (! is_subclass_of($className, self::class)) {
+            throw new ParseException($className.' is not instance of '.BaseDTO::class);
         }
 
         return $className::fromArray($parsedValue);
@@ -200,8 +188,7 @@ trait ParseTrait
      *
      * @throws ParseException
      */
-    protected static function parseEntity(string $className, mixed &$value, mixed $defaultValue = null)
-    {
+    protected static function parseEntity(string $className, mixed &$value, mixed $defaultValue = null) {
         $castedValue = self::parseNullableEntity($className, $value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -224,8 +211,7 @@ trait ParseTrait
      *
      * @throws ParseException
      */
-    protected static function parseNullableEntityList(string $className, mixed &$value): ?array
-    {
+    protected static function parseNullableEntityList(string $className, mixed &$value): ?array {
         $parsedValues = self::parseNullableArray($value);
         if ($parsedValues === null) {
             return null;
@@ -249,8 +235,7 @@ trait ParseTrait
      *
      * @throws ParseException
      */
-    protected static function parseEntityList(string $className, mixed &$value, array $defaultValue = null): array
-    {
+    protected static function parseEntityList(string $className, mixed &$value, array $defaultValue = null): array {
         $castedValue = self::parseNullableEntityList($className, $value);
         if ($castedValue === null) {
             if ($defaultValue === null) {
@@ -264,8 +249,7 @@ trait ParseTrait
     }
 
     /** @description Reference(&) needed for passing Undefined array keys * */
-    protected static function parseNullableCarbon(mixed &$value): ?Carbon
-    {
+    protected static function parseNullableCarbon(mixed &$value): ?Carbon {
         try {
             $stringDate = self::parseNullableString($value);
             if ($stringDate === null) {
@@ -281,8 +265,7 @@ trait ParseTrait
     /** @description Reference(&) needed for passing Undefined array keys *
      * @throws ParseException
      */
-    protected static function parseCarbon(mixed &$value, Carbon $defaultValue = null): Carbon
-    {
+    protected static function parseCarbon(mixed &$value, Carbon $defaultValue = null): Carbon {
         $castedValue = self::parseNullableCarbon($value);
         if ($castedValue === null) {
             if ($defaultValue === null) {

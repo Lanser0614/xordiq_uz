@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace App\UseCases\Mobile\Merchant;
 
 use App\Enums\Cache\CacheKeyEnum;
+use App\Traits\CalculateDistanceTrait;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
-use App\Traits\CalculateDistanceTrait;
 
-class GetDistanceToMerchantUseCase
-{
+class GetDistanceToMerchantUseCase {
     use CalculateDistanceTrait;
 
-    public function perform($latitudeFrom, $longitudeFrom, ?int $radius = 0): array
-    {
-
-        if (is_null(Cache::get(CacheKeyEnum::MERCHANT_POINTS->name))){
+    public function perform($latitudeFrom, $longitudeFrom, ?int $radius = 0): array {
+        if (is_null(Cache::get(CacheKeyEnum::MERCHANT_POINTS->name))) {
             Artisan::call('cache:merchant-address-command');
         }
 
@@ -24,8 +21,8 @@ class GetDistanceToMerchantUseCase
 
         $distance = [];
         foreach ($merchantCoordinate as $value) {
-            $latitudeTo = (float)$value['latitude'];
-            $longitudeTo = (float)$value['longitude'];
+            $latitudeTo = (float) $value['latitude'];
+            $longitudeTo = (float) $value['longitude'];
             $merchantId = $value['id'];
             $distance[] = [
                 'merchant_id' => $merchantId,

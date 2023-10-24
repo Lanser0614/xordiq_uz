@@ -2,20 +2,18 @@
 
 namespace App\UseCases\Admin\Category;
 
-use App\Models\Category;
-use Illuminate\Support\Facades\DB;
-use App\Tasks\Checker\CheckEntityTask;
 use App\DTOs\Category\StoreCategoryDTO;
+use App\Models\Category;
+use App\Tasks\Checker\CheckEntityTask;
+use Illuminate\Support\Facades\DB;
 
-class UpdateCategoryUseCase
-{
+class UpdateCategoryUseCase {
     public function __construct(
         private readonly CheckEntityTask $checkEntityTask
     ) {
     }
 
-    public function execute(int $id, StoreCategoryDTO $DTO): void
-    {
+    public function execute(int $id, StoreCategoryDTO $DTO): void {
         $category = Category::query()->find($id);
         $this->checkEntityTask->run($category);
         $category->title_en = $DTO->getTitleEn();

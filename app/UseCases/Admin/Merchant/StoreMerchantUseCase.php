@@ -2,18 +2,17 @@
 
 namespace App\UseCases\Admin\Merchant;
 
+use App\DTOs\Merchant\StoreMerchantDTO;
+use App\Exceptions\DataBaseException;
 use App\Models\Image;
 use App\Models\Merchant;
 use App\Models\MerchantUser;
+use App\Repository\MerchantRepository\MerchantRepositoryInterface;
+use App\Tasks\Merchant\SaveMerchantPhotosTask;
 use App\UseCases\BaseUseCase;
 use Illuminate\Support\Facades\DB;
-use App\Exceptions\DataBaseException;
-use App\DTOs\Merchant\StoreMerchantDTO;
-use App\Tasks\Merchant\SaveMerchantPhotosTask;
-use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 
-class StoreMerchantUseCase extends BaseUseCase
-{
+class StoreMerchantUseCase extends BaseUseCase {
     protected const PERMISSION_NAME = 'CAN_STORE_MERCHANT';
 
     public function __construct(
@@ -25,8 +24,7 @@ class StoreMerchantUseCase extends BaseUseCase
     /**
      * @throws DataBaseException
      */
-    public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void
-    {
+    public function execute(MerchantUser $merchantUser, StoreMerchantDTO $DTO): void {
         $this->checkPermission($this->getPermissionName(), $merchantUser->role);
         $merchant = new Merchant;
         $merchant->title_en = $DTO->getTitleEn();
@@ -45,11 +43,11 @@ class StoreMerchantUseCase extends BaseUseCase
 
             $this->saveMerchantRelationObject($merchant, $DTO);
 
-            $path = $merchant->id . '-merchant';
-            $imageName = random_int(1, 100000) . time() . '.' . $DTO->getHomePhoto()->extension();
-            $DTO->getHomePhoto()->move(storage_path('app/public/' . $path), $imageName);
+            $path = $merchant->id.'-merchant';
+            $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
+            $DTO->getHomePhoto()->move(storage_path('app/public/'.$path), $imageName);
             $image = new Image;
-            $image->image_path = $path . '/' . $imageName;
+            $image->image_path = $path.'/'.$imageName;
             $image->parent_image = true;
             $merchant->images()->save($image);
 
@@ -62,8 +60,7 @@ class StoreMerchantUseCase extends BaseUseCase
         //        }
     }
 
-    public function saveMerchantRelationObject(Merchant $merchant, StoreMerchantDTO $DTO): void
-    {
+    public function saveMerchantRelationObject(Merchant $merchant, StoreMerchantDTO $DTO): void {
         $this->merchantRepository->saveMerchantCategory($merchant, $DTO->getCategoryIds());
         if ($DTO->getMerchantFeaturesIds() != null) {
             $this->merchantRepository->saveMerchantFeatures($merchant, $DTO->getMerchantFeaturesIds());

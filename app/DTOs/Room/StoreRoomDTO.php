@@ -3,11 +3,10 @@
 namespace App\DTOs\Room;
 
 use App\DTOs\BaseDTO\BaseDTO;
-use Illuminate\Http\UploadedFile;
 use App\Exceptions\DtoException\ParseException;
+use Illuminate\Http\UploadedFile;
 
-final class StoreRoomDTO extends BaseDTO
-{
+final class StoreRoomDTO extends BaseDTO {
     public function __construct(
         private readonly string $title_en,
         private readonly string $title_uz,
@@ -19,51 +18,42 @@ final class StoreRoomDTO extends BaseDTO
     ) {
     }
 
-    public function getRoomFeatureIds(): array
-    {
+    public function getRoomFeatureIds(): array {
         return $this->roomFeatureIds;
     }
 
-    public function getHomePhoto(): UploadedFile
-    {
+    public function getHomePhoto(): UploadedFile {
         return $this->home_photo;
     }
 
-    public function getPhotos(): array
-    {
+    public function getPhotos(): array {
         return $this->photos;
     }
 
-    public function getTitleEn(): string
-    {
+    public function getTitleEn(): string {
         return $this->title_en;
     }
 
-    public function getTitleUz(): string
-    {
+    public function getTitleUz(): string {
         return $this->title_uz;
     }
 
-    public function getTitleRu(): string
-    {
+    public function getTitleRu(): string {
         return $this->title_ru;
     }
 
-    public function getPrice(): int
-    {
+    public function getPrice(): int {
         return $this->price;
     }
 
-    public function getPriceOnTinn(): int
-    {
+    public function getPriceOnTinn(): int {
         return $this->toTinn(round($this->price, 2));
     }
 
     /**
      * @throws ParseException
      */
-    public static function frommArray(array $data): StoreRoomDTO
-    {
+    public static function frommArray(array $data): StoreRoomDTO {
         return new self(
             title_en: self::parseString($data['title_en']),
             title_uz: self::parseString($data['title_uz']),
@@ -75,8 +65,7 @@ final class StoreRoomDTO extends BaseDTO
         );
     }
 
-    public function jsonSerialize(): array
-    {
+    public function jsonSerialize(): array {
         return [];
     }
 }
