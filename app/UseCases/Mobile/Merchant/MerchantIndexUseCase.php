@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\UseCases\Mobile\Merchant;
 
 use App\Filter\EloquentFilter\Merchant\MerchantByCategory;
+use App\Filter\EloquentFilter\Merchant\MerchantByEnTitle;
+use App\Filter\EloquentFilter\Merchant\MerchantByRuTitle;
+use App\Filter\EloquentFilter\Merchant\MerchantByUzTitle;
 use App\Http\Resources\Mobile\MerchantMobileResource;
 use App\Models\Merchant;
 use Illuminate\Http\Request;
@@ -20,6 +23,9 @@ class MerchantIndexUseCase {
                 $request,
                 [
                     MerchantByCategory::class,
+                    MerchantByEnTitle::class,
+                    MerchantByRuTitle::class,
+                    MerchantByUzTitle::class,
                 ]
             )
             ->with([
