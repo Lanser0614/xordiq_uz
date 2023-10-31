@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Merchant\Merchant;
+use App\Models\Merchant\Room;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<User>
+ * @extends Factory<Room>
  */
 class RoomFactory extends Factory {
     /**
@@ -23,14 +24,5 @@ class RoomFactory extends Factory {
             'price' => $this->faker->numberBetween(0, 1000000),
             'merchant_id' => Merchant::query()->inRandomOrder()->first()->id,
         ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
     }
 }

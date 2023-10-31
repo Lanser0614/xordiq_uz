@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Image;
+use App\Models\Merchant\Merchant;
 use App\Models\Merchant\Room;
 use App\Models\Merchant\RoomFeature;
 use Database\Factories\RoomFactory;
@@ -14,7 +15,21 @@ class RoomSeeder extends Seeder {
      * Run the database seeds.
      */
     public function run(): void {
-        $rooms = RoomFactory::new()->count(50)->create();
+
+        $faker = Factory::create();
+        $rooms = collect();
+        for ($i = 0; $i <= 100; $i++) {
+            $merchant = Room::query()->make(
+                [
+                    'title_uz' => $faker->sentence(10),
+                    'title_ru' => $faker->sentence(10),
+                    'title_en' => $faker->sentence(10),
+                    'price' => $faker->numberBetween(0, 1000000),
+                    'merchant_id' => Merchant::query()->inRandomOrder()->first()->id,
+                ]
+            );
+            $rooms->add($merchant);
+        }
 
         $rooms->map(function (Room $room) {
             $faker = Factory::create();
