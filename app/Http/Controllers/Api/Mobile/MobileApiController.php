@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Api\Mobile;
 
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Mobile\Merchant\MerchantDistanceRequest;
-use App\Models\Category;
+use App\Models\Common\Category;
 use App\UseCases\Mobile\Merchant\GetDistanceToMerchantUseCase;
 use App\UseCases\Mobile\Merchant\MerchantIndexUseCase;
 use Illuminate\Http\JsonResponse;

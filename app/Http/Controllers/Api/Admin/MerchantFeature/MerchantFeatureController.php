@@ -8,7 +8,9 @@ use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantFeature\StoreMerchantFeatureRequest;
 use App\Http\Requests\Admin\MerchantFeature\UpdateMerchantFeatureRequest;
-use App\Models\MerchantFeature;
+use App\Http\Resources\MerchantDashboardResource\MerchantFeature\MerchantFeatureResource;
+use App\Models\Merchant\MerchantFeature;
+use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 use App\UseCases\Admin\MerchantFeature\MerchantFeatureDeleteUseCase;
 use App\UseCases\Admin\MerchantFeature\MerchantFeatureStoreUseCase;
 use App\UseCases\Admin\MerchantFeature\MerchantFeatureUpdateUseCase;
@@ -16,10 +18,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MerchantFeatureController extends BaseApiController {
+    public function __construct(
+        private readonly MerchantFeatureRepositoryInterface $merchantFeatureRepository,
+    ) {
+    }
+
     public function index(Request $request): JsonResponse {
         $merchantFeature = MerchantFeature::query()->paginate($request->perPage ?? 15);
 
-        return new JsonResponse($this->responseWithPagination($merchantFeature));
+        return new JsonResponse($this->responseWithPagination(MerchantFeatureResource::collection($merchantFeature)->resource));
     }
 
     /**
@@ -30,6 +37,12 @@ class MerchantFeatureController extends BaseApiController {
         $useCase->execute(StoreMerchantFeatureDTO::frommArray($request->validated()));
 
         return new JsonResponse($this->responseSuccess());
+    }
+
+    public function show(int $id): JsonResponse {
+        $model = $this->merchantFeatureRepository->findById($id);
+
+        return new JsonResponse($this->responseOneItem((new MerchantFeatureResource($model))->resource));
     }
 
     /**

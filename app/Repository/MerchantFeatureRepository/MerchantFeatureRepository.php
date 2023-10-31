@@ -2,7 +2,7 @@
 
 namespace App\Repository\MerchantFeatureRepository;
 
-use App\Models\MerchantFeature;
+use App\Models\Merchant\MerchantFeature;
 
 class MerchantFeatureRepository implements MerchantFeatureRepositoryInterface {
     public function save(MerchantFeature $merchantFeature): MerchantFeature {

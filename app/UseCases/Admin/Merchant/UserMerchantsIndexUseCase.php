@@ -2,8 +2,10 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use App\Models\MerchantUser;
+use App\Http\Resources\MerchantDashboardResource\Merchant\MerchantDashboardResource;
+use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserMerchantsIndexUseCase {
     public function __construct(
@@ -14,7 +16,9 @@ class UserMerchantsIndexUseCase {
     public function execute(
         MerchantUser $merchantUser,
         int $perPage = 15, int $page = 1
-    ) {
-        return $this->userRepository->getUserMerchants($merchantUser, $perPage, $page);
+    ): AnonymousResourceCollection {
+        $merchants = $this->userRepository->getUserMerchants($merchantUser, $perPage, $page);
+
+        return MerchantDashboardResource::collection($merchants);
     }
 }

@@ -4,6 +4,12 @@ namespace App\Enums\MerchantUser;
 
 use MyCLabs\Enum\Enum;
 
+/**
+ * @method static self OWNER()
+ * @method static self OPERATOR()
+ * @method static self ADMIN()
+ * @method static self SUPER_ADMIN()
+ */
 class MerchantUserRolesEnum extends Enum {
     public const OPERATOR = 'OPERATOR';
 
@@ -11,5 +17,5 @@ class MerchantUserRolesEnum extends Enum {
 
     public const SUPER_ADMIN = 'SUPER_ADMIN';
 
-    public const USER = 'USER';
+    public const OWNER = 'OWNER';
 }

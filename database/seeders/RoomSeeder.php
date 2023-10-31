@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Image;
-use App\Models\Room;
-use App\Models\RoomFeature;
+use App\Models\Merchant\Room;
+use App\Models\Merchant\RoomFeature;
 use Database\Factories\RoomFactory;
 use Faker\Factory;
 use Illuminate\Database\Seeder;

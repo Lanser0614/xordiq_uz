@@ -9,7 +9,7 @@ use App\Filter\EloquentFilter\Merchant\MerchantByEnTitle;
 use App\Filter\EloquentFilter\Merchant\MerchantByRuTitle;
 use App\Filter\EloquentFilter\Merchant\MerchantByUzTitle;
 use App\Http\Resources\Mobile\MerchantMobileResource;
-use App\Models\Merchant;
+use App\Models\Merchant\Merchant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 

@@ -5,7 +5,7 @@ namespace App\UseCases\Admin\RoomFeature;
 use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Exceptions\DataBaseException;
 use App\Models\Image;
-use App\Models\RoomFeature;
+use App\Models\Merchant\RoomFeature;
 use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;

@@ -6,7 +6,7 @@ use App\DTOs\Category\StoreCategoryDTO;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\Category\StoreCategoryRequest;
 use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
-use App\Models\Category;
+use App\Models\Common\Category;
 use App\UseCases\Admin\Category\DeleteCategoryUseCase;
 use App\UseCases\Admin\Category\StoreCategoryUseCase;
 use App\UseCases\Admin\Category\UpdateCategoryUseCase;
@@ -28,6 +28,12 @@ class CategoryController extends BaseApiController {
         }
 
         return new JsonResponse($this->responseSuccess());
+    }
+
+    public function show(int $id): JsonResponse {
+        $category = Category::query()->find($id);
+
+        return new JsonResponse($this->responseOneItem($category));
     }
 
     public function update(int $id, UpdateCategoryRequest $request, UpdateCategoryUseCase $useCase): JsonResponse {

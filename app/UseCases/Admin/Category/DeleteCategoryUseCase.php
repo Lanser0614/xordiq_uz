@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Admin\Category;
 
-use App\Models\Category;
+use App\Models\Common\Category;
 use App\Tasks\Checker\CheckEntityTask;
 use Illuminate\Support\Facades\DB;
 

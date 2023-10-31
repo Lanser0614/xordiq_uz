@@ -3,10 +3,13 @@
 namespace App\UseCases\Admin\Merchant;
 
 use App\DTOs\Merchant\StoreMerchantDTO;
+use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\Exceptions\DataBaseException;
+use App\Models\Ability;
 use App\Models\Image;
-use App\Models\Merchant;
-use App\Models\MerchantUser;
+use App\Models\Merchant\Merchant;
+use App\Models\Merchant\MerchantOfUser;
+use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Tasks\Merchant\SaveMerchantPhotosTask;
 use App\UseCases\BaseUseCase;
@@ -37,11 +40,20 @@ class StoreMerchantUseCase extends BaseUseCase {
         $merchant->latitude = $DTO->getLatitude();
         $merchant->village_id = $DTO->getVillageId();
         $merchant->district_id = $DTO->getDistrictId();
-        $merchant->book_commisison = $DTO->getBookCommisison();
-        DB::transaction(function () use ($merchant, $DTO) {
+        $merchant->book_commission = $DTO->getBookCommisison();
+        DB::transaction(function () use ($merchant, $DTO, $merchantUser) {
             $merchant = $this->merchantRepository->save($merchant);
 
-            $this->saveMerchantRelationObject($merchant, $DTO);
+            $this->saveMerchantRelationObject($merchant, $DTO, $merchantUser);
+
+//            $merchantOfUser = MerchantOfUser::query()
+//                ->where('merchant_user_id', '=', $merchantUser->id)
+//                ->where('merchant_id', $merchant->id)
+//                ->first();
+
+//            dd($merchantUser->id,
+//$merchant->id,);
+//            $merchantOfUser->merchantOfUserAbilities()->attach(Ability::query()->pluck('id')->toArray());
 
             $path = $merchant->id.'-merchant';
             $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
@@ -60,11 +72,20 @@ class StoreMerchantUseCase extends BaseUseCase {
         //        }
     }
 
-    public function saveMerchantRelationObject(Merchant $merchant, StoreMerchantDTO $DTO): void {
+    public function saveMerchantRelationObject(Merchant $merchant, StoreMerchantDTO $DTO, MerchantUser $merchantUser): void {
         $this->merchantRepository->saveMerchantCategory($merchant, $DTO->getCategoryIds());
         if ($DTO->getMerchantFeaturesIds() != null) {
             $this->merchantRepository->saveMerchantFeatures($merchant, $DTO->getMerchantFeaturesIds());
         }
-        $this->merchantRepository->saveMerchantUser($merchant);
+        $this->merchantRepository->saveMerchantUser($merchant, MerchantUserRolesEnum::OWNER(), $merchantUser);
+
+        /** @var MerchantOfUser $merchantOfUser */
+        $merchantOfUser = MerchantOfUser::query()
+            ->where('merchant_user_id', '=', $merchantUser->id)
+            ->where('merchant_id', $merchant->id)
+            ->first();
+
+        $merchantOfUser->merchantOfUserAbilities()->attach(Ability::query()->pluck('id')->toArray());
+
     }
 }

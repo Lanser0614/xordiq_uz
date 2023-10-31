@@ -50,6 +50,7 @@ class BaseApiController extends Controller {
     public function responseOneItem(Model $model): array {
         return [
             'result' => $model,
+            'status' => $this->responseSuccess(),
         ];
     }
 

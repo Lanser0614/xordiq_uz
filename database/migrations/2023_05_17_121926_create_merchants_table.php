@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->text('description_en');
             $table->float('latitude', 10, 0);
             $table->float('longitude', 10, 0);
-            $table->integer('book_commisison');
+            $table->integer('book_commission');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
         });

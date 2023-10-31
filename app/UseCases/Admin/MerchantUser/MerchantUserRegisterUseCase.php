@@ -4,7 +4,7 @@ namespace App\UseCases\Admin\MerchantUser;
 
 use App\DTOs\MerchantUser\MerchantUserRegisterDto;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
-use App\Models\MerchantUser;
+use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\App;

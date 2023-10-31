@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tasks\Merchant;
 
 use App\Models\Image;
-use App\Models\Merchant;
+use App\Models\Merchant\Merchant;
 use Exception;
 use Illuminate\Http\UploadedFile;
 

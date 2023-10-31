@@ -2,7 +2,7 @@
 
 namespace App\Repository\MerchantUserRepository;
 
-use App\Models\MerchantUser;
+use App\Models\Merchant\MerchantUser;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +27,10 @@ class MerchantMerchantUserRepository implements MerchantUserRepositoryInterface 
     }
 
     public function getUserMerchants(MerchantUser $merchantUser, int $perPage = 15, int $page = 1): LengthAwarePaginator {
-        return $merchantUser->merchants()->with(['images'])->paginate($perPage, ['*'], $page);
+        return $merchantUser->merchants()->with(['images'])->paginate($perPage, ['*'], 'page', $page);
+    }
+
+    public function getById(int $id): ?MerchantUser {
+        return MerchantUser::query()->find($id);
     }
 }

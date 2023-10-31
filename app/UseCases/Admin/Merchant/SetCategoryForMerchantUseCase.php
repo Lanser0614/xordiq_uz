@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use App\Models\Category;
+use App\Models\Common\Category;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 
@@ -18,6 +18,6 @@ class SetCategoryForMerchantUseCase {
         $this->checkEntityTask->run($merchant);
         $category = Category::query()->find($category_id);
         $this->checkEntityTask->run($category);
-        $merchant->merchantsCategories()->sycn($category);
+        $merchant->merchantsCategories()->attach($category);
     }
 }

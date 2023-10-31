@@ -2,7 +2,7 @@
 
 namespace App\Repository\RoomFeatureRepository;
 
-use App\Models\RoomFeature;
+use App\Models\Merchant\RoomFeature;
 
 class RoomFeatureRepository implements RoomFeatureRepositoryInterface {
     public function findById(int $id): ?RoomFeature {

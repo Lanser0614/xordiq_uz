@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Admin\Room;
 
-use App\Models\MerchantUser;
+use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Repository\RoomRepository\RoomRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Payment;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExpensePayment extends Model {
+class Order extends Model {
     use HasFactory;
+
+    protected $table = 'orders';
 }

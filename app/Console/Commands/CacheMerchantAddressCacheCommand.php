@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\Cache\CacheKeyEnum;
-use App\Models\Merchant;
+use App\Models\Merchant\Merchant;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 

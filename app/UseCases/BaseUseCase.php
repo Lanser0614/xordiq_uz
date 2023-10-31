@@ -9,7 +9,7 @@ use App\Exceptions\DataBaseException;
 class BaseUseCase {
     protected const PERMISSION_NAME = '';
 
-    final public function getPermissionName(): string {
+    final protected function getPermissionName(): string {
         return static::PERMISSION_NAME;
     }
 
@@ -28,7 +28,7 @@ class BaseUseCase {
     }
 
     protected static array $permission_array = [
-        MerchantUserRolesEnum::USER => [
+        MerchantUserRolesEnum::OWNER => [
 
         ],
         MerchantUserRolesEnum::ADMIN => [

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Mobile;
 
-use App\Models\Merchant;
+use App\Models\Merchant\Merchant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

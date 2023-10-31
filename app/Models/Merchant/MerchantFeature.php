@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Merchant;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
- * @property string $title_uz
- * @property string $title_ru
- * @property string $title_en
- * @property array|null $title
+ *@property string $title_uz
+ *@property string $title_ru
+ *@property string $title_en
+ *@property array|null $title
+ *@property Image $image
  */
-class RoomFeature extends Model {
-    use HasFactory;
-
-    protected $table = 'room_features';
+class MerchantFeature extends Model {
+    protected $table = 'merchant_features';
 
     public function image(): MorphOne {
         return $this->morphOne(Image::class, 'parentable');

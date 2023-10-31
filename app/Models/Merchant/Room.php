@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Merchant;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  *@property string $title_uz
  *@property string $title_ru
  *@property string $title_en
+ *@property array|null $title
  *@property int $price
  *@property int $merchant_id
  *@property Image $images
@@ -34,5 +36,13 @@ class Room extends Model {
             'room_id',
             'room_feature_id'
         );
+    }
+
+    public function getTitleAttribute() {
+        return $this->title = [
+            'en' => $this->title_en,
+            'ru' => $this->title_ru,
+            'uz' => $this->title_uz,
+        ];
     }
 }

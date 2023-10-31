@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Merchant;
 
 use App\Filter\BaseFilter\BaseFilter;
+use App\Models\Common\Category;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Request;
+use Ramsey\Collection\Collection;
 
 /**
  * @property int $id
@@ -24,7 +27,8 @@ use Illuminate\Http\Request;
  * @property array|null $description
  * @property float $latitude
  * @property float $longitude
- * @property int $book_commisison
+ * @property int $book_commission
+ * @property Collection|Room[] $rooms
  *
  * @method static Builder|self filter($request, $filters)
  */
@@ -34,10 +38,10 @@ class Merchant extends Model {
     public function merchantsUser(): BelongsToMany {
         return $this->belongsToMany(
             MerchantUser::class,
-            'merchant_user_merchants_pivot',
+            'merchants_of_user',
             'merchant_id',
             'merchant_user_id'
-        );
+        )->withPivot(['role']);
     }
 
     public function merchantsCategories(): BelongsToMany {

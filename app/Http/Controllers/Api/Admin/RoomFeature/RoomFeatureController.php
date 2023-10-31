@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\Admin\RoomFeature;
 
 use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\Enums\Ability\AbilityEnum;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantFeature\StoreMerchantFeatureRequest;
 use App\Http\Requests\Admin\MerchantFeature\UpdateMerchantFeatureRequest;
-use App\Models\RoomFeature;
+use App\Http\Resources\MerchantDashboardResource\Room\RoomFeatureResource;
+use App\Models\Merchant\RoomFeature;
 use App\UseCases\Admin\RoomFeature\RoomFeatureDeleteUseCase;
 use App\UseCases\Admin\RoomFeature\RoomFeatureStoreUseCase;
 use App\UseCases\Admin\RoomFeature\RoomFeatureUpdateUseCase;
@@ -17,9 +19,10 @@ use Illuminate\Http\Request;
 
 class RoomFeatureController extends BaseApiController {
     public function index(Request $request): JsonResponse {
+        $this->authorize(AbilityEnum::CAN_SEE_FEATURE->value);
         $merchantFeature = RoomFeature::query()->paginate($request->perPage ?? 15);
 
-        return new JsonResponse($this->responseWithPagination($merchantFeature));
+        return new JsonResponse($this->responseWithPagination(RoomFeatureResource::collection($merchantFeature)->resource));
     }
 
     /**

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Api\Admin\MerchantUser;
 
 use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use App\DTOs\MerchantUser\MerchantUserUpdateDto;
 use App\DTOs\MerchantUser\UserLoginDto;
 use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantUser\LoginRequest;
 use App\Http\Requests\Admin\MerchantUser\LoginWithOtpRequest;
 use App\Http\Requests\Admin\MerchantUser\UserRegisterRequest;
+use App\Http\Requests\Admin\MerchantUser\UserUpdateRequest;
 use App\UseCases\Admin\MerchantUser\MerchantUserRegisterUseCase;
+use App\UseCases\Admin\MerchantUser\MerchantUserUpdateUseCase;
 use App\UseCases\Admin\MerchantUser\UserLoginUseCase;
 use App\UseCases\Admin\MerchantUser\UserLoginWithOtpUseCase;
 use App\UseCases\Admin\MerchantUser\UserSendOtpUseCase;
@@ -52,6 +55,16 @@ class MerchantUserController extends BaseApiController {
         } catch (Exception $e) {
             return new JsonResponse($this->responseOnError($e->getMessage(), $e->getCode()));
         }
+
+        return new JsonResponse($this->responseSuccess());
+    }
+
+    /**
+     * @throws ParseException
+     * @throws Exception
+     */
+    public function update(int $id, UserUpdateRequest $request, MerchantUserUpdateUseCase $useCase): JsonResponse {
+        $useCase->execute($id, MerchantUserUpdateDto::frommArray($request->validated()));
 
         return new JsonResponse($this->responseSuccess());
     }

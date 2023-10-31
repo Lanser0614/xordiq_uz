@@ -2,8 +2,9 @@
 
 namespace App\Repository\MerchantRepository;
 
-use App\Models\Merchant;
-use App\Models\MerchantUser;
+use App\Enums\MerchantUser\MerchantUserRolesEnum;
+use App\Models\Merchant\Merchant;
+use App\Models\Merchant\MerchantUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,15 +29,18 @@ class MerchantRepository implements MerchantRepositoryInterface {
     /**
      * @return Builder|Model|object|null
      */
-    public function getMerchantRooms(int $merchantId, MerchantUser $merchantUser) {
+    public function getMerchantRooms(int $merchantId, MerchantUser $merchantUser): Merchant {
         return Merchant::query()->with(['rooms.images'])->where('id', $merchantId)
             ->whereHas('merchantsUser', function (Builder $query) use ($merchantUser) {
-                $query->where('id', $merchantUser->id);
-            })->first();
+                $query->where('merchant_user_id', $merchantUser->id);
+            })
+        ->first();
     }
 
-    public function saveMerchantUser(Merchant $model): void {
-        $model->merchantsUser()->sync(auth()->user());
+    public function saveMerchantUser(Merchant $merchant, MerchantUserRolesEnum $role, MerchantUser $merchantUser): void {
+        $merchant->merchantsUser()->attach([
+            $merchant->id => ['role' => $role->getValue(), 'merchant_user_id' => $merchantUser->id],
+        ]);
     }
 
     public function saveMerchantCategory(Merchant $model, array $categoryIds): void {

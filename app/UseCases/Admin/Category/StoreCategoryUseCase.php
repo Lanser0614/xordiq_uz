@@ -3,7 +3,7 @@
 namespace App\UseCases\Admin\Category;
 
 use App\DTOs\Category\StoreCategoryDTO;
-use App\Models\Category;
+use App\Models\Common\Category;
 use Illuminate\Support\Facades\DB;
 
 class StoreCategoryUseCase {

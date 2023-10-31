@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Common;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model {
+class Region extends Model {
     use HasFactory;
-
-    protected $table = 'orders';
 }

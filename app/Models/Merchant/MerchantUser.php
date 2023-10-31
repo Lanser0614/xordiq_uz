@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Merchant;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,7 +31,7 @@ class MerchantUser extends Authenticate {
     public function merchants(): BelongsToMany {
         return $this->belongsToMany(
             Merchant::class,
-            'merchant_user_merchants_pivot',
+            'merchants_of_user',
             'merchant_user_id',
             'merchant_id',
         );

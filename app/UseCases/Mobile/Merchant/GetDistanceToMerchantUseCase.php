@@ -34,13 +34,15 @@ class GetDistanceToMerchantUseCase {
 
         $radius = ($radius == 0) ? collect($distance)->min('distance') : $radius;
 
-        $data = array_values(collect($distance)->where('distance', '<=', $radius)->sortBy('distance')->toArray());
+        $data = array_values(
+            collect($distance)
+                ->where('distance', '<=', $radius)
+                ->sortBy('distance')->toArray()
+        );
 
-        $result = [
+        return [
             'result' => $data,
             'radius' => $radius,
         ];
-
-        return $result;
     }
 }

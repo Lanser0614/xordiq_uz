@@ -2,7 +2,7 @@
 
 namespace App\Repository\RoomRepository;
 
-use App\Models\Room;
+use App\Models\Merchant\Room;
 
 interface RoomRepositoryInterface {
     public function save(Room $model): Room;

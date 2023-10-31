@@ -3,7 +3,7 @@
 namespace App\Http\Middleware\User;
 
 use App\Enums\ExceptionEnum\ExceptionEnum;
-use App\Models\MerchantUser;
+use App\Models\Merchant\MerchantUser;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;

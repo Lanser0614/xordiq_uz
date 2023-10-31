@@ -5,7 +5,7 @@ namespace App\UseCases\Admin\MerchantFeature;
 use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Exceptions\DataBaseException;
 use App\Models\Image;
-use App\Models\MerchantFeature;
+use App\Models\Merchant\MerchantFeature;
 use App\Repository\MerchantFeatureRepository\MerchantFeatureRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;

@@ -2,7 +2,8 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use App\Models\MerchantUser;
+use App\Http\Resources\MerchantDashboardResource\Merchant\MerchantDashboardResource;
+use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 
@@ -13,10 +14,10 @@ class ShowMerchantUseCase {
     ) {
     }
 
-    public function execute(int $id, MerchantUser $merchantUser) {
+    public function execute(int $id, MerchantUser $merchantUser): MerchantDashboardResource {
         $merchant = $this->userRepository->getUserMerchantById($id, $merchantUser);
         $this->checkEntityTask->run($merchant);
 
-        return $merchant;
+        return new MerchantDashboardResource($merchant);
     }
 }

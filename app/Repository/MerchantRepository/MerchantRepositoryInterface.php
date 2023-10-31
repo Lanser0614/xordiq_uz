@@ -2,13 +2,15 @@
 
 namespace App\Repository\MerchantRepository;
 
-use App\Models\Merchant;
-use App\Models\MerchantUser;
+use App\Enums\MerchantUser\MerchantUserRolesEnum;
+use App\Models\Merchant\Merchant;
+use App\Models\Merchant\MerchantOfUser;
+use App\Models\Merchant\MerchantUser;
 
 interface MerchantRepositoryInterface {
     public function save(Merchant $model): Merchant;
 
-    public function saveMerchantUser(Merchant $model): void;
+    public function saveMerchantUser(Merchant $merchant, MerchantUserRolesEnum $role, MerchantUser $merchantUser): void;
 
     public function saveMerchantCategory(Merchant $model, array $categoryIds): void;
 
@@ -22,7 +24,7 @@ interface MerchantRepositoryInterface {
     /**
      * @return mixed
      */
-    public function getMerchantRooms(int $merchantId, MerchantUser $merchantUser);
+    public function getMerchantRooms(int $merchantId, MerchantUser $merchantUser): Merchant;
 
     /**
      * @return mixed

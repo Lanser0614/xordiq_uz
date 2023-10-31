@@ -2,7 +2,7 @@
 
 namespace App\Repository\MerchantFeatureRepository;
 
-use App\Models\MerchantFeature;
+use App\Models\Merchant\MerchantFeature;
 
 interface MerchantFeatureRepositoryInterface {
     public function findById(int $id): ?MerchantFeature;
