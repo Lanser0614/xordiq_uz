@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
-use App\DTOs\MerchantUser\MerchantUserUpdateDto;
+use App\DTOs\MerchantDTOs\MerchantUser\MerchantUserUpdateDto;
 use App\Exceptions\BusinessException;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;

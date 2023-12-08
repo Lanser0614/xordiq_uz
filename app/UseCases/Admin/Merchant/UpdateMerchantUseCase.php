@@ -2,9 +2,9 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use App\DTOs\Merchant\UpdateMerchantDTO;
+use App\DTOs\MerchantDTOs\Merchant\UpdateMerchantDTO;
 use App\Exceptions\DataBaseException;
-use App\Models\Image;
+use App\Models\Media\Image;
 use App\Models\Merchant\Merchant;
 use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;

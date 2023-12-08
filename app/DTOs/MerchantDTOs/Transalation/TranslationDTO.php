@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DTOs\Transalation;
+namespace App\DTOs\MerchantDTOs\Transalation;
 
 class TranslationDTO {
     public function __construct(

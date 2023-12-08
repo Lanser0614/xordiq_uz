@@ -34,7 +34,7 @@ class MerchantRepository implements MerchantRepositoryInterface {
             ->whereHas('merchantsUser', function (Builder $query) use ($merchantUser) {
                 $query->where('merchant_user_id', $merchantUser->id);
             })
-        ->first();
+            ->first();
     }
 
     public function saveMerchantUser(Merchant $merchant, MerchantUserRolesEnum $role, MerchantUser $merchantUser): void {

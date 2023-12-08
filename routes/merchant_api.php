@@ -36,7 +36,7 @@ Route::prefix('merchants')->group(function () {
 Route::prefix('merchants-feature')->group(function () {
     //    Route::post('/', [MerchantFeatureController::class, 'store']);
     Route::get('/', [MerchantFeatureController::class, 'index']);
-//    Route::get('/{id}', [MerchantFeatureController::class, 'show']);
+    //    Route::get('/{id}', [MerchantFeatureController::class, 'show']);
     //    Route::post('/{id}', [MerchantFeatureController::class, 'update']);
     //    Route::delete('/{id}', [MerchantFeatureController::class, 'delete']);
 });

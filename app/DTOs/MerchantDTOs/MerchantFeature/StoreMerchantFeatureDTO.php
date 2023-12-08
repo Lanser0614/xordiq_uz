@@ -1,21 +1,18 @@
 <?php
 
-namespace App\DTOs\Category;
+namespace App\DTOs\MerchantDTOs\MerchantFeature;
 
 use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;
+use Illuminate\Http\UploadedFile;
 
-class StoreCategoryDTO extends BaseDTO {
+final class StoreMerchantFeatureDTO extends BaseDTO {
     public function __construct(
         private readonly string $title_uz,
         private readonly string $title_ru,
         private readonly string $title_en,
-        private readonly ?int $parent_id,
+        private readonly UploadedFile $icon,
     ) {
-    }
-
-    public function getParentId(): ?int {
-        return $this->parent_id;
     }
 
     public function getTitleUz(): string {
@@ -30,19 +27,23 @@ class StoreCategoryDTO extends BaseDTO {
         return $this->title_en;
     }
 
+    public function getIcon(): UploadedFile {
+        return $this->icon;
+    }
+
     /**
      * @throws ParseException
      */
     public static function frommArray(array $data) {
-        return new static(
+        return new self(
             self::parseString($data['title_uz']),
             self::parseString($data['title_ru']),
             self::parseString($data['title_en']),
-            self::parseNullableInt($data['parent_id']),
+            $data['icon'],
         );
     }
 
-    public function jsonSerialize(): array {
-        return [];
+    public function jsonSerialize(): mixed {
+        // TODO: Implement jsonSerialize() method.
     }
 }

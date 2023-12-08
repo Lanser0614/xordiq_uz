@@ -1,8 +1,6 @@
 <?php
 
 use App\Models\Merchant\Merchant;
-use Illuminate\Database\Events\QueryExecuted;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,19 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
-
     $merchants = Merchant::query()->whereIn('id', [111, 109, 108])->get();
 
     $merchants->map(function (Merchant $merchant) {
-       $merchant->title_en = 'test1';
-       unset($merchant->created_at) ;
-       unset($merchant->updated_at);
+        $merchant->title_en = 'test1';
+        unset($merchant->created_at);
+        unset($merchant->updated_at);
     });
 
-
-
     Merchant::query()->upsert($merchants->toArray(), 'id');
-
-
 });

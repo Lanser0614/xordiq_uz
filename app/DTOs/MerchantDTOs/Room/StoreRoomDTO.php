@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTOs\Room;
+namespace App\DTOs\MerchantDTOs\Room;
 
 use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;

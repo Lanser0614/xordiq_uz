@@ -2,14 +2,14 @@
 
 namespace App\UseCases\Admin\Merchant;
 
-use App\DTOs\Merchant\StoreMerchantDTO;
+use App\DTOs\MerchantDTOs\Merchant\StoreMerchantDTO;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\Exceptions\DataBaseException;
-use App\Models\Ability;
-use App\Models\Image;
+use App\Models\Media\Image;
 use App\Models\Merchant\Merchant;
 use App\Models\Merchant\MerchantOfUser;
 use App\Models\Merchant\MerchantUser;
+use App\Models\RBAC\Ability;
 use App\Repository\MerchantRepository\MerchantRepositoryInterface;
 use App\Tasks\Merchant\SaveMerchantPhotosTask;
 use App\UseCases\BaseUseCase;
@@ -46,14 +46,14 @@ class StoreMerchantUseCase extends BaseUseCase {
 
             $this->saveMerchantRelationObject($merchant, $DTO, $merchantUser);
 
-//            $merchantOfUser = MerchantOfUser::query()
-//                ->where('merchant_user_id', '=', $merchantUser->id)
-//                ->where('merchant_id', $merchant->id)
-//                ->first();
+            //            $merchantOfUser = MerchantOfUser::query()
+            //                ->where('merchant_user_id', '=', $merchantUser->id)
+            //                ->where('merchant_id', $merchant->id)
+            //                ->first();
 
-//            dd($merchantUser->id,
-//$merchant->id,);
-//            $merchantOfUser->merchantOfUserAbilities()->attach(Ability::query()->pluck('id')->toArray());
+            //            dd($merchantUser->id,
+            //$merchant->id,);
+            //            $merchantOfUser->merchantOfUserAbilities()->attach(Ability::query()->pluck('id')->toArray());
 
             $path = $merchant->id.'-merchant';
             $imageName = random_int(1, 100000).time().'.'.$DTO->getHomePhoto()->extension();
@@ -86,6 +86,5 @@ class StoreMerchantUseCase extends BaseUseCase {
             ->first();
 
         $merchantOfUser->merchantOfUserAbilities()->attach(Ability::query()->pluck('id')->toArray());
-
     }
 }

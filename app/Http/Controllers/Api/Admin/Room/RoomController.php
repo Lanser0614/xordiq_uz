@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin\Room;
 
-use App\DTOs\Room\StoreRoomDTO;
+use App\DTOs\MerchantDTOs\Room\StoreRoomDTO;
 use App\Enums\Ability\AbilityEnum;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\Room\RoomStoreRequest;
@@ -17,9 +17,6 @@ use Illuminate\Http\JsonResponse;
 
 class RoomController extends BaseApiController {
     /**
-     * @param int $merchant_id
-     * @param IndexRoomUseCase $useCase
-     * @return JsonResponse
      * @throws AuthorizationException
      */
     public function index(int $merchant_id, IndexRoomUseCase $useCase): JsonResponse {

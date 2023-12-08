@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin\Category;
 
-use App\DTOs\Category\StoreCategoryDTO;
+use App\DTOs\MerchantDTOs\Category\StoreCategoryDTO;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\Category\StoreCategoryRequest;
 use App\Http\Requests\Admin\Category\UpdateCategoryRequest;

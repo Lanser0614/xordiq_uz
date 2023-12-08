@@ -6,6 +6,7 @@ namespace App\UseCases\Mobile\Merchant;
 
 use App\Filter\EloquentFilter\Merchant\MerchantByCategory;
 use App\Filter\EloquentFilter\Merchant\MerchantByEnTitle;
+use App\Filter\EloquentFilter\Merchant\MerchantByIds;
 use App\Filter\EloquentFilter\Merchant\MerchantByRuTitle;
 use App\Filter\EloquentFilter\Merchant\MerchantByUzTitle;
 use App\Http\Resources\Mobile\MerchantMobileResource;
@@ -22,6 +23,7 @@ class MerchantIndexUseCase {
             ->filter(
                 $request,
                 [
+                    MerchantByIds::class,
                     MerchantByCategory::class,
                     MerchantByEnTitle::class,
                     MerchantByRuTitle::class,

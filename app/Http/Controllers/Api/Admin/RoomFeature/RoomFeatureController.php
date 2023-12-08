@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin\RoomFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\DTOs\MerchantDTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Enums\Ability\AbilityEnum;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;

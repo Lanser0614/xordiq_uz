@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\Admin\MerchantUser;
 
-use App\DTOs\MerchantUser\MerchantUserRegisterDto;
-use App\DTOs\MerchantUser\MerchantUserUpdateDto;
-use App\DTOs\MerchantUser\UserLoginDto;
+use App\DTOs\MerchantDTOs\MerchantUser\MerchantUserRegisterDto;
+use App\DTOs\MerchantDTOs\MerchantUser\MerchantUserUpdateDto;
+use App\DTOs\MerchantDTOs\MerchantUser\UserLoginDto;
 use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Admin\MerchantUser\LoginRequest;

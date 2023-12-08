@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\Ability\AbilityEnum;
-use App\Models\Ability;
+use App\Models\RBAC\Ability;
 use Illuminate\Console\Command;
 
 class AbilitySyncCommand extends Command {

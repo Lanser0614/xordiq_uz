@@ -2,9 +2,9 @@
 
 namespace App\UseCases\Admin\Room;
 
-use App\DTOs\Room\StoreRoomDTO;
+use App\DTOs\MerchantDTOs\Room\StoreRoomDTO;
 use App\Exceptions\DataBaseException;
-use App\Models\Image;
+use App\Models\Media\Image;
 use App\Models\Merchant\MerchantUser;
 use App\Models\Merchant\Room;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;

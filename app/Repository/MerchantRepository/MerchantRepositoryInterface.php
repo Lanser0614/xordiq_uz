@@ -4,7 +4,6 @@ namespace App\Repository\MerchantRepository;
 
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\Models\Merchant\Merchant;
-use App\Models\Merchant\MerchantOfUser;
 use App\Models\Merchant\MerchantUser;
 
 interface MerchantRepositoryInterface {

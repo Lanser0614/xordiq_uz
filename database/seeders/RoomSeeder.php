@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Image;
+use App\Models\Media\Image;
 use App\Models\Merchant\Merchant;
 use App\Models\Merchant\Room;
 use App\Models\Merchant\RoomFeature;
-use Database\Factories\RoomFactory;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +14,6 @@ class RoomSeeder extends Seeder {
      * Run the database seeds.
      */
     public function run(): void {
-
         $faker = Factory::create();
         $rooms = collect();
         for ($i = 0; $i <= 100; $i++) {

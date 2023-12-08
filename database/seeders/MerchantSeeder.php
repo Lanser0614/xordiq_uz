@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\Models\Common\Category;
-use App\Models\Image;
+use App\Models\Media\Image;
 use App\Models\Merchant\Merchant;
 use App\Models\Merchant\MerchantFeature;
 use App\Models\Merchant\MerchantUser;

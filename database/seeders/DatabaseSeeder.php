@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Merchant\MerchantUser;
-use App\Models\User;
-use Database\Factories\MerchantUserFactory;
+use App\Models\User\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {

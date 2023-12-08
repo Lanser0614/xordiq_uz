@@ -21,7 +21,7 @@ class BaseApiController extends Controller {
         ];
     }
 
-    protected function responseWithResult(array $result) {
+    protected function responseWithResult(array $result): array {
         return [
             'result' => $result,
             'status' => $this->responseSuccess(),

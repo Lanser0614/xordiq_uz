@@ -25,7 +25,6 @@ class AppServiceProvider extends ServiceProvider {
      * Register any application services.
      */
     public function register(): void {
-
         $this->app->bind(MerchantUserRepositoryInterface::class, MerchantMerchantUserRepository::class);
         $this->app->bind(MerchantRepositoryInterface::class, MerchantRepository::class);
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);

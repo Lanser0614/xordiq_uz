@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DTOs\Merchant;
+namespace App\DTOs\MerchantDTOs\Merchant;
 
 use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;
 use Illuminate\Http\UploadedFile;
 
-final class UpdateMerchantDTO extends BaseDTO {
+final class StoreMerchantDTO extends BaseDTO {
     public function __construct(
         private readonly string $title_uz,
         private readonly string $title_ru,
@@ -21,15 +21,17 @@ final class UpdateMerchantDTO extends BaseDTO {
         private readonly int $book_commisison,
         private readonly UploadedFile $home_photo,
         private readonly array $photos,
+        private readonly array $categoryIds,
+        private readonly ?array $merchantFeaturesIds
     ) {
     }
 
-    public function getHomePhoto(): UploadedFile {
-        return $this->home_photo;
+    public function getMerchantFeaturesIds(): ?array {
+        return $this->merchantFeaturesIds;
     }
 
-    public function getPhotos(): array {
-        return $this->photos;
+    public function getCategoryIds(): array {
+        return $this->categoryIds;
     }
 
     public function getVillageId(): ?int {
@@ -38,6 +40,14 @@ final class UpdateMerchantDTO extends BaseDTO {
 
     public function getDistrictId(): ?int {
         return $this->district_id;
+    }
+
+    public function getHomePhoto(): UploadedFile {
+        return $this->home_photo;
+    }
+
+    public function getPhotos(): array {
+        return $this->photos;
     }
 
     public function getTitleUz(): string {
@@ -94,6 +104,8 @@ final class UpdateMerchantDTO extends BaseDTO {
             book_commisison: self::parseInt($data['book_commisison']),
             home_photo: $data['home_photo'],
             photos: self::parseArray($data['photos']),
+            categoryIds: self::parseArray($data['category_ids']),
+            merchantFeaturesIds: self::parseNullableArray($data['merchant_features_ids']),
         );
     }
 

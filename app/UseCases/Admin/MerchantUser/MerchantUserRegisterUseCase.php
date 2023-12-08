@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Admin\MerchantUser;
 
-use App\DTOs\MerchantUser\MerchantUserRegisterDto;
+use App\DTOs\MerchantDTOs\MerchantUser\MerchantUserRegisterDto;
 use App\Enums\MerchantUser\MerchantUserRolesEnum;
 use App\Models\Merchant\MerchantUser;
 use App\Repository\MerchantUserRepository\MerchantUserRepositoryInterface;

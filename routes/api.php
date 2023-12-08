@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\MerchantUser\MerchantUserController;
 use App\Http\Controllers\Api\Admin\Region\RegionController;
-use App\Models\User;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

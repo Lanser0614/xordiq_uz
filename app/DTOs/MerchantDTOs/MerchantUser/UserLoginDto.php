@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTOs\MerchantUser;
+namespace App\DTOs\MerchantDTOs\MerchantUser;
 
 use App\DTOs\BaseDTO\BaseDTO;
 use App\Exceptions\DtoException\ParseException;

@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Merchant\Merchant;
 use App\Models\Merchant\Room;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

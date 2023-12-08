@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\Admin\Merchant;
 
-use App\DTOs\Merchant\StoreMerchantDTO;
-use App\DTOs\Merchant\UpdateMerchantDTO;
+use App\DTOs\MerchantDTOs\Merchant\StoreMerchantDTO;
+use App\DTOs\MerchantDTOs\Merchant\UpdateMerchantDTO;
 use App\Enums\Ability\AbilityEnum;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\Mobile;
 use App\Http\Controllers\BaseApiController\BaseApiController;
 use App\Http\Requests\Mobile\Merchant\MerchantDistanceRequest;
 use App\Models\Common\Category;
+use App\Models\Merchant\Merchant;
 use App\UseCases\Mobile\Merchant\GetDistanceToMerchantUseCase;
 use App\UseCases\Mobile\Merchant\MerchantIndexUseCase;
 use Illuminate\Http\JsonResponse;
@@ -29,6 +30,12 @@ class MobileApiController extends BaseApiController {
             })->toArray()
             )
         );
+    }
+
+    public function showMerchant(int $id): JsonResponse {
+        $merchant = Merchant::query()->whereId($id)->firstOrFail();
+
+        return new JsonResponse($this->responseOneItem($merchant));
     }
 
     public function getMerchantDistance(MerchantDistanceRequest $request, GetDistanceToMerchantUseCase $useCase): JsonResponse {

@@ -4,7 +4,7 @@ namespace App\Models\Merchant;
 
 use App\Filter\BaseFilter\BaseFilter;
 use App\Models\Common\Category;
-use App\Models\Image;
+use App\Models\Media\Image;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Ramsey\Collection\Collection;
 
 /**
+ * App\Models\Merchant\Merchant
+ *
  * @property int $id
  * @property int|null $village_id
  * @property int|null $district_id
@@ -31,6 +33,40 @@ use Ramsey\Collection\Collection;
  * @property Collection|Room[] $rooms
  *
  * @method static Builder|self filter($request, $filters)
+ *
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Image> $images
+ * @property-read int|null $images_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Category> $merchantsCategories
+ * @property-read int|null $merchants_categories_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Merchant\MerchantFeature> $merchantsFeatures
+ * @property-read int|null $merchants_features_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Merchant\MerchantUser> $merchantsUser
+ * @property-read int|null $merchants_user_count
+ * @property-read int|null $rooms_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Merchant\Room> $roomsLimit
+ * @property-read int|null $rooms_limit_count
+ *
+ * @method static Builder|Merchant newModelQuery()
+ * @method static Builder|Merchant newQuery()
+ * @method static Builder|Merchant query()
+ * @method static Builder|Merchant whereBookCommission($value)
+ * @method static Builder|Merchant whereCreatedAt($value)
+ * @method static Builder|Merchant whereDescriptionEn($value)
+ * @method static Builder|Merchant whereDescriptionRu($value)
+ * @method static Builder|Merchant whereDescriptionUz($value)
+ * @method static Builder|Merchant whereDistrictId($value)
+ * @method static Builder|Merchant whereId($value)
+ * @method static Builder|Merchant whereLatitude($value)
+ * @method static Builder|Merchant whereLongitude($value)
+ * @method static Builder|Merchant whereTitleEn($value)
+ * @method static Builder|Merchant whereTitleRu($value)
+ * @method static Builder|Merchant whereTitleUz($value)
+ * @method static Builder|Merchant whereUpdatedAt($value)
+ * @method static Builder|Merchant whereVillageId($value)
+ *
+ * @mixin \Eloquent
  */
 class Merchant extends Model {
     protected $table = 'merchants';

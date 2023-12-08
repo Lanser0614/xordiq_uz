@@ -2,9 +2,9 @@
 
 namespace App\UseCases\Admin\RoomFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\DTOs\MerchantDTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Exceptions\DataBaseException;
-use App\Models\Image;
+use App\Models\Media\Image;
 use App\Repository\RoomFeatureRepository\RoomFeatureRepositoryInterface;
 use App\Tasks\Checker\CheckEntityTask;
 use Exception;

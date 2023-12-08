@@ -2,7 +2,7 @@
 
 namespace App\UseCases\Admin\Category;
 
-use App\DTOs\Category\StoreCategoryDTO;
+use App\DTOs\MerchantDTOs\Category\StoreCategoryDTO;
 use App\Models\Common\Category;
 use Illuminate\Support\Facades\DB;
 

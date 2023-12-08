@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin\MerchantFeature;
 
-use App\DTOs\MerchantFeature\StoreMerchantFeatureDTO;
+use App\DTOs\MerchantDTOs\MerchantFeature\StoreMerchantFeatureDTO;
 use App\Exceptions\DataBaseException;
 use App\Exceptions\DtoException\ParseException;
 use App\Http\Controllers\BaseApiController\BaseApiController;
