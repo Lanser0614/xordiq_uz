@@ -40,7 +40,7 @@ class Handler extends ExceptionHandler {
             return response()->json([
                 'error' => $e->getMessage(),
                 'code' => $e->getCode(),
-            ], $e->getCode());
+            ], 404);
         }
 
         if ($e instanceof BusinessException) {

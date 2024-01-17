@@ -2,8 +2,8 @@
 
 namespace App\Enums\ExceptionEnum;
 
-enum ExceptionEnum {
-    case ENTITY_NOT_FOUND;
+enum ExceptionEnum: int {
+    case ENTITY_NOT_FOUND = 404;
 
-    case NOT_ENOUGH_PERMISSION;
+    case NOT_ENOUGH_PERMISSION = 403;
 }

@@ -22,7 +22,7 @@ class RoomDashboardResource extends JsonResource {
             'id' => $this->resource->id,
             'title' => $this->resource->title,
             'price' => $this->resource->price,
-            'image' => $this->whenLoaded('image'),
+            'image' => $this->resource->images,
         ];
     }
 }

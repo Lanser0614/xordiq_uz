@@ -20,7 +20,7 @@ class UserSendOtpUseCase {
         $user = $this->userRepository->getByPhone($phone);
 
         if ($user === null) {
-            throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->name);
+            throw new ModelNotFoundException(ExceptionEnum::ENTITY_NOT_FOUND->value);
         }
 
         if (App::isProduction()) {
