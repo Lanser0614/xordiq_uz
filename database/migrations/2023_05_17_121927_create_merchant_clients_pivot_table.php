@@ -11,9 +11,9 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('merchant_clients_pivot', function (Blueprint $table) {
             $table->integer('merchant_id');
-            $table->integer('user_id')->index('merchant_clients_pivot_fk1');
+            $table->integer('user_id');
 
-            $table->primary(['merchant_id', 'user_id']);
+            $table->unique(['merchant_id', 'user_id']);
         });
     }
 
