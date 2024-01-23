@@ -37,7 +37,7 @@ class MerchantSeeder extends Seeder {
 
         $merchants->map(function (Merchant $merchant) {
             $faker = Factory::create();
-            $path = $faker->image(storage_path('app/public'), 640, 480, null, false);
+            $path = $faker->image(storage_path('app'), 640, 480, null, false);
             $image = new Image;
             $image->image_path = $path;
 

@@ -26,7 +26,9 @@ class MerchantMobileResource extends JsonResource {
             'district_id' => $this->resource->district_id,
             'latitude' => $this->resource->latitude,
             'longitude' => $this->resource->longitude,
-            'book_commisison' => $this->resource->book_commisison,
+            'book_commission' => $this->resource->book_commission,
+            'images' => $this->resource->images,
+            'price' => $this->resource->rooms->first()
         ];
     }
 }

@@ -35,7 +35,7 @@ class RoomSeeder extends Seeder {
             $roomFeaturesIds = RoomFeature::query()->inRandomOrder()->take(3)->pluck('id')->toArray();
             $room->save();
 
-            $path = $faker->image(storage_path('app/public'), 640, 480, null, false);
+            $path = $faker->image(storage_path('app'), 640, 480, null, false);
             $image = new Image;
             $image->image_path = $path;
 
