@@ -4,13 +4,18 @@ namespace App\Models\Merchant;
 
 use App\Filter\BaseFilter\BaseFilter;
 use App\Models\Common\Category;
+use App\Models\Common\District;
+use App\Models\Common\Region;
 use App\Models\Media\Image;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Ramsey\Collection\Collection;
 
 /**
@@ -34,18 +39,18 @@ use Ramsey\Collection\Collection;
  *
  * @method static Builder|self filter($request, $filters)
  *
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Image> $images
  * @property-read int|null $images_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Category> $merchantsCategories
  * @property-read int|null $merchants_categories_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Merchant\MerchantFeature> $merchantsFeatures
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, MerchantFeature> $merchantsFeatures
  * @property-read int|null $merchants_features_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Merchant\MerchantUser> $merchantsUser
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, MerchantUser> $merchantsUser
  * @property-read int|null $merchants_user_count
  * @property-read int|null $rooms_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Merchant\Room> $roomsLimit
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Room> $roomsLimit
  * @property-read int|null $rooms_limit_count
  *
  * @method static Builder|Merchant newModelQuery()
@@ -66,7 +71,7 @@ use Ramsey\Collection\Collection;
  * @method static Builder|Merchant whereUpdatedAt($value)
  * @method static Builder|Merchant whereVillageId($value)
  *
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Merchant extends Model {
     protected $table = 'merchants';
@@ -78,6 +83,16 @@ class Merchant extends Model {
             'merchant_id',
             'merchant_user_id'
         )->withPivot(['role']);
+    }
+
+    public function village(): HasOne
+    {
+        return $this->hasOne(Region::class, 'id', 'village_id');
+    }
+
+    public function district(): HasOne
+    {
+        return $this->hasOne(District::class, 'id', 'district_id');
     }
 
     public function merchantsCategories(): BelongsToMany {

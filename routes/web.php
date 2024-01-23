@@ -15,13 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $merchants = Merchant::query()->whereIn('id', [111, 109, 108])->get();
-
-    $merchants->map(function (Merchant $merchant) {
-        $merchant->title_en = 'test1';
-        unset($merchant->created_at);
-        unset($merchant->updated_at);
-    });
-
-    Merchant::query()->upsert($merchants->toArray(), 'id');
+    $merchants = Merchant::query()->with([
+        'village',
+        'district'
+    ])->first();
+    dd($merchants);
 });
