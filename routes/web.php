@@ -15,9 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $merchants = Merchant::query()->with([
-        'village',
-        'district'
-    ])->first();
-    dd($merchants);
+    return 'ok';
 });
