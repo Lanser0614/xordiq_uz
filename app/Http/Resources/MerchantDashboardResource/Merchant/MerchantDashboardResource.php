@@ -29,6 +29,7 @@ class MerchantDashboardResource extends JsonResource {
             'longitude' => $this->resource->longitude,
             'book_commission' => $this->resource->book_commission,
             'images' => $this->resource->images,
+            'categories' => $this->resource->merchantsCategories,
             'rooms' => RoomDashboardResource::collection($this->resource->rooms),
         ];
     }

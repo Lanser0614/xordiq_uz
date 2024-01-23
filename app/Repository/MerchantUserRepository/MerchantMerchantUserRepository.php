@@ -27,7 +27,7 @@ class MerchantMerchantUserRepository implements MerchantUserRepositoryInterface 
     }
 
     public function getUserMerchants(MerchantUser $merchantUser, int $perPage = 15, int $page = 1): LengthAwarePaginator {
-        return $merchantUser->merchants()->with(['images', 'rooms'])->paginate($perPage, ['*'], 'page', $page);
+        return $merchantUser->merchants()->with(['images', 'rooms', 'merchantsCategories'])->paginate($perPage, ['*'], 'page', $page);
     }
 
     public function getById(int $id): ?MerchantUser {
