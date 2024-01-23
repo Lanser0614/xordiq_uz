@@ -5,7 +5,7 @@ namespace App\Repository\MerchantUserRepository;
 use App\Models\Merchant\MerchantUser;
 
 interface MerchantUserRepositoryInterface {
-    public function getUserMerchants(MerchantUser $merchantUser, int $perPage = 1, int $page = 1);
+    public function getUserMerchants(MerchantUser $merchantUser, int $perPage = 1, int $page = 1, array $relations = []);
 
     public function save(MerchantUser $model);
 

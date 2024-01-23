@@ -17,7 +17,7 @@ class UserMerchantsIndexUseCase {
         MerchantUser $merchantUser,
         int $perPage = 15, int $page = 1
     ): AnonymousResourceCollection {
-        $merchants = $this->userRepository->getUserMerchants($merchantUser, $perPage, $page);
+        $merchants = $this->userRepository->getUserMerchants($merchantUser, $perPage, $page, ['village','district','images', 'rooms', 'merchantsCategories']);
 
         return MerchantDashboardResource::collection($merchants);
     }

@@ -6,6 +6,7 @@ use App\Filter\BaseFilter\BaseFilter;
 use App\Models\Common\Category;
 use App\Models\Common\District;
 use App\Models\Common\Region;
+use App\Models\Common\Village;
 use App\Models\Media\Image;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,6 +37,9 @@ use Ramsey\Collection\Collection;
  * @property float $longitude
  * @property int $book_commission
  * @property Collection|Room[] $rooms
+ *
+ * @property Village $village
+ * @property District $district
  *
  * @method static Builder|self filter($request, $filters)
  *
