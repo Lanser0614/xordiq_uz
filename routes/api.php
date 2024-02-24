@@ -33,7 +33,10 @@ Route::prefix('merchant_user')->group(function () {
 });
 
 Route::get('/test', function () {
-    $user = User::query()->paginate();
+    return User::query()->paginate();
+});
 
-    return responseWithPagination($user);
+
+Route::post('/akfa-telephone', function (Request $request) {
+    \Illuminate\Support\Facades\Log::channel('akfa')->debug('akfa-telephone', $request->all());
 });
